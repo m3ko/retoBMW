@@ -25,15 +25,15 @@ class VistaCoches
         echo '<tbody>';
         foreach ($nomProdFinales as $coche) {
             echo '<tr>';
-        echo '<th>'+$coche['id']+'</th>';
-        echo '<th>'+$coche['modelo']+'</th>';
-        echo '<th>'+$coche['motor']+'</th>';
-        echo '<th>'+$coche['suspension']+'</th>';
-        echo '<th>'+$coche['kit_aerodinamico']+'</th>';
-        echo '<th>'+$coche['llanta']+'</th>';
-        echo '<th>'+$coche['freno']+'</th>';
-        echo '<th>'+$coche['nombre_producto']+'</th>';
-        echo '<th>'+$coche['precio_total']+'</th>';
+        echo '<td>'.$coche['id_producto_final'].'</td>';
+        echo '<td>'.$coche['modelo'].'</td>';
+        echo '<td>'.$coche['motor'].'</td>';
+        echo '<td>'.$coche['suspension'].'</td>';
+        echo '<td>'.$coche['kit_aerodinamico'].'</td>';
+        echo '<td>'.$coche['llanta'].'</td>';
+        echo '<td>'.$coche['freno'].'</td>';
+        echo '<td>'.$coche['nombre_producto'].'</td>';
+        echo '<td>'.$coche['precio_total'].'</td>';
         echo '</tr>';
         }
         echo '<tr>' ;
