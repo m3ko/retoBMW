@@ -28,7 +28,33 @@ class ModeloCoches extends \Conectar
     {
 
         $con = ModeloCoches::conexion();
-        $resultado = $con->query('SELECT pf.id_producto_final, m.nombre_modelo AS modelo, mo.nombre_motor AS motor, s.nombre_suspension AS suspension, k.nombre_kit AS kit_aerodinamico, l.nombre_llanta AS llanta, f.tipo AS freno, pf.nombre_producto, pf.precio_total FROM Producto_final pf JOIN Modelo m ON pf.id_modelo = m.id_modelo JOIN Motor mo ON pf.id_motor = mo.id_motor JOIN Suspension s ON pf.id_suspension = s.id_suspension JOIN Kit_aerodinamico k ON pf.id_kit = k.id_kit JOIN Llanta l ON pf.id_llanta = l.id_llanta JOIN Freno f ON pf.id_freno = f.id_freno;');
+        $resultado = $con->query('SELECT 
+    pf.id_producto_final, 
+    m.nombre_modelo AS modelo, 
+    mo.nombre_motor AS motor, 
+    s.nombre_suspension AS suspension, 
+    k.nombre_kit AS kit_aerodinamico, 
+    l.nombre_llanta AS llanta, 
+    f.tipo AS freno, 
+    pf.nombre_producto, 
+    pf.precio_total, 
+    pf.cantidad,         -- Nueva columna para la cantidad
+    pf.img               -- Nueva columna para el link de la imagen
+FROM 
+    producto_final pf
+JOIN 
+    modelo m ON pf.id_modelo = m.id_modelo
+JOIN 
+    motor mo ON pf.id_motor = mo.id_motor
+JOIN 
+    suspension s ON pf.id_suspension = s.id_suspension
+JOIN 
+    kit_aerodinamico k ON pf.id_kit = k.id_kit
+JOIN 
+    llanta l ON pf.id_llanta = l.id_llanta
+JOIN 
+    freno f ON pf.id_freno = f.id_freno;
+');
         $nomProdFinales = [];
         // id_producto_final	
         // modelo	
@@ -39,6 +65,8 @@ class ModeloCoches extends \Conectar
         // freno	
         // nombre_producto	
         // precio_total
+        // cantidad
+        //img
         while ($fila = $resultado->fetch_assoc()) {
 
             $nomProdFinales[] = $fila;

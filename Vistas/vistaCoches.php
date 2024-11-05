@@ -20,6 +20,8 @@ class VistaCoches
         echo '<th>Freno</th>';
         echo '<th>Nombre Producto</th>';
         echo '<th>Precio Total</th>';
+        echo '<th>cantidad</th>';
+        echo '<th>img</th>';
         echo '</tr>';
         echo '</thead>';
         echo '<tbody>';
@@ -34,6 +36,8 @@ class VistaCoches
         echo '<td>'.$coche['freno'].'</td>';
         echo '<td>'.$coche['nombre_producto'].'</td>';
         echo '<td>'.$coche['precio_total'].'</td>';
+        echo '<td>'.$coche['cantidad'].'</td>';
+        echo '<td>'.$coche['img'].'</td>';
         echo '</tr>';
         }
         echo '<tr>' ;
