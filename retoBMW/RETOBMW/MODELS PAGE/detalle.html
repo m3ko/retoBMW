@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Coche</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS para el borde azul de los elementos predeterminados */
+        .seleccionado {
+            border: 2px solid blue; /* borde azul */
+            background-color: #e6f0ff; /* Fondo suave opcional */
+        }
+    </style>
+</head>
+<body>
+    <h1>Detalles del Coche</h1>
+    <div id="detalle-container">
+        <!-- Aquí se mostrará la información del coche -->
+    </div>
+
+    <h3>Frenos Disponibles</h3>
+    <div id="frenos-container">
+        <!-- Aquí se mostrarán los frenos -->
+    </div>
+    <h3>Llantas Disponibles</h3>
+    <div id="llantas-container">
+        <!-- Aquí se mostrarán las llantas -->
+    </div>
+    <h3>Kits Disponibles</h3>
+    <div id="kit-container">
+        <!-- Aquí se mostrarán los kits -->
+    </div>
+    <h3>Suspensiones Disponibles</h3>
+    <div id="suspension-container">
+        <!-- Aquí se mostrará la suspensión -->
+    </div>
+    <button class="compra">Comprar</button>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const idModelo = localStorage.getItem('id_modelo');
+            const nombreModelo = localStorage.getItem('nombre_modelo');
+            const precioBase = localStorage.getItem('precio_base');
+            const imagenUrl = localStorage.getItem('imagen_url');
+
+            const detalleHTML = `
+                <div class="detalle-coche">
+                    <img src="${imagenUrl}" alt="${nombreModelo}" width="200">
+                    <h2>${nombreModelo}</h2>
+                    <p>Precio: Desde ${precioBase}€</p>
+                    <h3>Motores Disponibles</h3>
+                    <div id="detalle-motores">Cargando motores...</div>
+                </div>
+            `;
+            document.getElementById('detalle-container').innerHTML = detalleHTML;
+
+            cargarMotores(idModelo); 
+            cargarFrenos();
+            cargarLlantas();
+            cargarKits();
+            cargarSuspension();
+        });
+
+        function cargarMotores(idModelo) {
+            if (!idModelo) {
+                document.getElementById('detalle-motores').innerText = 'ID del modelo no especificado.';
+                return;
+            }
+            fetch(`../../Controlador/modelo_motor.php?id_modelo=${idModelo}`)
+                .then(response => response.ok ? response.json() : Promise.reject())
+                .then(motores => {
+                    if (motores && motores.length > 0) {
+                        const motoresHtml = motores.map(motor => `
+                            <div class="motor">
+                                <p><strong>Motor:</strong> ${motor.nombre_motor}</p>
+                                <p><strong>Potencia:</strong> ${motor.caballos}</p>
+                                <p><strong>Cilindrada:</strong> ${motor.cilindrada}</p>
+                                <p><strong>Tipo de combustible:</strong> ${motor.combustion}</p>
+                                <p><strong>Precio:</strong> ${motor.precio}</p>
+                            </div>
+                        `).join('');
+                        document.getElementById('detalle-motores').innerHTML = motoresHtml;
+                    } else {
+                        document.getElementById('detalle-motores').innerText = 'No se encontraron motores disponibles.';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al cargar los motores:', error);
+                    document.getElementById('detalle-motores').innerText = 'Hubo un error al cargar los motores.';
+                });
+        }
+
+        function cargarFrenos() {
+            fetch("../../Controlador/frenos.php")
+                .then(response => response.ok ? response.json() : Promise.reject())
+                .then(data => {
+                    mostrarComponentes(data, 'frenos-container', "Estándar");
+                })
+                .catch(error => console.error("Error al obtener los datos de frenos:", error));
+        }
+
+        function cargarLlantas() {
+            fetch("../../Controlador/llantas.php")
+                .then(response => response.ok ? response.json() : Promise.reject())
+                .then(data => {
+                    mostrarComponentes(data, 'llantas-container', "Radial");
+                })
+                .catch(error => console.error("Error al obtener los datos de llantas:", error));
+        }
+
+        function cargarKits() {
+            fetch("../../Controlador/kits.php")
+                .then(response => response.ok ? response.json() : Promise.reject())
+                .then(data => {
+                    mostrarComponentes(data, 'kit-container', "Estándar");
+                })
+                .catch(error => console.error("Error al obtener los datos de kits:", error));
+        }
+
+        function cargarSuspension() {
+            fetch("../../Controlador/suspension.php")
+                .then(response => response.ok ? response.json() : Promise.reject())
+                .then(data => {
+                    mostrarComponentes(data, 'suspension-container', "Confort");
+                })
+                .catch(error => console.error("Error al obtener los datos de suspensión:", error));
+        }
+
+        function mostrarComponentes(data, containerId, tipoPredeterminado) {
+            let rows = '';
+            for (let item of data) {
+                const nombre = item.nombre || item.nombre_llanta || item.nombre_kit || item.nombre_suspension;
+                rows += `<div class="carta">
+                    <button class="componente" data-tipo="${item.tipo}">
+                        <p class="nombre">${nombre}</p>
+                        <p class="tipo">Tipo: ${item.tipo}</p>
+                        <p class="precio">Precio: ${item.precio}€</p>
+                        <p class="oferta">Oferta: ${item.oferta}</p>
+                    </button>
+                </div>`;
+            }
+            document.getElementById(containerId).innerHTML = rows;
+            seleccionarPredeterminado(containerId, tipoPredeterminado);
+            agregarEventosClick(containerId);
+        }
+
+        function seleccionarPredeterminado(containerId, tipoPredeterminado) {
+            const botones = document.querySelectorAll(`#${containerId} .componente`);
+            botones.forEach(boton => {
+                if (boton.getAttribute('data-tipo') === tipoPredeterminado) {
+                    boton.classList.add('seleccionado');
+                }
+            });
+        }
+
+        function agregarEventosClick(containerId) {
+            const botones = document.querySelectorAll(`#${containerId} .componente`);
+            botones.forEach(boton => {
+                boton.addEventListener('click', () => {
+                    botones.forEach(b => b.classList.remove('seleccionado'));
+                    boton.classList.add('seleccionado');
+                });
+            });
+        }
+    </script>
+</body>
+</html>
