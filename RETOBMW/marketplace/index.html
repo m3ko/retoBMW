@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bootstrap demo</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="app.js" type="text/javascript"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://db.onlinewebfonts.com/c/ac95f91c55cc591ecf37a4d136ff8031?family=BMWTypeNext+Pro+Regular" rel="stylesheet">
@@ -66,240 +67,35 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
 
-
+    <br>
+    <br>
   <!-- fin carrusel -->
   <nav class="filtro">
     <ul>
-        <li><a data-filter="todos">Todos</a></li>
-        <li><a data-filter="Serie 1">1</a></li>
-        <li><a data-filter="Serie 2"> 2</a></li>
-        <li><a data-filter="Serie 3"> 3</a></li>
-        <li><a data-filter="Serie 4"> 4</a></li>
-        <li><a data-filter="Serie 5"> 5</a></li>
-        <li><a data-filter="Serie 6"> 6</a></li>
-        <li><a data-filter="Serie 7"> 7</a></li>
-        <li><a data-filter="Serie 8"> 8</a></li>
-        <li><a data-filter="X">X</a></li>
-        <li><a data-filter="Z4">Z4</a></li>
-        <li><a data-filter="i3">i3</a></li>
-        <li><a data-filter="i8">i8</a></li>
+        <li><a data-filter="todos" onclick="filtro('todos')">Todos</a></li>
+        <li><a data-filter="Serie 1" onclick="filtro('BMW Serie 1')">1</a></li>
+        <li><a data-filter="Serie 2" onclick="filtro('BMW Serie 2')"> 2</a></li>
+        <li><a data-filter="Serie 3" onclick="filtro('BMW Serie 3')"> 3</a></li>
+        <li><a data-filter="Serie 4" onclick="filtro('BMW Serie 4')"> 4</a></li>
+        <li><a data-filter="Serie 6" onclick="filtro('BMW Serie 6')"> 6</a></li>
+        <li><a data-filter="Serie 7" onclick="filtro('BMW Serie 7')"> 7</a></li>
+        <li><a data-filter="Serie 8" onclick="filtro('BMW Serie 8')"> 8</a></li>
+        <li><a data-filter="X1" onclick="filtro('BMW X1')">X1</a></li>
+        <li><a data-filter="X3" onclick="filtro('BMW X3')">X3</a></li>
+        <li><a data-filter="X5" onclick="filtro('BMW X5')">X5</a></li>
+        <li><a data-filter="X6" onclick="filtro('BMW X6')">X6</a></li>
+        <li><a data-filter="Z4" onclick="filtro('BMW Z4')">Z4</a></li>
+        <li><a data-filter="i8" onclick="filtro('BMW i8')">i8</a></li>
     </ul>
 </nav>
 
-  <div class="container">
+<br>
+<br>
 
-    <figure class="card card--4">
-      <img src="https://www.bmw.es/content/dam/bmw/common/all-models/1-series/5-door/2024/navigation/bmw-1-series-modelfinder.png" alt="">
-      <figcaption>
-        <span class="info">
-          <h3>The Ocean</h3>
-          <span>by Blue Ranger</span>
-        </span>
-        <span class="links">
-          <a href="#"><i class="fas fa-heart"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://unsplash.com/photos/DLwUVlzrP0Q" target="_blank"><i class="fas fa-share"></i></a>
-        </span>
-      </figcaption>
-    </figure>
+  <div class="container" id="cartas">
 
-    <figure class="card card--4">
-      <img
-        src="https://prod.cosy.bmw.cloud/bmvis/cosySec?COSY-EU-100-2545J3qAHyFnz5cRoHSWRzMESDsVcRoH7QRzMESV59VMb3G6bUJ1rjGRPixrQbUoaFoGq0zdpbo6l38mrjGm7SErQbCUQMs2q0zSDUW8J13882q0zAanCbl382hhq0zkRNSQBL4QSW8zLAd8W8J1ExSnQNUMESQdoiuKUUqoQEdcNq0zkdHNqoQqRrjGr9ovUW8zWubtJqogqaJ2zl3ilUQt9cRScH8ZuMbnMdoPdyJGy53LtrQ%25r9YEAW8zWuEfbqogqaGQFl3ilU%2575cRScHzesMbnMdg70yJGy5iKErQ%25r9SDGW8zWunfGqogqaGs0l3ilUC7gcRScH4%25oMbnMdeziyJGy5QsnrQ%25r98R5W8zWuon%25qogqa3s7l3ilUUJ5cRScHHQ8MbnMdd8syJGy55snrQ%25r99oUW8zWuuaCqoQLds3%251UMESCJzVMb3Vq0zoaDHdl38vontCcYiYU8l38NrjGl3guUHqoQUyFnHm"
-        alt="">
-      <figcaption>
-        <span class="info">
-          <h3>The Ocean</h3>
-          <span>by Blue Ranger</span>
-        </span>
-        <span class="links">
-          <a href="#"><i class="fas fa-heart"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://unsplash.com/photos/DLwUVlzrP0Q" target="_blank"><i class="fas fa-share"></i></a>
-        </span>
-      </figcaption>
-    </figure>
-    <figure class="card card--4">
-      <img
-        src="https://mdm.n3rd.ca/storage/images/vehicles/2024/bmw/m3/437767/medium_exteriorGallery_2024-bmw-m3-berline-cs-1686072125.webp"
-        alt="">
-      <figcaption>
-        <span class="info">
-          <h3>The Ocean</h3>
-          <span>by Blue Ranger</span>
-        </span>
-        <span class="links">
-          <a href="#"><i class="fas fa-heart"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://unsplash.com/photos/DLwUVlzrP0Q" target="_blank"><i class="fas fa-share"></i></a>
-        </span>
-      </figcaption>
-    </figure>
-    <figure class="card card--4">
-      <img
-        src="https://prod.cosy.bmw.cloud/connext-bmw/cosySec?COSY-EU-100-7331c9Nv2Z7d5yKlHS9gwyljT5lkQM37fNw2M2CpLjSk%25S8QvsrGZIGtAlaptvX%25oKNHkJENmb4Ws86OG7c1QUD4IxxbZG%25I4Y%25E9CpL0FkP%25QJX2YIxZU2hilpRBqSrxlzK%25yoKG%25Ty8nvzTomvhv0v1SyX3242YfTQdjcjiR3azDxDL0dnkq8cnCzOALUx%25skIFJG8OQABKupUP8FeWS6GbSKMPVYp9gWhbNmQtiPo90yaAwbHi4Tnx99%25wc3O8Qiftxd9WMw178zi1htECUkwEP7slGAtW4CrXpF7MplZQ6KCJqXRaYWluEQ5nmPXf3agOybQ3ynvIT9aMlO2B3iK2RIjedwW%255BDMztPfjeqhk7bXHMLoAC9VAhJHFliNgou%25KXwM6HSfWQthX%25V1PaZILfNEbnR2V10s9O58oE4riIgUdscZwBvGkrxRte2FNZ857Mj2lRUgChD3A5GvloqVdgp2XHLDMv6jQ%25dJW2YDafzoajmqn1kUUDyLOEAwqqTJIsFevL3uBru5kJdSeZSUbuzVMRVrlSkNh5NbCVA0og02wNF4Hv4jB0Kc%252cx74Wxfjx7pcP81D8CjxbZsM%251EKzWNRxjuE3aJzMxQUdqf973NF1VgxNJ0%25lJ2oubJR1EsHWpe05tE6RJei0Zq4gpnjTrBzcMfCV81ekFKdnuUswTYB1v"
-        alt="">
-      <figcaption>
-        <span class="info">
-          <h3>The Ocean</h3>
-          <span>by Blue Ranger</span>
-        </span>
-        <span class="links">
-          <a href="#"><i class="fas fa-heart"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://unsplash.com/photos/DLwUVlzrP0Q" target="_blank"><i class="fas fa-share"></i></a>
-        </span>
-      </figcaption>
-    </figure>
-    <figure class="card card--4">
-      <img type="image/jpg" src="https://motork.com/media/2024/06/k12-3.png">
-      <figcaption>
-        <span class="info">
-          <h3>The Ocean</h3>
-          <span>by Blue Ranger</span>
-        </span>
-        <span class="links">
-          <a href="#"><i class="fas fa-heart"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://unsplash.com/photos/DLwUVlzrP0Q" target="_blank"><i class="fas fa-share"></i></a>
-        </span>
-      </figcaption>
-    </figure>
-    <figure class="card card--4">
-      <img src="https://www.bmwautomotor.com/wp-content/uploads/2021/07/bmw-i4.jpg" alt="">
-      <figcaption>
-        <span class="info">
-          <h3>The Ocean</h3>
-          <span>by Blue Ranger</span>
-        </span>
-        <span class="links">
-          <a href="#"><i class="fas fa-heart"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://unsplash.com/photos/DLwUVlzrP0Q" target="_blank"><i class="fas fa-share"></i></a>
-        </span>
-      </figcaption>
-    </figure>
-
-    <figure class="card card--4">
-      <img
-        src="https://i0.wp.com/macote.fr/wp-content/uploads/2024/01/BMW-SERIE-7-G70-BLACK-NO-BACKGROUND.png?fit=890%2C501&ssl=1"
-        alt="">
-      <figcaption>
-        <span class="info">
-          <h3>The Ocean</h3>
-          <span>by Blue Ranger</span>
-        </span>
-        <span class="links">
-          <a href="#"><i class="fas fa-heart"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://unsplash.com/photos/DLwUVlzrP0Q" target="_blank"><i class="fas fa-share"></i></a>
-        </span>
-      </figcaption>
-    </figure>
-
-    <figure class="card card--4">
-      <img
-        src="https://images.dealer.com/ddc/vehicles/2024/BMW/M8%20Gran%20Coupe/Sedan/color/Aventurin%20Red%20Metallic-C57-70,22,29-640-en_US.jpg"
-        alt="">
-      <figcaption>
-        <span class="info">
-          <h3>The Ocean</h3>
-          <span>by Blue Ranger</span>
-        </span>
-        <span class="links">
-          <a href="#"><i class="fas fa-heart"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://unsplash.com/photos/DLwUVlzrP0Q" target="_blank"><i class="fas fa-share"></i></a>
-        </span>
-      </figcaption>
-    </figure>
-    <figure class="card card--4">
-      <img src="https://cdn.bymycar.eu/es-bo/assets/images/vehicles/vn/835735/65e9a8f7a8fec.png" alt="">
-      <figcaption>
-        <span class="info">
-          <h3>The Ocean</h3>
-          <span>by Blue Ranger</span>
-        </span>
-        <span class="links">
-          <a href="#"><i class="fas fa-heart"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://unsplash.com/photos/DLwUVlzrP0Q" target="_blank"><i class="fas fa-share"></i></a>
-        </span>
-      </figcaption>
-    </figure>
-    <figure class="card card--4">
-      <img src="https://www.bmw.com.mx/content/dam/bmw/common/all-models/x-series/x3/2024/phev/navigation/bmw-x-series-x3-30e-xdrive.png.asset.1718691839329.png" alt="">
-      <figcaption>
-        <span class="info">
-          <h3>The Ocean</h3>
-          <span>by Blue Ranger</span>
-        </span>
-        <span class="links">
-          <a href="#"><i class="fas fa-heart"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://unsplash.com/photos/DLwUVlzrP0Q" target="_blank"><i class="fas fa-share"></i></a>
-        </span>
-      </figcaption>
-    </figure>
-    <figure class="card card--4">
-      <img src="https://di-uploads-pod23.dealerinspire.com/bmwofowingsmills/uploads/2023/06/TRANSPARENT_cc_2024BMS220013_01_1280_475-1.png" alt="">
-      <figcaption>
-        <span class="info">
-          <h3>The Ocean</h3>
-          <span>by Blue Ranger</span>
-        </span>
-        <span class="links">
-          <a href="#"><i class="fas fa-heart"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://unsplash.com/photos/DLwUVlzrP0Q" target="_blank"><i class="fas fa-share"></i></a>
-        </span>
-      </figcaption>
-    </figure>
-    <figure class="card card--4">
-      <img src="https://www.bmw.es/content/dam/bmw/common/all-models/m-series/x6m/2023/highlights/bmw-m-series-x6-m-gallery-image-impressionen-03_1920.jpg.asset.1675123934752.jpg" alt="">
-      <figcaption>
-        <span class="info">
-          <h3>The Ocean</h3>
-          <span>by Blue Ranger</span>
-        </span>
-        <span class="links">
-          <a href="#"><i class="fas fa-heart"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://unsplash.com/photos/DLwUVlzrP0Q" target="_blank"><i class="fas fa-share"></i></a>
-        </span>
-      </figcaption>
-    </figure>
-    <figure class="card card--4">
-      <img src="    https://contenido.bmw.lurauto.com/recursos-web/modelos/BMW-Z4-2023/cosySec-3.webp
-      " alt="">
-      <figcaption>
-        <span class="info">
-          <h3>The Ocean</h3>
-          <span>by Blue Ranger</span>
-        </span>
-        <span class="links">
-          <a href="#"><i class="fas fa-heart"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://unsplash.com/photos/DLwUVlzrP0Q" target="_blank"><i class="fas fa-share"></i></a>
-        </span>
-      </figcaption>
-    </figure>
-    <figure class="card card--4">
-      <img src="    https://www.real-luxury.es/media/tz_portfolio_plus/article/cache/noleggio-bmw-i8-37-8_o.png
-      " alt="">
-      <figcaption>
-        <span class="info">
-          <h3>The Ocean</h3>
-          <span>by Blue Ranger</span>
-        </span>
-        <span class="links">
-          <a href="#"><i class="fas fa-heart"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://unsplash.com/photos/DLwUVlzrP0Q" target="_blank"><i class="fas fa-share"></i></a>
-        </span>
-      </figcaption>
-    </figure>
+    
   </div>
 </body>
-
+<script src="app.js" type="text/javascript"></script>
 </html>
