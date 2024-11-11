@@ -1,32 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css"> 
-</head>
-<body>
-    <form method="POST" action="javascript:void(0)">
-        <div class="container">
-          <h1>LOG IN!</h1>
-          <p>Fill the form below to <strong>Log In</strong></p>
-          <hr style="border: 1px solid #999;" />
-      
-          <div class="form-group">
-            <input class="form-control" type="email" id="email" name="email" placeholder="Enter Your Email *" autocomplete="off" spellcheck="false" required />
-            <label for="email">Email Address</label>
-          </div>
-      
-          <div class="form-group">
-            <input class="form-control" type="password" id="password" name="password" placeholder="Enter Your Password *" autocomplete="off" spellcheck="false" required />
-            <label for="password">Password</label>
-          </div>
-      
-          <hr style="border: 1px solid #999;margin-top: .8rem;" />
-          <input class="btn" type="submit" name="submit" value="LOG IN" />
-          <input class="btn2" type="submit" name="submit" value="SIGN UP" />
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sign Up & Log in form</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://db.onlinewebfonts.com/c/ac95f91c55cc591ecf37a4d136ff8031?family=BMWTypeNext+Pro+Regular" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class="sign-up active" id="sign-up-button">
+        <p class="sign-up-header">Sign Up</p>
+      </div>
+      <div class="log-in" id="log-in-button">
+        <p class="log-in-header">Log In</p>
+      </div>
+      <form id="sign-up-form">
+        <div class="header">
+          <h1>Sign Up for Free</h1>
         </div>
+        <input class="first-name" type="text" placeholder="First Name*" required>
+        <input class="last-name" type="text" placeholder="Last Name*" required>
+        <input type="email" placeholder="Email Address*" required>
+        <input type="password" placeholder="Set a password*" required>
+        <button id="sign-up-submit">Get Started</button>
       </form>
-</body>
+      <form id="log-in-form">
+        <div class="header">
+          <h1>Welcome back!</h1>
+        </div>
+        <input class="email" type="email" placeholder="Email Address*" required>
+        <input type="password" placeholder="Your password*" required>
+
+        <button id="log-in-submit">Log in</button>
+      </form>
+
+    </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="app.js"></script>
+  </body>
+  
 </html>

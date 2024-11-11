@@ -44,7 +44,7 @@ async function obtenerProductosFinales(modelo = '') {
                 <img src="${producto.img}" alt="">
                 <figcaption>
                     <span class="info">
-                        <h3>${producto.nombre_producto}</h3>
+                        <h6>${producto.nombre_producto}</h6>
                         <span>
                             <ul>
                                 <li>${producto.motor} (${producto.potencia}CV)</li>
@@ -53,47 +53,37 @@ async function obtenerProductosFinales(modelo = '') {
                                 <li>Tipo Frenos: ${producto.freno}</li>
                                 <li>LLantas: ${producto.llanta}</li>
                                 <li>Total: ${producto.precio_total}€</li>
+                                <br>
+                                <button onclick="verificarInicioSesion_carrito(${producto.id_producto_final})">Añadir al Carrito</button>
+
+
                             </ul>
                         </span>
-                    </span>
-                    <span class="links">
-                        <a href="#"><i class="fas fa-heart"></i></a>
-                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://unsplash.com/photos/DLwUVlzrP0Q" target="_blank"><i class="fas fa-share"></i></a>
-                    </span>
+                        </span>
+                        // <nav class="opciones" >
+                        //     <ul>
+                        //         <li><a data-filter="todos" onclick="filtro('todos')">Añadir al Carrito</a></li>
+                        //     </ul>
+                        // </nav>
                 </figcaption>
             </figure>`;
     });
 }
 
-function crearCarta(producto) {
+async function verificarInicioSesion_carrito(producto){
 
-    document.getElementById("#cartas").innerHTML(
+    const response = await fetch('../../Modelo/verificar_sesion.php');
+    const verificar = await response.json();
 
-        '<figure class="card card--4">' +
-        '<img src="' + producto.img + '" alt="">' +
-        '<figcaption>' +
-        '<span class="info">' +
-        '<h3>The Ocean</h3>' +
-        '<span>by Blue Ranger</span>' +
-        '</span>' +
-        '<span class="links">' +
-        '<a href="#"><i class="fas fa - heart"></i></a>' +
-        '<a href="#" target="_blank"><i class="fab fa - instagram"></i></a>' +
-        '<a href="https://unsplash.com/photos/DLwUVlzrP0Q" target="_blank"><i class="fas fa-share"></i></a>' +
-        '</span >' +
-        '</figcaption >' +
-        '</figure > '
+    if(verificar==true){
 
-    );
+        aniadirCarrito(producto)
+        
+    }
 
 }
 
-
-
-
-function prueba() {
-
+function aniadirCarrito(producto) {
 
 
 

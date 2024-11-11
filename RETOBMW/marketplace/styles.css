@@ -26,7 +26,6 @@ body {
 
 nav{
     height: 60px;
-    background-color:#ffffff;
     text-align: center;
   }
 
@@ -42,7 +41,6 @@ nav{
   }
 
   nav ul li a {
-      color: white;
       font-weight: bold;
       text-decoration: none;
       font-size: 20px;
@@ -50,10 +48,8 @@ nav{
   }
 
   nav ul li a:hover{
-    background-color: #929fb3;
+    background-color: #000000;
   }
-
-
 
 
   .container {
@@ -99,7 +95,7 @@ figure.card--4:hover {
 
 figure.card--4 figcaption {
     right: 0;
-    transform: translateY(100%); /* Figcaption comienza desplazado hacia abajo */
+    transform: translateX(100%); /* Figcaption comienza desplazado hacia abajo */
 }
 
 figure.card figcaption {
@@ -108,11 +104,11 @@ figure.card figcaption {
     align-items: flex-start; /* Alinea todo el contenido a la izquierda */
     position: absolute;
     top: 0;
-    left: 0;
+    left: 50%;
     padding: 20px;
     background: #282828;
     transition: transform 400ms ease;
-    width: 100%;
+    width: 200px;
     height: 100%;
 }
 
@@ -190,6 +186,17 @@ figure.card figcaption .links a::after {
     z-index: -1;
     transition: all 150ms ease;
 }
+
+.opciones ul li {
+
+    display: inline-block;;
+    float: left;
+    font-size: small;
+    list-style: none;
+    padding-right: 10px;
+    align-items: flex-start;
+    list-style: none;
+  }
 
 
 @media only screen and (max-width: 900px) {
