@@ -1,19 +1,11 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['usuario_id'])) {
-    header("Content-Type: application/json");
-    echo json_encode([
-        'status' => 'nologueado',
-        'message' => 'reenviar a login',
-    ]);
-    
-    header("Location: login.php"); // Redirigir si no hay sesión activa
-    exit();
-} else{
+header("Content-Type: application/json");
 
-    $verificar = true;
-    header("Content-Type: application/json");
-    echo json_encode($verificar);
+if (!isset($_SESSION['usuario_id'])) {
+    echo json_encode(false); // Devuelve false si no hay sesión activa
+} else {
+    echo json_encode(true);  // Devuelve true si hay sesión activa
 }
 ?>

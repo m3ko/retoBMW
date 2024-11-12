@@ -1,23 +1,27 @@
 <?php
-session_start();
 require_once 'connect.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nombre = $_POST['nombre'];
-    $apellidos = $_POST['apellidos'];
-    $usuario = $_POST['usuario'];
-    $email = $_POST['email'];
-    $contrasena = password_hash($_POST['contrasena'], PASSWORD_BCRYPT); // Hashear la contraseña
+class Register extends Conectar
+{
 
-    $sql = "INSERT INTO usuario (nombre, apellidos, usuario, email, contrasena) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('sssss', $nombre, $apellidos, $usuario, $email, $contrasena);
-    
-    if ($stmt->execute()) {
-        header("Location: login.php"); // Redirigir a la página de login
-        exit();
-    } else {
-        $error = "Error al registrar el usuario.";
+    function registrar()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $first_name = $_POST['first_name'];
+            $last_name = $_POST['last_name'];
+            $email = $_POST['email'];
+            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $con = Register::conexion();
+            $sql = "INSERT INTO usuario (nombre, apellido, usuario, contrasena) VALUES (?, ?, ?, ?)";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param('ssss', $first_name, $last_name, $email, $password);
+
+            if ($stmt->execute()) {
+                header("Location: login.php");
+            } else {
+                echo "Error al registrar usuario.";
+            }
+        }
     }
 }
-?>

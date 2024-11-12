@@ -70,18 +70,19 @@ async function obtenerProductosFinales(modelo = '') {
     });
 }
 
-async function verificarInicioSesion_carrito(producto){
-
+// Función para verificar inicio de sesión y añadir al carrito
+async function verificarInicioSesion_carrito(producto) {
     const response = await fetch('../../Modelo/verificar_sesion.php');
     const verificar = await response.json();
 
-    if(verificar==true){
-
-        aniadirCarrito(producto)
-        
+    if (verificar) {
+        aniadirCarrito(producto);
+    } else {
+        // Redirige a la página de inicio de sesión si no está autenticado
+        window.location.href = '../Log In/index.html';
     }
-
 }
+
 
 function aniadirCarrito(producto) {
 
