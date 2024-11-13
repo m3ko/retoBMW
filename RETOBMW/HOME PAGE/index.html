@@ -1,69 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-        <link rel="stylesheet" href="style.css"> 
-
+    <title>BMW - Innovación y Competición</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav class="nav">
         <div class="container">
-                <div class="logo">
-                        <img src="img/bmwlogo.svg" alt="">
-                </div>
-                <div id="mainListDiv" class="main_list">
-                        <ul class="navlinks">
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Portfolio</a></li>
-                                <li><a href="#">Services</a></li>
-                                <li><a href="#">Contact</a></li>
-                        </ul>
-                </div>
-                <span class="navTrigger">
-                        <i></i>
-                        <i></i>
-                        <i></i>
-                </span>
+            <div class="logo">
+                <img src="img/bmwlogo.svg" alt="BMW Logo">
+            </div>
+            <div id="mainListDiv" class="main_list">
+                <ul class="navlinks">
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <span class="navTrigger">
+                <i></i><i></i><i></i>
+            </span>
         </div>
-</nav>
+    </nav>
 
-<section class="home">
-</section>
-<div style="height: 1000px">
-        <!-- just to make scrolling effect possible -->
-    <h2 class="myH2">What is this ?</h2>
-    <p class="myP">This is a responsive fixed navbar animated on scroll</p>
-    <p class="myP">I took inspiration from  ABDO STEIF (<a href="https://codepen.io/abdosteif/pen/bRoyMb?editors=1100">https://codepen.io/abdosteif/pen/bRoyMb?editors=1100</a>)
-    and Dicson <a href="https://codepen.io/dicson/pen/waKPgQ">(https://codepen.io/dicson/pen/waKPgQ)</a></p>
-    <p class="myP">I HOPE YOU FIND THIS USEFULL</p>
-    <p class="myP">Albi</p>
-        <p class="myP">
+    <!-- Sección de introducción -->
+    <section class="home">
+    </section>
 
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum ratione facere animi impedit rem labore sint repellendus ipsa sapiente voluptatem aut excepturi quo itaque, ab earum cumque. Voluptatem beatae id inventore quod voluptate qui deserunt, quis placeat, tempora ex totam, dolore sequi harum eos voluptatibus animi labore officiis minus laboriosam
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum ratione facere animi impedit rem labore sint repellendus ipsa sapiente voluptatem aut excepturi quo itaque, ab earum cumque. Voluptatem beatae id inventore quod voluptate qui deserunt, quis placeat, tempora ex totam, dolore sequi harum eos voluptatibus animi labore officiis minus laboriosam
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum ratione facere animi impedit rem labore sint repellendus ipsa sapiente voluptatem aut excepturi quo itaque, ab earum cumque. Voluptatem beatae id inventore quod voluptate qui deserunt, quis placeat, tempora ex totam, dolore sequi harum eos voluptatibus animi labore officiis minus laboriosam
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum ratione facere animi impedit rem labore sint repellendus ipsa sapiente voluptatem aut excepturi quo itaque, ab earum cumque. Voluptatem beatae id inventore quod voluptate qui deserunt, quis placeat, tempora ex totam, dolore sequi harum eos voluptatibus animi labore officiis minus laboriosam
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum ratione facere animi impedit rem labore sint repellendus ipsa sapiente voluptatem aut excepturi quo itaque, ab earum cumque. Voluptatem beatae id inventore quod voluptate qui deserunt, quis placeat, tempora ex totam, dolore sequi harum eos voluptatibus animi labore officiis minus laboriosam
-</p>
-</div>
+    <!-- Historia de BMW -->
+    <section class="history">
+        <div class="content-container">
+            <div class="text">
+                <h2>Nuestra Historia</h2>
+                <p>Desde sus inicios en 1916, BMW ha sido sinónimo de ingeniería de precisión y excelencia en el mundo automotriz. Nacimos en Alemania como fabricantes de motores de avión y, con el tiempo, nos transformamos en uno de los nombres más respetados en el sector automotriz. Nuestra historia está marcada por la pasión por la velocidad, el compromiso con la innovación y el deseo de ofrecer experiencias de conducción sin igual.</p>
+                <p>Con una tradición que fusiona elegancia, rendimiento y tecnología de vanguardia, BMW ha evolucionado para convertirse en una marca icónica, representando no solo vehículos, sino una filosofía de vida y una visión futurista del transporte.</p>
+            </div>
+            <div class="image">
+                <img src="https://via.placeholder.com/500x300" alt="Historia BMW">
+            </div>
+        </div>
+    </section>
 
-<!-- Jquery needed -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="js/scripts.js"></script>
+    <!-- Sección de competencia -->
+    <section class="competition">
+        <div class="content-container">
+            <div class="image">
+                <img src="https://via.placeholder.com/500x300" alt="Competición BMW">
+            </div>
+            <div class="text">
+                <h2>La Pasión por la Competición</h2>
+                <p>BMW ha sido un nombre destacado en la competición de motores, participando en categorías de alto rendimiento como la Fórmula 1, Le Mans y el DTM. Nuestro compromiso con la competencia no es solo por la gloria, sino por la mejora continua. Cada victoria, cada innovación en la pista, se traduce en una experiencia de conducción más avanzada para nuestros clientes.</p>
+                <p>A través de nuestra división M, transformamos la adrenalina y las exigencias de la pista en automóviles de calle que redefinen el significado de rendimiento. Para BMW, la competencia es un laboratorio en movimiento.</p>
+            </div>
+        </div>
+    </section>
 
-<!-- Function used to shrink nav bar removing paddings and adding black background -->
-<script>
-$(window).scroll(function() {
-if ($(document).scrollTop() > 50) {
-    $('.nav').addClass('affix');
-    console.log("OK");
-} else {
-    $('.nav').removeClass('affix');
-}
-});
-</script>
+    <!-- Sección de modelos -->
+    <section class="models">
+        <div class="content-container">
+            <div class="text">
+                <h2>Descubre Nuestros Modelos</h2>
+                <p>Explora nuestra gama completa de vehículos, desde el icónico BMW Serie 3 hasta los innovadores modelos eléctricos. Cada vehículo es una obra maestra de ingeniería, diseñada para satisfacer todos los estilos de vida y necesidades de nuestros clientes. Haz clic en el enlace a continuación para descubrir la experiencia BMW.</p>
+                <a href="catalogo.html" class="button">Ver Catálogo de Vehículos</a>
+            </div>
+            <div class="image">
+                <img src="https://via.placeholder.com/500x300" alt="Modelos BMW">
+            </div>
+        </div>
+    </section>
 
+    <!-- Galería de imágenes -->
+    <section class="gallery">
+        <h2>Nuestra Galería</h2>
+        <div class="gallery-container">
+            <a href="https://via.placeholder.com/800x600" target="_blank"><img src="https://via.placeholder.com/150" alt="Imagen 1"></a>
+            <a href="https://via.placeholder.com/800x600" target="_blank"><img src="https://via.placeholder.com/150" alt="Imagen 2"></a>
+            <a href="https://via.placeholder.com/800x600" target="_blank"><img src="https://via.placeholder.com/150" alt="Imagen 3"></a>
+            <a href="https://via.placeholder.com/800x600" target="_blank"><img src="https://via.placeholder.com/150" alt="Imagen 4"></a>
+            <a href="https://via.placeholder.com/800x600" target="_blank"><img src="https://via.placeholder.com/150" alt="Imagen 5"></a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 BMW. Todos los derechos reservados.</p>
+            <p>Diseñado para los apasionados del motor y la innovación.</p>
+            <div class="socials">
+                <a href="#"><img src="https://via.placeholder.com/24" alt="Facebook"></a>
+                <a href="#"><img src="https://via.placeholder.com/24" alt="Twitter"></a>
+                <a href="#"><img src="https://via.placeholder.com/24" alt="Instagram"></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Jquery and Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
+    
 </body>
 </html>
