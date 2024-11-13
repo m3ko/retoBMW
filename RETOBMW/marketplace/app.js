@@ -83,10 +83,27 @@ async function verificarInicioSesion_carrito(producto) {
     }
 }
 
+async function verificarInicioSesion_config() {
+    const response = await fetch('../../Modelo/verificar_sesion.php');
+    const verificar = await response.json();
+
+    if (verificar) {
+        config();
+    } else {
+        // Redirige a la página de inicio de sesión si no está autenticado
+        window.location.href = '../Log In/index.html';
+    }
+}
+
 
 function aniadirCarrito(producto) {
 
 
+
+}
+function config() {
+
+window.location.href='../configurador/index.html';
 
 }
 

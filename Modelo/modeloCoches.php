@@ -10,7 +10,7 @@ class ModeloCoches extends \Conectar
 
         $con = ModeloCoches::conexion();
 
-        $resultado = $con->query('SELECT nombre_modelo FROM `modelo`;');
+        $resultado = $con->query('SELECT * FROM `modelo`;');
         $modelos = [];
 
         while ($fila = $resultado->fetch_assoc()) {
@@ -19,6 +19,7 @@ class ModeloCoches extends \Conectar
 
         }
         return $modelos;
+        
 
 
 
@@ -59,20 +60,99 @@ class ModeloCoches extends \Conectar
 
         $con = ModeloCoches::conexion();
 
-        $resultado = $con->query('SELECT nombre_modelo FROM `modelo`;');
+        $resultado = $con->query('SELECT * FROM `freno`;');
         $modelos = [];
 
         while ($fila = $resultado->fetch_assoc()) {
 
-            $modelos[] = $fila;
+            $frenos[] = $fila;
 
         }
-        return $modelos;
+        return $frenos;
 
 
 
     }
 
+    public function getMotores()
+    {
+
+
+        $con = ModeloCoches::conexion();
+
+        $resultado = $con->query('SELECT * FROM `motor`;');
+        $modelos = [];
+
+        while ($fila = $resultado->fetch_assoc()) {
+
+            $motores[] = $fila;
+
+        }
+        return $motores;
+
+
+
+    }
+
+    public function getSuspensiones()
+    {
+
+
+        $con = ModeloCoches::conexion();
+
+        $resultado = $con->query('SELECT * FROM `suspension`;');
+        $suspensiones = [];
+
+        while ($fila = $resultado->fetch_assoc()) {
+
+            $suspensiones[] = $fila;
+
+        }
+        return $suspensiones;
+
+
+
+    }
+
+    public function getLlantas()
+    {
+
+
+        $con = ModeloCoches::conexion();
+
+        $resultado = $con->query('SELECT * FROM `llanta`;');
+        $suspensiones = [];
+
+        while ($fila = $resultado->fetch_assoc()) {
+
+            $llantas[] = $fila;
+
+        }
+        return $llantas;
+
+
+
+    }
+
+    public function getKitAerodinamico()
+    {
+
+
+        $con = ModeloCoches::conexion();
+
+        $resultado = $con->query('SELECT * FROM `kit_aerodinamico`;');
+        $suspensiones = [];
+
+        while ($fila = $resultado->fetch_assoc()) {
+
+            $kitAerodinamicos[] = $fila;
+
+        }
+        return $kitAerodinamicos;
+
+
+
+    }
 
     public function getModelosPorSerie($serie){
 
