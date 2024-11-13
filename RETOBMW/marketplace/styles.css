@@ -1,0 +1,226 @@
+.logo {
+    width: 50px;
+    height: 50px;
+
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    font-family: "BMWTypeNext Pro Regular";
+
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+
+    justify-content: center;
+    align-items: center;
+    background: #e4e4e4;
+}
+
+nav{
+    height: 60px;
+    background-color:#ffffff;
+    text-align: center;
+  }
+
+  nav ul{
+     list-style: none;
+     display: inline-block;
+     padding:18px;
+  }
+
+  nav ul li{
+      float: left;
+      margin-top: 20px;
+  }
+
+  nav ul li a {
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 20px;
+      padding: 18px;
+  }
+
+  nav ul li a:hover{
+    background-color: #929fb3;
+  }
+
+
+
+
+  .container {
+    margin-top: 75px;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.container ul li {
+    list-style: none;
+}
+
+figure.card {
+    position: relative;
+    width: 380px;
+    height: 240px;
+    background-image: var(--image-src);
+    background-color: white;
+    background-position: 50% 50%;
+    background-size: 125%;
+    transition: background 400ms ease;
+    box-shadow: 0 6.7px 5.3px rgba(104, 0, 0, 0.919), 0 22.3px 17.9px rgba(0, 0, 0, 0.05), 0 100px 80px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+}
+
+figure.card:hover figcaption {
+    transform: translateX(0); /* Mantiene el efecto de hover para que se mueva hacia arriba */
+}
+
+figure.card--4 img {
+    max-width: 378.38px;
+    max-height: 212.63px;
+    margin: auto;
+}
+
+figure.card--4:hover {
+    background-position: 100% 50%;
+}
+
+figure.card--4 figcaption {
+    right: 0;
+    transform: translateY(100%); /* Figcaption comienza desplazado hacia abajo */
+}
+
+figure.card figcaption {
+    display: flex;
+    flex-direction: column; /* Apila los elementos en columna */
+    align-items: flex-start; /* Alinea todo el contenido a la izquierda */
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    background: #282828;
+    transition: transform 400ms ease;
+    width: 100%;
+    height: 100%;
+}
+
+figure.card figcaption .info {
+    color: #e2e2e2;
+    font-family: "Montserrat";
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea el texto a la izquierda */
+}
+
+figure.card figcaption .info h3 {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+figure.card figcaption .info span ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+figure.card figcaption .info span {
+    color: #606060;
+    font-size: 0.70rem;
+}
+
+figure.card figcaption .links {
+    display: flex;
+    justify-content: end;
+    align-items: left;
+}
+
+figure.card figcaption .links a {
+    text-decoration: none;
+    position: relative;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    margin-left: 0px;
+    font-size: 1.2rem;
+    opacity: 0.65;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+figure.card figcaption .links a:hover {
+    opacity: 1;
+}
+
+figure.card figcaption .links a:focus {
+    outline: none;
+}
+
+figure.card figcaption .links a:focus::after {
+    transform: scale(1);
+    opacity: 1;
+}
+
+figure.card figcaption .links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    opacity: 0;
+    background: rgba(255, 255, 255, 0.05);
+    transform: scale(0.5);
+    z-index: -1;
+    transition: all 150ms ease;
+}
+
+
+@media only screen and (max-width: 900px) {
+    body {
+        align-items: start;
+    }
+
+    .container {
+        grid-template-rows: repeat(4, 1fr);
+        grid-template-columns: 1fr;
+        grid-gap: 40px;
+        padding: 80px 0;
+    }
+}
+
+.support {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    padding: 10px;
+    display: flex;
+}
+
+.support a {
+    margin: 0 10px;
+    color: #222;
+    font-size: 1.8rem;
+    backface-visibility: hidden;
+    transition: all 150ms ease;
+}
+
+.support a:hover {
+    transform: scale(1.1);
+}
