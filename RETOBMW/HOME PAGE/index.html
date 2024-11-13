@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
         <link rel="stylesheet" href="style.css"> 
-
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <header>
 
@@ -16,10 +16,10 @@
                         </div>
                         <div id="mainListDiv" class="main_list">
                                 <ul class="navlinks">
-                                        <li><a href="#">About</a></li>
-                                        <li><a href="#">Portfolio</a></li>
-                                        <li><a href="#">Services</a></li>
-                                        <li><a href="#">Contact</a></li>
+                                  <li><a href="#"><img class="blue" src="img/catalogo.png" alt=""></a></li>
+                                        <li><a href="#"><img class="blue" src="img/carrito.png" alt=""></a></li>
+                                        <li><a href="#"><img class="blue" src="img/perfil.png" alt=""></a></li>
+                                        
                                 </ul>
                         </div>
                         <span class="navTrigger">
@@ -36,33 +36,49 @@
 
 <section class="home">
 </section>
+ <!-- Historia de BMW -->
+ <section class="history">
+  <div class="content-container">
+      <div class="text">
+          <h2>Nuestra Historia</h2>
+          <p>Desde sus inicios en 1916, BMW ha sido sinónimo de ingeniería de precisión y excelencia en el mundo automotriz. Nacimos en Alemania como fabricantes de motores de avión y, con el tiempo, nos transformamos en uno de los nombres más respetados en el sector automotriz. Nuestra historia está marcada por la pasión por la velocidad, el compromiso con la innovación y el deseo de ofrecer experiencias de conducción sin igual.</p>
+          <p>Con una tradición que fusiona elegancia, rendimiento y tecnología de vanguardia, BMW ha evolucionado para convertirse en una marca icónica, representando no solo vehículos, sino una filosofía de vida y una visión futurista del transporte.</p>
+      </div>
+      <div class="image">
+          <img class="imghistoria" src="img/historia.jpg" alt="Historia BMW">
+      </div>
+  </div>
+</section>
 
-<!--Carrusel -->
-<div class="carrusel">
-<div class="content-all">
-        <div class="content-carrousel">
-                
-            <figure><img src="https://prod.cosy.bmw.cloud/bmwweb/cosySec?COSY-EU-100-7331RYechZ7dyKBJHS9WZFSrS6ScpKMPVYF0VWhbNmQNkPo90ysIIbHi4Trxu9%25wc3bOeiftxdRLww178z3fTtECUkeEv7slGAzQuCrXpFhYalZQ6KAqSXRaYWFOYQ5nmPKIhagOybLwrnvIT9JWOO2B3ibvRIjedwWJjBDMztPOReqhk7wHiMLoACeOqhJHFliepou%25KXsEPHSfWQrUY%25V1PaZ2GfNEbnRGb10s9O5jNE4riIgMSscZwBvAmrxRtes3VZ857MrHbRUgChZu85GvloRkcgp2XH50nv6jQ%25dhr2YDafvKAjmqn1%25VYDyLOEA%25GqTJIsDTpL3uBrqULJdSeZfFeuzVMR1v0SkNh56HlVA0ogsA3NF4HvmFR0KEFhzUG4fXx7IEL3helnIBmGy2oWE5289R8yMu2j3D%253HC3odnuUswTgt9%25UtXqCRix27d5M%25w1peLB9Fer4VxxbZPTp6Y8snVfKYzrgCaLz2YIxZU2hilpRBqSrxl56fayVOhiL0onTdzmlD3R%256kRvXId4pw9%25RMc0Sk%25WaXYvQGZIyRZjmBbtRFrt3W1KHoub5imC2yRCzXeTt%25ViHQs%25MfbYtn"></figure>
-            <figure><img src="https://prod.cosy.bmw.cloud/bmwweb/cosySec?COSY-EU-100-733156fayVOhiL0onTdzmlDnEfbc1KVZYap89RGlLbuUrOjEq2YI2SiEhoNHCN6ccn0KEmrng3OYgM2SIRcPrWyGp6xEaS%25F6ds57Qqdv6OaiCXQU4GZIaobGNF1XOLtDOPCv7RZ8XrevZ1RCzattE61cHQa7Gql2V6WhcN7Shth5hQrVA0ogoaLNF4HvHSQ0Kc%252gKd4WxfjvCacP81D2WVxbUEqjp289GsLD6sUiprJkyYGw6ZuAFWptYRSGt767m5Vpe9YCygNLk7mlTv0JxdyX324uObTQdjcSIi3azDxVycdnkq8WplzOALUPMykIFJGbhZABKup9o5FeWS6ivnKMPVYwi0WhbNmtrgPo90y9dfbHi4TiaR9%25wc3wZjiftxdtkgw178z7ANtECUkC1J7sYXOSa2CpLQFjr7"></figure>
-            <figure><img src="https://prod.cosy.bmw.cloud/bmwweb/cosySec?COSY-EU-100-7331RYechZ7dyKBJHS9WZFSrS6SntKMPVYF0VWhbNmNFvPo90y0c6bHi4TmHB9%25wc3yXHiftxd9WMw178z3GqtECUkd2L7slGAzE%25CrXpFkazlZQ6KAn6XRaYWFONQ5nmP%25eIagOybfCBnvIT91dOO2B3iEzxIjedwOHdBDMztIajeqhk7BqgMLoACeLnhJHFlMJpou%25KXhndHSfWQogu%25V1PaH6GfNEbn%25YJ10s9OfqtE4riI15HscZwBELsrxRteaxNZ857MnD0RUgChOq85GvloIfjgp2XHByXv6jQ%25eT02YDafM3cjmqn1hvbDyLOEo2OqTJIsHjEL3uBr05YJdSeZ4U3uzVMRcKDSkNh5xWlVA0og8PQNF4HvUnd0Kc%252GOI4WxfjpGEcP81D6lnxbUEqYdX89GsLm6jUiprJXyBGw6ZuQWWptYRSao667m5Vnv8YCygNyz8mlTv0TxUyX32431ZTQdjcd0N3azDxzM1dnkq8kGHzOALUApvkIFJGFOZABK7K4Awy2nTU59yXql5tkATjHdMsqUi5Zo1srPAb4gLqTxzOSzbRp4cix2ivhigw1pkLB9NeO2keH8hSId4MwjRiBDFZUrOlZJTYddnua9FKWzL1YjXWtJNhfUt4Wsduk45IoFSr86JdoVKjfbYE5IUyg19wtPoxiS2K7S0HswTFBO2SC3y672QfHW0%25AusbSucPrneSlJeiQDXvgpnVIPh4bShtHZ9e2YIv%25L2RjnWe1"></figure>
-            <figure><img src="https://prod.cosy.bmw.cloud/bmwweb/cosySec?COSY-EU-100-7331RYechZ7dOwBnvzBoxMuO30eiS7LIjAxpXNCpL4w0bPoxPCD3p6XYuXhon4Q53mM65e5Vu7bYCygNSBomlTv0VdSyX324Nz2TQdjc9Fk3azDxiajdnkq8wtgzOALUdOzkIFJGzEQABKupkIPFeWS6AlDKMPVYFXKWhbNmKizPo90yGChbHi4Tpzt9%25wc36sOiftxdYr5w178zmZetECUkyiz7slGAnW%25CrXpFOgilZQ6KIvVXRaYWB20Q5nmPecsagOybMe3nvIT9hS4O2B3iuoRIjedwSbRBDMztV55eqhk7NpMMLoACoQShJHFlHRxou%25KX%25a8HSfWQfnz%25V1Pa1SyfNEbnEGq10s9OcNhE4riIx0RscMwF1vSU3c672QfHW0%25AuspXUcPrUtV5lkvL%25TFJgXanCrms8fnOl6JQD0mbH8aGDmIqQmSTKL6ifG93CiWw8j6ccPrEeHf1FdKVZE2JxTQLXPkAF3D%25pvCFiqSeHxi"></figure>
-            <figure><img src="https://prod.cosy.bmw.cloud/bmwweb/cosySec?COSY-EU-100-7331S%25NrnF94fX5jHS91cetUDCnFgLO7G6Y89R7hekuM3D%25FqDVAf09gk2NHCwn5YDyesix2l84Ws46Iq5gmvhmKRbgyXqPJ1NiEWNR46sS3aJQbAFKdqf62lKwLVM%258w0KEfIhH%25kTAusvgqzmlD3R%256kRvXId4pw9%25RAc0Sk%25CaDi2aKt5wrscCJzL1hJUbKiifG93CiWw8j6zcPrWHAp6xEaUleruzHMxBzcztrZAeqhk7BPgMLoAC9VAhJHFlEmjou%25KXsg8HSfWQrsb%25V1Pa2VWfNEbnCNJ10s9OfoJE4riIqHRscZwBEvmrxRtes3yZ857MruZRUgChy005GvloTWggp2XH5VGv6jQ%25gFr2YDafusUjmqn1S4YDyLOEfK9qTJIs1SfL3uBrq2TJdSeZfFouzVMR1v0SkNh5bryVA0ogRcGNF4Y4sNpqIzL5aUqTMu0tVKLB9SrW3k"></figure>
-            <figure><img src="https://prod.cosy.bmw.cloud/bmwweb/cosySec?COSY-EU-100-7331S%25NrnF94fX5jHS91cetUDCnFgLO7G6Y89R7hekuM3D%25FqDVAf09gk2NHCwn5YDyesix2l84Ws46Iq5gmvhmXP31yXqPJ1NiEWNR46sS3aJQbAFKdqf62lKwLVM%258w0KEfIhH%25kTAusTgqFmlD3R%256kRvXId4pw9%25RAc9Sk%25CaDi2aKt5wrscCJzL1hJUbKiifG93CiWw8j6zcPrWHAp6xEaUleruzHMxBzcztzr5eqhk7BFkMLoACAYwhJHFlFe6ou%25KXKP7HSfWQlSD%25V1PaXRSfNEbnQVJ10s9OaZQE4riInRdscZwBLv5rxRteJOGZ857Mu1vRUgChSyA5GvloVQYgp2XHNaWv6jQ%25gZp2YDafvY8jmqn12mRDyLOEjZlqTJIsDxIL3uBrq9PJdSeZLimuzVMRJ6HSkNh5ucqVA0ogSYTNF4HvrFd0Kc%252Zpz4WxfjR6KcP81D5JGxbUEqgtE89GsLv7TUiprJ2CkGw6ZujlFptYRSDUM67m5VqG5YCygNLpbmlTv0kxwyX324APlTQdjcFI63azDxKBEdnkq8WerzOALUPRXkIFJGb5gABKup9bVFeWS6iERKMPVYwXsWhbNmtipPo90ys60bHi4TrBB9%25wc3ZqiiftxdRUVw178z5GPtECUkCaP7slGAlWbCrXpFXVclZQ6KQjSXRaYWabLQ5nmPn9UagOybO54nvIfIAnH7GRCPxh7sYXOSa2CpLQFrLz"></figure>
-            <figure><img src="https://prod.cosy.bmw.cloud/bmwweb/cosySec?COSY-EU-100-7331RYechZ7dyKBJHS91Zys8%25P6EaUR3fNwyzMpBzcYn6XlZylB0PzkMA8MrZfshJPX65e3gZ8X7Dw8j8z8YttECUkwEw7slGAvzVCrXpFpNzlZQ6KAZfXRaYWFeZQ5nmPKJNagOybWBKnvIT91heO2B3iEPqIjedwsdBBDMztrAQeqhk7BngMLoACeOqhJHFlMaoou%25KXhndHSfWQoD%25%25V1PaHTSfNEbn%252M10s9OfmuE4riI15EscZwBQcVrxRteaptZ857Mn68RUgChOYV5GvloIZFgp2XHL1xv6jQ%25Jb82YDafu3Rjmqn1Sd9DyLOEVK9qTJIsJtXL3uBruKwJdSeZS5auzVMRVdCSkNh5FqVVA0ogsUkNF4HvrSn0Kc%252cqJ4WxfjxpucP81D10OxbUEqdb189R7hekuM3D%25FqDVAfyq3VraezL14UDyeJkgoKG%25rac6ZHWb9Fe0X5lkyXoLjuuzHdIy4cShtN9QH2YI0e9HxiNHCf5whDyeJQi2VQOTAusvpUiQNrE%25ViHQs%25MfbYtnWhc0DuVNBaekx96HwXRTZhOIBQmSwpsB%25yzDuP%25"></figure>
-            <figure><img src="https://prod.cosy.bmw.cloud/bmwweb/cosySec?COSY-EU-100-7331S%25NrnF94fX5jHS91cetUDCnFgLO7G6Y89R7hekuM3D%25FqDVAf09gk2NHCwn5YDyesix2l84Ws46Iq5gmvhmXPgHyXqPJ1NiEWNR46sS3aJQbAFKdqf62lKwLVM%258w0KEfIhH%25kTAusvgPumlD3R%256kRvXId4pw9%25RAc9Sk%25CaDi2aKt5wrscCJzL1hJUbKiifG93CiWw8j6zcPrWHAp6xEaUleruzHMxBzcztzr5eqhk7BFkMLoACAYwhJHFlFe6ou%25KXKP7HSfWQlSD%25V1PaXRSfNEbnQZ310s9OaNuE4riInRascZwBO5zrxRteJ2gZ857Mu1vRUgChSu35GvloVTFgp2XHNaXv6jQ%250nP2YDafvR8jmqn125YDyLOEjyGqTJIsDTgL3uBrq5QJdSeZLUeuzVMRJw9SkNh5utTVA0ogSmfNF4HvV8J0Kc%252Nyd4WxfjRWkcP81D5YAxbUEqgmP89GsLvS6UiprJ2CrGw6ZujldptYRSDXF67m5VqQWYCygNLpomlTv0J6vyX324uYiTQdjcFU73azDxK9Qdnkq8WemzOALUPMrkIFJGbhRABKup9gaFeWS6iv2KMPVYwi0WhbNmtrgPo90y7aZbHi4TCtY9%25wc3ZljiftxdRyxw178z5hhtECUkgu77slGAv64CrXpF2YilZQ6KQIiXRaYWa9wQ5nmPn4UagOybOL0nvIT9IwpO2B3iBvxIjeEeKIfl6gX9UHlZyaBNODXYunWR0M"></figure>
-            <figure><img src="https://prod.cosy.bmw.cloud/bmwweb/cosySec?COSY-EU-100-7331S%25NrnF94fX5jHS91cetUDCnFgLO7G6Y89R7hekuM3D%25FqDVAf09gk2NHCwn5YDyesix2l84Ws46Iq5gmvhmXPnByXqPJ1NiEWNR46sS3aJQbAFKdqf62lKwLVM%258w0KEfIhH%25kTAus0gq%25mlD3R%256kRvXId4pw9%25RAc0Sk%25CaDi2aKt5wrscCJzL1hJUbKiifG93CiWw8j6zcPrWHAp6xEaUleruzHMxBzcztzZmeqhk7BFkMLoACAYwhJHFlFe6ou%25KXKP7HSfWQWbj%25V1PaXVqfNEbnQpy10s9OaNuE4riInRascZwBO5zrxRteJ2gZ857MuIpRUgChSE25GvloVQCgp2XHNauv6jQ%25gZp2YDafvY8jmqn12mRDyLOEjZlqTJIsDxIL3uBrq9PJdSeZLimuzVMRJ6HSkNh5ucqVA0ogs8kNF4HvrFd0Kc%252Zpz4WxfjR6KcP81D5JGxbUEqgtE89GsLv7zUiprJ2CAGw6Zuj8eptYRS30b67m5VdFtYCygNzaUmlTv0kn%25yX324AO1TQdjcFs73azDxKrZdnkq8WKJzOALUP%25skIFJGb7fABKup9P8FeWS6i1RKMPVY1w5WhbNmEpNPo90ysIIbHi4TrD99%25wc3Z8KiftxdtXKw178z7FWtECUkCu07slGAlvJCrXpFXWclZQhQ3le9cEiANI9%25wnwp9zKbT0MmG4lwaRUQvqKjT5lk2oGfl"></figure>
-
+<!-- Sección de competencia -->
+<section class="competition">
+  <div class="content-container">
+      <div class="image">
+          <img src="img/competicion.jpg" alt="Competición BMW">
+      </div>
+      <div class="text">
+          <h2>La Pasión por la Competición</h2>
+          <p>BMW ha sido un nombre destacado en la competición de motores, participando en categorías de alto rendimiento como la Fórmula 1, Le Mans y el DTM. Nuestro compromiso con la competencia no es solo por la gloria, sino por la mejora continua. Cada victoria, cada innovación en la pista, se traduce en una experiencia de conducción más avanzada para nuestros clientes.</p>
+          <p>A través de nuestra división M, transformamos la adrenalina y las exigencias de la pista en automóviles de calle que redefinen el significado de rendimiento. Para BMW, la competencia es un laboratorio en movimiento.</p>
+      </div>
+  </div>
+</section>
+  <!-- Sección de modelos -->
+  <section class="models">
+    <div class="content-container">
+        <div class="text">
+            <h2>Descubre Nuestros Modelos</h2>
+            <p>Explora nuestra gama completa de vehículos, desde el icónico BMW Serie 3 hasta los innovadores modelos eléctricos. Cada vehículo es una obra maestra de ingeniería, diseñada para satisfacer todos los estilos de vida y necesidades de nuestros clientes. Haz clic en el enlace a continuación para descubrir la experiencia BMW.</p>
+            <a href="catalogo.html" class="button">Ver Catálogo de Vehículos</a>
         </div>
-    </div><BR></BR>
-    <BR></BR>
-    <BR></BR>
-    <BR></BR>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-</div>
+        <div class="image">
+            <img class="imgmodelo" src="img/modelo.jpg" alt="Modelos BMW">
+        </div>
+    </div>
+</section>
+
+
+
 <section class="creative-cards style-one">
         <div class="container">
                 <div class="row">
@@ -99,7 +115,46 @@
                 </div>
         </div>
 </section>
+<!-- Galería de imágenes -->
+<section class="gallery">
+  <h2>Nuestra Galería</h2>
+ <!--Carrusel -->
+<div class="carrusel">
+  <div class="content-all">
+          <div class="content-carrousel">
+                  
+              <figure><img src="https://prod.cosy.bmw.cloud/bmwweb/cosySec?COSY-EU-100-7331RYechZ7dyKBJHS9WZFSrS6ScpKMPVYF0VWhbNmQNkPo90ysIIbHi4Trxu9%25wc3bOeiftxdRLww178z3fTtECUkeEv7slGAzQuCrXpFhYalZQ6KAqSXRaYWFOYQ5nmPKIhagOybLwrnvIT9JWOO2B3ibvRIjedwWJjBDMztPOReqhk7wHiMLoACeOqhJHFliepou%25KXsEPHSfWQrUY%25V1PaZ2GfNEbnRGb10s9O5jNE4riIgMSscZwBvAmrxRtes3VZ857MrHbRUgChZu85GvloRkcgp2XH50nv6jQ%25dhr2YDafvKAjmqn1%25VYDyLOEA%25GqTJIsDTpL3uBrqULJdSeZfFeuzVMR1v0SkNh56HlVA0ogsA3NF4HvmFR0KEFhzUG4fXx7IEL3helnIBmGy2oWE5289R8yMu2j3D%253HC3odnuUswTgt9%25UtXqCRix27d5M%25w1peLB9Fer4VxxbZPTp6Y8snVfKYzrgCaLz2YIxZU2hilpRBqSrxl56fayVOhiL0onTdzmlD3R%256kRvXId4pw9%25RMc0Sk%25WaXYvQGZIyRZjmBbtRFrt3W1KHoub5imC2yRCzXeTt%25ViHQs%25MfbYtn"></figure>
+              <figure><img src="https://prod.cosy.bmw.cloud/bmwweb/cosySec?COSY-EU-100-733156fayVOhiL0onTdzmlDnEfbc1KVZYap89RGlLbuUrOjEq2YI2SiEhoNHCN6ccn0KEmrng3OYgM2SIRcPrWyGp6xEaS%25F6ds57Qqdv6OaiCXQU4GZIaobGNF1XOLtDOPCv7RZ8XrevZ1RCzattE61cHQa7Gql2V6WhcN7Shth5hQrVA0ogoaLNF4HvHSQ0Kc%252gKd4WxfjvCacP81D2WVxbUEqjp289GsLD6sUiprJkyYGw6ZuAFWptYRSGt767m5Vpe9YCygNLk7mlTv0JxdyX324uObTQdjcSIi3azDxVycdnkq8WplzOALUPMykIFJGbhZABKup9o5FeWS6ivnKMPVYwi0WhbNmtrgPo90y9dfbHi4TiaR9%25wc3wZjiftxdtkgw178z7ANtECUkC1J7sYXOSa2CpLQFjr7"></figure>
+              <figure><img src="https://prod.cosy.bmw.cloud/bmwweb/cosySec?COSY-EU-100-7331RYechZ7dyKBJHS9WZFSrS6SntKMPVYF0VWhbNmNFvPo90y0c6bHi4TmHB9%25wc3yXHiftxd9WMw178z3GqtECUkd2L7slGAzE%25CrXpFkazlZQ6KAn6XRaYWFONQ5nmP%25eIagOybfCBnvIT91dOO2B3iEzxIjedwOHdBDMztIajeqhk7BqgMLoACeLnhJHFlMJpou%25KXhndHSfWQogu%25V1PaH6GfNEbn%25YJ10s9OfqtE4riI15HscZwBELsrxRteaxNZ857MnD0RUgChOq85GvloIfjgp2XHByXv6jQ%25eT02YDafM3cjmqn1hvbDyLOEo2OqTJIsHjEL3uBr05YJdSeZ4U3uzVMRcKDSkNh5xWlVA0og8PQNF4HvUnd0Kc%252GOI4WxfjpGEcP81D6lnxbUEqYdX89GsLm6jUiprJXyBGw6ZuQWWptYRSao667m5Vnv8YCygNyz8mlTv0TxUyX32431ZTQdjcd0N3azDxzM1dnkq8kGHzOALUApvkIFJGFOZABK7K4Awy2nTU59yXql5tkATjHdMsqUi5Zo1srPAb4gLqTxzOSzbRp4cix2ivhigw1pkLB9NeO2keH8hSId4MwjRiBDFZUrOlZJTYddnua9FKWzL1YjXWtJNhfUt4Wsduk45IoFSr86JdoVKjfbYE5IUyg19wtPoxiS2K7S0HswTFBO2SC3y672QfHW0%25AusbSucPrneSlJeiQDXvgpnVIPh4bShtHZ9e2YIv%25L2RjnWe1"></figure>
+              <figure><img src="https://prod.cosy.bmw.cloud/bmwweb/cosySec?COSY-EU-100-7331RYechZ7dOwBnvzBoxMuO30eiS7LIjAxpXNCpL4w0bPoxPCD3p6XYuXhon4Q53mM65e5Vu7bYCygNSBomlTv0VdSyX324Nz2TQdjc9Fk3azDxiajdnkq8wtgzOALUdOzkIFJGzEQABKupkIPFeWS6AlDKMPVYFXKWhbNmKizPo90yGChbHi4Tpzt9%25wc36sOiftxdYr5w178zmZetECUkyiz7slGAnW%25CrXpFOgilZQ6KIvVXRaYWB20Q5nmPecsagOybMe3nvIT9hS4O2B3iuoRIjedwSbRBDMztV55eqhk7NpMMLoACoQShJHFlHRxou%25KX%25a8HSfWQfnz%25V1Pa1SyfNEbnEGq10s9OcNhE4riIx0RscMwF1vSU3c672QfHW0%25AuspXUcPrUtV5lkvL%25TFJgXanCrms8fnOl6JQD0mbH8aGDmIqQmSTKL6ifG93CiWw8j6ccPrEeHf1FdKVZE2JxTQLXPkAF3D%25pvCFiqSeHxi"></figure>
+              <figure><img src="https://prod.cosy.bmw.cloud/bmwweb/cosySec?COSY-EU-100-7331S%25NrnF94fX5jHS91cetUDCnFgLO7G6Y89R7hekuM3D%25FqDVAf09gk2NHCwn5YDyesix2l84Ws46Iq5gmvhmKRbgyXqPJ1NiEWNR46sS3aJQbAFKdqf62lKwLVM%258w0KEfIhH%25kTAusvgqzmlD3R%256kRvXId4pw9%25RAc0Sk%25CaDi2aKt5wrscCJzL1hJUbKiifG93CiWw8j6zcPrWHAp6xEaUleruzHMxBzcztrZAeqhk7BPgMLoAC9VAhJHFlEmjou%25KXsg8HSfWQrsb%25V1Pa2VWfNEbnCNJ10s9OfoJE4riIqHRscZwBEvmrxRtes3yZ857MruZRUgChy005GvloTWggp2XH5VGv6jQ%25gFr2YDafusUjmqn1S4YDyLOEfK9qTJIs1SfL3uBrq2TJdSeZfFouzVMR1v0SkNh5bryVA0ogRcGNF4Y4sNpqIzL5aUqTMu0tVKLB9SrW3k"></figure>
+              <figure><img src="https://prod.cosy.bmw.cloud/bmwweb/cosySec?COSY-EU-100-7331S%25NrnF94fX5jHS91cetUDCnFgLO7G6Y89R7hekuM3D%25FqDVAf09gk2NHCwn5YDyesix2l84Ws46Iq5gmvhmXP31yXqPJ1NiEWNR46sS3aJQbAFKdqf62lKwLVM%258w0KEfIhH%25kTAusTgqFmlD3R%256kRvXId4pw9%25RAc9Sk%25CaDi2aKt5wrscCJzL1hJUbKiifG93CiWw8j6zcPrWHAp6xEaUleruzHMxBzcztzr5eqhk7BFkMLoACAYwhJHFlFe6ou%25KXKP7HSfWQlSD%25V1PaXRSfNEbnQVJ10s9OaZQE4riInRdscZwBLv5rxRteJOGZ857Mu1vRUgChSyA5GvloVQYgp2XHNaWv6jQ%25gZp2YDafvY8jmqn12mRDyLOEjZlqTJIsDxIL3uBrq9PJdSeZLimuzVMRJ6HSkNh5ucqVA0ogSYTNF4HvrFd0Kc%252Zpz4WxfjR6KcP81D5JGxbUEqgtE89GsLv7TUiprJ2CkGw6ZujlFptYRSDUM67m5VqG5YCygNLpbmlTv0kxwyX324APlTQdjcFI63azDxKBEdnkq8WerzOALUPRXkIFJGb5gABKup9bVFeWS6iERKMPVYwXsWhbNmtipPo90ys60bHi4TrBB9%25wc3ZqiiftxdRUVw178z5GPtECUkCaP7slGAlWbCrXpFXVclZQ6KQjSXRaYWabLQ5nmPn9UagOybO54nvIfIAnH7GRCPxh7sYXOSa2CpLQFrLz"></figure>
+              <figure><img src="https://prod.cosy.bmw.cloud/bmwweb/cosySec?COSY-EU-100-7331RYechZ7dyKBJHS91Zys8%25P6EaUR3fNwyzMpBzcYn6XlZylB0PzkMA8MrZfshJPX65e3gZ8X7Dw8j8z8YttECUkwEw7slGAvzVCrXpFpNzlZQ6KAZfXRaYWFeZQ5nmPKJNagOybWBKnvIT91heO2B3iEPqIjedwsdBBDMztrAQeqhk7BngMLoACeOqhJHFlMaoou%25KXhndHSfWQoD%25%25V1PaHTSfNEbn%252M10s9OfmuE4riI15EscZwBQcVrxRteaptZ857Mn68RUgChOYV5GvloIZFgp2XHL1xv6jQ%25Jb82YDafu3Rjmqn1Sd9DyLOEVK9qTJIsJtXL3uBruKwJdSeZS5auzVMRVdCSkNh5FqVVA0ogsUkNF4HvrSn0Kc%252cqJ4WxfjxpucP81D10OxbUEqdb189R7hekuM3D%25FqDVAfyq3VraezL14UDyeJkgoKG%25rac6ZHWb9Fe0X5lkyXoLjuuzHdIy4cShtN9QH2YI0e9HxiNHCf5whDyeJQi2VQOTAusvpUiQNrE%25ViHQs%25MfbYtnWhc0DuVNBaekx96HwXRTZhOIBQmSwpsB%25yzDuP%25"></figure>
+              <figure><img src="https://prod.cosy.bmw.cloud/bmwweb/cosySec?COSY-EU-100-7331S%25NrnF94fX5jHS91cetUDCnFgLO7G6Y89R7hekuM3D%25FqDVAf09gk2NHCwn5YDyesix2l84Ws46Iq5gmvhmXPgHyXqPJ1NiEWNR46sS3aJQbAFKdqf62lKwLVM%258w0KEfIhH%25kTAusvgPumlD3R%256kRvXId4pw9%25RAc9Sk%25CaDi2aKt5wrscCJzL1hJUbKiifG93CiWw8j6zcPrWHAp6xEaUleruzHMxBzcztzr5eqhk7BFkMLoACAYwhJHFlFe6ou%25KXKP7HSfWQlSD%25V1PaXRSfNEbnQZ310s9OaNuE4riInRascZwBO5zrxRteJ2gZ857Mu1vRUgChSu35GvloVTFgp2XHNaXv6jQ%250nP2YDafvR8jmqn125YDyLOEjyGqTJIsDTgL3uBrq5QJdSeZLUeuzVMRJw9SkNh5utTVA0ogSmfNF4HvV8J0Kc%252Nyd4WxfjRWkcP81D5YAxbUEqgmP89GsLvS6UiprJ2CrGw6ZujldptYRSDXF67m5VqQWYCygNLpomlTv0J6vyX324uYiTQdjcFU73azDxK9Qdnkq8WemzOALUPMrkIFJGbhRABKup9gaFeWS6iv2KMPVYwi0WhbNmtrgPo90y7aZbHi4TCtY9%25wc3ZljiftxdRyxw178z5hhtECUkgu77slGAv64CrXpF2YilZQ6KQIiXRaYWa9wQ5nmPn4UagOybOL0nvIT9IwpO2B3iBvxIjeEeKIfl6gX9UHlZyaBNODXYunWR0M"></figure>
+              <figure><img src="https://prod.cosy.bmw.cloud/bmwweb/cosySec?COSY-EU-100-7331S%25NrnF94fX5jHS91cetUDCnFgLO7G6Y89R7hekuM3D%25FqDVAf09gk2NHCwn5YDyesix2l84Ws46Iq5gmvhmXPnByXqPJ1NiEWNR46sS3aJQbAFKdqf62lKwLVM%258w0KEfIhH%25kTAus0gq%25mlD3R%256kRvXId4pw9%25RAc0Sk%25CaDi2aKt5wrscCJzL1hJUbKiifG93CiWw8j6zcPrWHAp6xEaUleruzHMxBzcztzZmeqhk7BFkMLoACAYwhJHFlFe6ou%25KXKP7HSfWQWbj%25V1PaXVqfNEbnQpy10s9OaNuE4riInRascZwBO5zrxRteJ2gZ857MuIpRUgChSE25GvloVQCgp2XHNauv6jQ%25gZp2YDafvY8jmqn12mRDyLOEjZlqTJIsDxIL3uBrq9PJdSeZLimuzVMRJ6HSkNh5ucqVA0ogs8kNF4HvrFd0Kc%252Zpz4WxfjR6KcP81D5JGxbUEqgtE89GsLv7zUiprJ2CAGw6Zuj8eptYRS30b67m5VdFtYCygNzaUmlTv0kn%25yX324AO1TQdjcFs73azDxKrZdnkq8WKJzOALUP%25skIFJGb7fABKup9P8FeWS6i1RKMPVY1w5WhbNmEpNPo90ysIIbHi4TrD99%25wc3Z8KiftxdtXKw178z7FWtECUkCu07slGAlvJCrXpFXWclZQhQ3le9cEiANI9%25wnwp9zKbT0MmG4lwaRUQvqKjT5lk2oGfl"></figure>
+  
+          </div>
+      </div>
+  </div>
+</section>
 <br>
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<br><br>
 <br>
 <br>
 <br>
@@ -107,9 +162,102 @@
 <br>
     
     
-<!-- Jquery needed -->
+
+
+</body>
+
+
+        <footer class="text-center text-lg-start border border-white mt-xl-5 pt-4 footer">
+        <!-- Grid container -->
+        <div class="container p-4">
+          <!--Grid row-->
+          <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+              <h5 class="text-uppercase mb-4 text-white">OUR WORLD</h5>
+    
+              <ul class="list-unstyled mb-4">
+                <li>
+                  <a href="#!" class="text-white">About us</a>
+                </li>
+                <li>
+                  <a href="#!" class="text-white">Collections</a>
+                </li>
+                <li>
+                  <a href="#!" class="text-white">Environmental philosophy</a>
+                </li>
+                <li>
+                  <a href="#!" class="text-white">Artist collaborations</a>
+                </li>
+              </ul>
+            </div>
+            <!--Grid column-->
+    
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+              <h5 class="text-uppercase mb-4 text-info">Assistance</h5>
+    
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#!" class="text-white">Contact us</a>
+                </li>
+                <li>
+                  <a href="#!" class="text-white">Size Guide</a>
+                </li>
+                <li>
+                  <a href="#!" class="text-white">Shipping Information</a>
+                </li>
+                <li>
+                  <a href="#!" class="text-white">Returns & Exchanges</a>
+                </li>
+                <li>
+                  <a href="#!" class="text-white">Payment</a>
+                </li>
+              </ul>
+            </div>
+            <!--Grid column-->
+    
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+              <h5 class="text-uppercase mb-4 text-primary">Careers</h5>
+    
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#!" class="text-white">Jobs</a>
+                </li>
+              </ul>
+            </div>
+            <!--Grid column-->
+    
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+              <h5 class="text-uppercase mb-4 text-danger">Sign up to our newsletter</h5>
+    
+              <div class="form-outline form-white mb-4">
+                <input type="email" id="form5Example2" class="form-control" />
+                <label class="form-label text-white" for="form5Example2">Email address</label>
+              </div>
+    
+              <button type="submit" class="btn btn-outline-white btn-block text-white">Subscribe</button>
+            </div>
+            <!--Grid column-->
+          </div>
+          <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+    <br><br><br><img class="footer_logo" src="img/bmwlogo.svg" alt=""><br><br>
+        <!-- Copyright -->
+        <div class="text-center p-3 border-top border-white">
+          © 2020 Copyright:
+          <a class="text-white">BMW_COMPANY</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
+      
+    </div><!-- Jquery needed -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="js/scripts.js"></script>
+
 
 <!-- Function used to shrink nav bar removing paddings and adding black background -->
 <script>
@@ -122,6 +270,4 @@ if ($(document).scrollTop() > 50) {
 }
 });
 </script>
-
-</body>
 </html>
