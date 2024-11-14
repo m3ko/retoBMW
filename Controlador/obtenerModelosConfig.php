@@ -9,7 +9,7 @@ $modelos = $modeloCoches->getModelos();
 header("Content-Type: application/json");
 echo json_encode($modelos);
 
-echo $modelos;
+
 
 
 ?>
