@@ -2,6 +2,9 @@ console.log("hola");
 window.onload = obtenerModelos();
 window.onload = obtenerMotores();
 window.onload = obtenerFrenos();
+window.onload = obtenerKitAerodinamicos();
+window.onload = obtenerLlantas();
+window.onload=obtenerSuspensiones();
 //  $(document).ready(function() {
 
 //     $('.color-choose input').on('click', function() {
@@ -78,6 +81,11 @@ async function obtenerKitAerodinamicos() {
   const response = await fetch('../../Controlador/obtenerKitAerodinamicosConfig.php');
   const kits = await response.json();
 
+  var botonesKits = document.querySelector("#kits");
+
+  kits.forEach(kit => {
+    botonesKits.innerHTML+=`<button>${kit.nombre_kit}</button>`;
+  });
 }
 
 async function obtenerMotores() {
@@ -97,13 +105,25 @@ async function obtenerMotores() {
 }
 async function obtenerLlantas() {
 
-  const response = await fetch('../../Controlador/obtenerModelosConfig.php');
+  const response = await fetch('../../Controlador/obtenerLlantasConfig.php');
   const llantas = await response.json();
+  var botonesLlantas = document.querySelector("#llantas");
 
+  llantas.forEach(llanta => {
+    botonesLlantas.innerHTML += `<button>${llanta.nombre_llanta}</button>`
+  });
 }
+
 async function obtenerSuspensiones() {
 
-  const response = await fetch('../../Controlador/obtenerModelosConfig.php');
-  const suspension = await response.json();
+  const response = await fetch('../../Controlador/obtenerSuspensionesConfig.php');
+  const suspensiones = await response.json();
+  var botonesSuspensiones = document.querySelector("#suspensiones");
 
+  suspensiones.forEach(suspension => {
+    botonesSuspensiones.innerHTML += `<button>${suspension.nombre_suspension}</button>`;
+  });
 }
+
+
+

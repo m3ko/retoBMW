@@ -61,7 +61,7 @@ class ModeloCoches extends \Conectar
         $con = ModeloCoches::conexion();
 
         $resultado = $con->query('SELECT * FROM `freno`;');
-        $modelos = [];
+        
 
         while ($fila = $resultado->fetch_assoc()) {
 

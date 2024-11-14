@@ -1,120 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css"> 
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
-    <main class="container">
- 
-        <!-- Left Column / Headphones Image -->
-        <div class="left-column" id="img">
-          
-          
-        </div>
-       
-       
-        <!-- Right Column -->
-        <div class="right-column">
-       
-          <!-- Product Description -->
-          <div class="product-description">
-            <span>Configurador</span>
-            <h1>
-              <select name="cars" id="cars" onchange="imagenModelo()">
-                
-              </select>
+  <main class="container">
 
-            </h1>
-            <p>descripcion</p>
-          </div>
-       
-          <!-- Product Configuration -->
-          <div class="product-configuration">
-       
-            <!-- Product Color -->
-            <div class="product-color">
-              <span>Color</span>
-       
-              <div class="color-choose">
-                <div>
-                  <input data-image="red" type="radio" id="red" name="color" value="red" checked>
-                  <label for="red"><span></span></label>
-                </div>
-                <div>
-                  <input data-image="blue" type="radio" id="blue" name="color" value="blue">
-                  <label for="blue"><span></span></label>
-                </div>
-                <div>
-                  <input data-image="black" type="radio" id="black" name="color" value="black">
-                  <label for="black"><span></span></label>
-                </div>
-                <div>
-                  <input data-image="white" type="radio" id="white" name="color" value="white">
-                  <label for="white"><span></span></label>
-                </div>
-              </div>
+    <!-- Left Column / Headphones Image -->
+    <div class="left-column" id="img">
+
+
+    </div>
+
+
+    <!-- Right Column -->
+    <div class="right-column">
+
+      <!-- Product Description -->
+      <div class="product-description">
+        <span>Configurador</span>
+        <h1>
+          <select name="cars" id="cars" onchange="imagenModelo()">
+
+          </select>
+
+        </h1>
+        <p>descripcion</p>
+      </div>
+
+      <!-- Product Configuration -->
+      <div class="product-configuration">
+
+        <!-- Product Color -->
+        <div class="product-color">
+          <span>Color</span>
+
+          <div class="color-choose">
+            <div>
+              <input data-image="red" type="radio" id="red" name="color" value="red" checked>
+              <label for="red"><span></span></label>
             </div>
-       
-            <!-- Cable Configuration -->
-            <div class="cable-config">
-              <span>Motorizaciónes Disponibles</span>
-       
-              <div class="cable-choose">
-                <div id="motor">
-                  
-                </div>
-              </div>
-       
-              <a href="#">How to configurate your headphones</a>
+            <div>
+              <input data-image="blue" type="radio" id="blue" name="color" value="blue">
+              <label for="blue"><span></span></label>
             </div>
-            <div class="cable-config">
-                <span>Cable configuration</span>
-         
-                <div class="cable-choose">
-                  <div id="frenos">
-                  
-                  </div>>
-                </div>
-         
-                <a href="#">How to configurate your headphones</a>
-              </div>
-              <div class="cable-config">
-                <span>Cable configuration</span>
-         
-                <div class="cable-choose">
-                  <button>Straight</button>
-                  <button>Coiled</button>
-                  <button>Long-coiled</button>
-                </div>
-         
-                <a href="#">How to configurate your headphones</a>
-              </div>
-              <div class="cable-config">
-                <span>Cable configuration</span>
-         
-                <div class="cable-choose">
-                  <button>Straight</button>
-                  <button>Coiled</button>
-                  <button>Long-coiled</button>
-                </div>
-         
-                <a href="#">How to configurate your headphones</a>
-              </div>
+            <div>
+              <input data-image="black" type="radio" id="black" name="color" value="black">
+              <label for="black"><span></span></label>
+            </div>
+            <div>
+              <input data-image="white" type="radio" id="white" name="color" value="white">
+              <label for="white"><span></span></label>
+            </div>
           </div>
-       
-          <!-- Product Pricing -->
-          <div class="product-price">
-            <span>148$</span>
-            <a href="#" class="cart-btn">Add to cart</a>
+        </div>
+
+        <!-- Cable Configuration -->
+        <div class="cable-config">
+          <span>Motorizaciónes Disponibles</span>
+
+          <div class="cable-choose">
+            <div id="motor">
+
+            </div>
           </div>
 
         </div>
-      </main>
-      <script src="app.js"></script>
+        <div class="cable-config">
+          <span>Frenos</span>
+
+          <div class="cable-choose">
+            <div id="frenos">
+
+            </div>
+          </div>
+
+        </div>
+        <div class="cable-config">
+          <span>Kits Aerodinamicos Disponibles</span>
+
+          <div class="cable-choose">
+            <div id="kits">
+
+            </div>
+          </div>
+        </div>
+        <div class="cable-config">
+          <span>Tipo de Suspensiones</span>
+
+          <div class="cable-choose">
+            <div id="suspensiones">
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="cable-config">
+          <span>LLantas</span>
+
+          <div class="cable-choose">
+            <div id="llantas">
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Product Pricing -->
+      <div class="product-price">
+        <span>148$</span>
+        <a href="#" class="cart-btn">Add to cart</a>
+      </div>
+
+    </div>
+  </main>
+  <script src="app.js"></script>
 
 </body>
+
 </html>

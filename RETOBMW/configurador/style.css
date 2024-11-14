@@ -15,13 +15,14 @@ html, body {
   
   /* Columns */
   .left-column {
+    margin: auto;
     width: 65%;
     background-image: url('catalogo4.jpg'); /* Ruta de la imagen */
     background-size: cover; /* Ajusta la imagen para cubrir todo el fondo */
     background-position: center; /* Centra la imagen */
     position: sticky;
     top: 0; /* Fija la imagen en la parte superior al hacer scroll */
-    height: 30vh; /* Alto completo de la ventana */
+    height: 100vh; /* Alto completo de la ventana */
     z-index: 0; /* Asegura que la imagen esté en el fondo */
 }
   
@@ -38,7 +39,7 @@ html, body {
   /* Left Column */
   .left-column img {
     width: 100%;
-    position: absolute;
+    position: sticky;
     left: 0;
     top: 0;
     opacity: 0;
