@@ -72,15 +72,15 @@ public function getfrenos(){
 }
 public function getkit_aerodinamico(){
     $con = modeloAdmin::conexion();
-    $query = $con->query("SELECT * FROM kit_areodinamico ");
+    $query = $con->query("SELECT * FROM kit_aerodinamico ");
 
-    $kit_areodinamico = [];
+    $kit_aerodinamico = [];
     
     while($fila = $query->fetch_assoc()){
-        $kit_areodinamico[] = $fila;
+        $kit_aerodinamico[] = $fila;
         }
         header("Content-Type: application/json");
-        echo json_encode($kit_areodinamico);
+        echo json_encode($kit_aerodinamico);
 }
 public function getllantas(){
     $con = modeloAdmin::conexion();
@@ -120,7 +120,10 @@ public function getmotores(){
 }
 public function getpedidos(){
     $con = modeloAdmin::conexion();
-    $query = $con->query("SELECT * FROM pedido ");
+    $query = $con->query("SELECT id_pedido,u.usuario AS usuario, pf.nombre_producto AS nombre_producto,fecha_pedido,direccion, d.descuento_porcentaje AS descuento_porcentaje FROM pedido p 
+    JOIN usuario u ON p.id_usuario = u.id_usuario 
+    JOIN producto_final pf ON p.id_producto_final = pf.id_producto_final
+    JOIN codigo_descuento d ON p.id_codigo = d.id_codigo");
 
     $pedidos= [];
     
@@ -132,7 +135,14 @@ public function getpedidos(){
 }
 public function getproductos_finales(){
     $con = modeloAdmin::conexion();
-    $query = $con->query("SELECT * FROM producto_final ");
+    $query = $con->query("SELECT pf.id_producto_final, m.nombre_modelo AS nombre_modelo, mo.nombre_motor AS nombre_motor, s.nombre_suspension AS nombre_suspension, k.nombre_kit AS nombre_kit,  ll.nombre_llanta AS nombre_llanta, fr.tipo AS nombre_freno, pf.precio_total, pf.nombre_producto, pf.cantidad, pf.img 
+    FROM producto_final pf 
+    JOIN modelo m ON pf.id_modelo = m.id_modelo 
+    JOIN motor mo ON pf.id_motor = mo.id_motor 
+    JOIN suspension s ON pf.id_suspension = s.id_suspension 
+    JOIN kit_aerodinamico k ON pf.id_kit = k.id_kit 
+    JOIN llanta ll ON pf.id_llanta = ll.id_llanta 
+    JOIN freno fr ON pf.id_freno = fr.id_freno");
 
     $producto_finales= [];
     
@@ -165,11 +175,11 @@ public function eliminarUsuario($usudel){
 
 }
 
-
+// NO SE PUEDE ELIMINAR 
 public function eliminar_descuento($descuentodel){
     $con = modeloAdmin::conexion();
-    $sentencia = $this->getCon()->prepare("DELETE FROM codigo_descuento WHERE id_codigo = ?");
-    $sentencia->bind_param("i", $descuentodel);
+    $sentencia = $con->prepare("DELETE FROM codigo_descuento WHERE id_codigo = ?");
+    $sentencia->bind_param("s", $descuentodel);
     $sentencia->execute();
     $sentencia->close();
     
@@ -209,7 +219,7 @@ public function eliminar_motor($motordel){
 }
 public function eliminar_pedido($delpedidio){
     $con = modeloAdmin::conexion();
-    $sentencia = $con->prepare("DELETE FROM motor  WHERE id_pedido = ?");
+    $sentencia = $con->prepare("DELETE FROM pedido  WHERE id_pedido = ?");
     $sentencia->bind_param("i", $delpedidio);
     $sentencia->execute();
     $sentencia->close();
@@ -227,6 +237,14 @@ public function eliminar_suspension($delsuspension){
     $con = modeloAdmin::conexion();
     $sentencia = $con->prepare("DELETE FROM suspension  WHERE id_suspension = ?");
     $sentencia->bind_param("i", $delsuspension);
+    $sentencia->execute();
+    $sentencia->close();
+                   
+}
+public function eliminar_modelo($modelodel){
+    $con = modeloAdmin::conexion();
+    $sentencia = $con->prepare("DELETE FROM modelo  WHERE id_modelo = ?");
+    $sentencia->bind_param("i", $modelodel);
     $sentencia->execute();
     $sentencia->close();
                    
@@ -254,8 +272,7 @@ public function crearSuspension($suspension) {
 
     $stmt = $con->prepare("INSERT INTO suspension ( nombre_suspension, tipo, precio, oferta) 
                            VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $suspension["nombre_suspension"], $suspension["tipo"], $suspension["precio"], 
-                                    $suspension["oferta"]);
+    $stmt->bind_param("ssss", $suspension["nombre_suspension"], $suspension["tipo"], $suspension["precio"], $suspension["oferta"]);
 
     if ($stmt->execute()) {
         echo "Suspension creado con éxito";
@@ -296,6 +313,122 @@ public function crearllanta($llanta) {
     $stmt->close();
 }
 
+public function crearpedido($pedido) {
+    $con = $this->conexion(); // Usamos el método conexion de la clase base
+
+    $stmt = $con->prepare("INSERT INTO pedido (id_usuario, id_producto_final, fecha_pedido, direccion_entrega,id_codigo) 
+                           VALUES (?, ?, ?, ?,?)");
+    $stmt->bind_param("iisss",  $pedido["id_usuario"], $pedido["id_producto_final"], $pedido["fecha_pedido"], $pedido["direccion_entrega"], $pedido["id_codigo"]);
+
+    if ($stmt->execute()) {
+        echo "pedido creado con éxito";
+    } else {
+        echo "Error al crear pedido: " . $stmt->error;
+    }
+
+    $stmt->close();
+}
+public function crearkit($kit) {
+    $con = $this->conexion(); // Usamos el método conexion de la clase base
+
+    $stmt = $con->prepare("INSERT INTO kit_aerodinamico ( nombre_kit, tipo, precio, oferta) 
+                           VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssii",  $kit["nombre_kit"], $kit["tipo"], $kit["precio"], $kit["oferta"]);
+
+    if ($stmt->execute()) {
+        echo "kit creado con éxito";
+    } else {
+        echo "Error al crear la kit: " . $stmt->error;
+    }
+
+    $stmt->close();
+}
+public function crearfreno($freno) {
+    $con = $this->conexion(); // Usamos el método conexion de la clase base
+
+    $stmt = $con->prepare("INSERT INTO freno (tipo, precio, oferta) 
+                           VALUES (?, ?, ?)");
+    $stmt->bind_param("sii",   $freno["tipo"], $freno["precio"], $freno["oferta"]);
+
+    if ($stmt->execute()) {
+        echo "freno creado con éxito";
+    } else {
+        echo "Error al crear el freno: " . $stmt->error;
+    }
+
+    $stmt->close();
+}
+public function creardescuento($descuento) {
+    $con = $this->conexion(); // Usamos el método conexion de la clase base
+
+    $stmt = $con->prepare("INSERT INTO codigo_descuento (id_codigo,descuento_porcentaje) 
+                           VALUES (?,?)");
+    $stmt->bind_param("si",   $descuento["id_codigo"],$descuento["descuento_porcentaje"]);
+
+    if ($stmt->execute()) {
+        echo "descuento creado con éxito";
+    } else {
+        echo "Error al crear el descuento: " . $stmt->error;
+    }
+
+    $stmt->close();
+}
+public function crearmodelo($modelo) {
+    $con = $this->conexion(); // Usamos el método conexion de la clase base
+
+    $stmt = $con->prepare("INSERT INTO modelo (nombre_modelo, precio_base) 
+                           VALUES (?, ?)");
+    $stmt->bind_param("si",  $modelo["nombre_modelo"], $modelo["precio_base"]);
+
+    if ($stmt->execute()) {
+        echo "modelo creado con éxito";
+    } else {
+        echo "Error al crear la modelo: " . $stmt->error;
+    }
+
+    $stmt->close();
+}
+
+public function crearproducto_final($producto)
+{
+    // Obtener la conexión a la base de datos
+    $con = $this->conexion();
+
+    // Asegúrate de que las claves en el array coincidan con las columnas en la base de datos
+    $query = "
+        INSERT INTO producto_final 
+        (id_modelo, id_motor, id_suspension,id_kit ,id_llanta, id_freno, precio_total, nombre_producto, cantidad, img)
+        VALUES 
+        (?, ?, ?, ?, ?, ?, ?, ?, ?,?)
+    ";
+
+    // Preparar la consulta
+    $stmt = $con->prepare($query);
+
+    // Asignar los valores de los parámetros
+    $stmt->bind_param("iiiiiiisis", 
+        $producto['id_modelo'], 
+        $producto['id_motor'], 
+        $producto['id_suspension'], 
+        $producto['id_kit'], 
+        $producto['id_llanta'], 
+        $producto['id_freno'], 
+        $producto['precio_total'], 
+        $producto['nombre_producto'], 
+        $producto['cantidad'], 
+        $producto['img']
+    );
+
+    // Ejecutar la consulta
+    if ($stmt->execute()) {
+        return true;
+    } else {
+        // Si hay un error, obtener más detalles
+        throw new Exception("Error al insertar el producto: " . implode(", ", $stmt->errorInfo()));
+    }
+}
+
+
 
 //Modificar
 public function modificar_usuario($usuario) {
@@ -312,8 +445,6 @@ public function modificar_usuario($usuario) {
 }
 
 public function modificar_suspension($suspensionModifi) {
-  
-
     $con = $this->conexion(); 
     $stmt= $con->prepare("UPDATE suspension SET  nombre_suspension = ?, tipo = ?, precio = ?, oferta = ? WHERE id_suspension = ?");
     $stmt->bind_param("ssiii",$suspensionModifi["nombre_suspension"],$suspensionModifi["tipo"],$suspensionModifi["precio"],$suspensionModifi["oferta"],$suspensionModifi["id_suspension"],);
@@ -325,34 +456,265 @@ public function modificar_suspension($suspensionModifi) {
     }
     $stmt->close();
 }
+public function modificar_producto_final($producto_finalesmdf) {
+
+    $con = $this->conexion(); 
+    $stmt= $con->prepare("UPDATE producto_final SET  id_modelo = ?, id_motor = ?, id_suspension = ?, id_kit = ?, id_llanta = ?, id_freno = ?, precio_total = ? , nombre_producto = ?, cantidad = ?, img = ? WHERE id_producto_final = ?");
+    $stmt->bind_param("iiiiiiisiisi",$producto_finalesmdf["id_modelo"],$producto_finalesmdf["id_motor"],$producto_finalesmdf["id_suspension"],$producto_finalesmdf["id_kit"],$producto_finalesmdf["id_llanta"],$producto_finalesmdf["id_freno"],$producto_finalesmdf["precio_total"],$producto_finalesmdf["nombre_producto"],$producto_finalesmdf["cantidad"],$producto_finalesmdf["img"],$producto_finalesmdf["id_producto_final"]);
+    if ($stmt->execute()) {
+        echo "motor creado con éxito";
+    } else {
+        echo "Error al crear el motor: " . $stmt->error;
+    }
+    $stmt->close();
+}
+public function modificar_pedidos($pedidosmodif) {
+
+    $con = $this->conexion(); 
+    $stmt= $con->prepare("UPDATE pedido SET   id_usuario = ?, id_producto_final = ?, fecha_pedido = ?, direccion_entrega = ?, id_codigo = ? WHERE id_pedido = ?");
+    $stmt->bind_param("iisssi",   $pedidosmodif["id_usuario"], $pedidosmodif["id_producto_final"], $pedidosmodif["fecha_pedido"], $pedidosmodif["direccion_entrega"], $pedidosmodif["id_codigo"],$pedidosmodif["id_pedido"],);
+
+    if ($stmt->execute()) {
+        echo "pedidos creado con éxito";
+    } else {
+        echo "Error al crear el pedidos: " . $stmt->error;
+    }
+    $stmt->close();
+}
 public function modificar_motor($motorModifi) {
 
     $con = $this->conexion(); 
     $stmt= $con->prepare("UPDATE motor SET  nombre_motor = ?, caballos = ?, cilindrada = ?, precio = ?, combustion = ? WHERE id_motor = ?");
     $stmt->bind_param("siiisi",$motorModifi["nombre_motor"],$motorModifi["caballos"],$motorModifi["cilindrada"],$motorModifi["precio"],$motorModifi["combustion"],$motorModifi["id_motor"]);
     if ($stmt->execute()) {
-        echo "suspension creado con éxito";
+        echo "motor creado con éxito";
     } else {
-        echo "Error al crear el suspension: " . $stmt->error;
+        echo "Error al crear el motor: " . $stmt->error;
     }
     $stmt->close();
 }
+public function modificar_modelos($modelomodifi) {
+    $con = $this->conexion(); // Usamos el método conexion de la clase base
+
+    $stmt= $con->prepare("UPDATE modelo SET nombre_modelo = ?, precio_base = ?  WHERE id_modelo = ?");
+    $stmt->bind_param("sii",  $modelomodifi["nombre_modelo"], $modelomodifi["precio_base"], $modelomodifi["id_modelo"]);
+
+    if ($stmt->execute()) {
+        echo "modelo creado con éxito";
+    } else {
+        echo "Error al crear la modelo: " . $stmt->error;
+    }
+
+    $stmt->close();
+}
+
 
 public function modificar_llantas($llantamodifi) {
 
     $con = $this->conexion(); 
-    $stmt= $con->prepare("UPDATE motor SET  nombre_motor = ?, caballos = ?, cilindrada = ?, precio = ?, combustion = ? WHERE id_motor = ?");
-    $stmt->bind_param("siiisi",$motorModifi["nombre_motor"],$motorModifi["caballos"],$motorModifi["cilindrada"],$motorModifi["precio"],$motorModifi["combustion"],$motorModifi["id_motor"]);
+    $stmt= $con->prepare("UPDATE llanta SET  nombre_llanta = ?, tipo = ?, precio = ?, oferta = ? WHERE id_llanta = ?");
+    $stmt->bind_param("ssiii",$llantamodifi["nombre_llanta"],$llantamodifi["tipo"],$llantamodifi["precio"],$llantamodifi["oferta"],$llantamodifi["id_llanta"]);
 
     if ($stmt->execute()) {
-        echo "suspension creado con éxito";
+        echo "llanta creado con éxito";
     } else {
-        echo "Error al crear el suspension: " . $stmt->error;
+        echo "Error al crear el llanta: " . $stmt->error;
     }
+    $stmt->close();
+}
+public function modificar_kits($kitmdf) {
+    $con = $this->conexion(); // Usamos el método conexion de la clase base
+
+    $stmt= $con->prepare("UPDATE kit_aerodinamico SET    nombre_kit = ?, tipo = ?, precio = ?, oferta = ?  WHERE id_kit = ?");
+    $stmt->bind_param("ssiii",  $kitmdf["nombre_kit"], $kitmdf["tipo"], $kitmdf["precio"], $kitmdf["oferta"], $kitmdf["id_kit"]);
+
+    if ($stmt->execute()) {
+        echo "kit creado con éxito";
+    } else {
+        echo "Error al crear el kit: " . $stmt->error;
+    }
+
+    $stmt->close();
+}
+public function modificar_freno($frenomdf) {
+    $con = $this->conexion(); // Usamos el método conexion de la clase base
+
+    $stmt= $con->prepare("UPDATE freno SET    tipo = ?, precio = ?, oferta = ?  WHERE id_freno = ?");
+    $stmt->bind_param("siii", $frenomdf["tipo"], $frenomdf["precio"], $frenomdf["oferta"], $frenomdf["id_freno"]);
+
+    if ($stmt->execute()) {
+        echo "freno creado con éxito";
+    } else {
+        echo "Error al crear el freno: " . $stmt->error;
+    }
+
     $stmt->close();
 }
 
 
+
+public function modificar_descuento($codigo_descuentomdf) {
+    $con = $this->conexion(); // Usamos el método conexion de la clase base
+
+    $stmt= $con->prepare("UPDATE codigo_descuento SET    descuento_porcentaje = ?, id_codigo = ? WHERE id_codigo = ?");
+    $stmt->bind_param("iss",   $codigo_descuentomdf["descuento_porcentaje"],$codigo_descuentomdf["id_nuevo_codigo"],$codigo_descuentomdf["id_codigo"]);
+
+    if ($stmt->execute()) {
+        echo "descuento creado con éxito";
+    } else {
+        echo "Error al crear el descuento: " . $stmt->error;
+    }
+
+    $stmt->close();
+}
+public function getMotores_nombre() {
+    $con = modeloAdmin::conexion();
+    $query = $con->query("SELECT id_motor, nombre_motor FROM motor");
+
+    $motores_nombres = [];
+    
+    while($fila = $query->fetch_assoc()){
+        $motores_nombres[] = array(
+            'id_motor' => $fila['id_motor'],
+            'nombre_motor' => $fila['nombre_motor']
+        );
+    }
+
+    header("Content-Type: application/json");
+    echo json_encode($motores_nombres);
+}
+
+public function getSuspensiones_nombre() {
+    $con = modeloAdmin::conexion();
+    $query = $con->query("SELECT id_suspension, nombre_suspension FROM suspension");
+
+    $suspensiones_nombres = [];
+    
+    while($fila = $query->fetch_assoc()){
+        $suspensiones_nombres[] = array(
+            'id_suspension' => $fila['id_suspension'],
+            'nombre_suspension' => $fila['nombre_suspension']
+        );
+    }
+
+    header("Content-Type: application/json");
+    echo json_encode($suspensiones_nombres);
+}
+
+public function getLlantas_nombre() {
+    $con = modeloAdmin::conexion();
+    $query = $con->query("SELECT id_llanta, nombre_llanta FROM llanta");
+
+    $llantes_nombres = [];
+    
+    while($fila = $query->fetch_assoc()){
+        $llantes_nombres[] = array(
+            'id_llanta' => $fila['id_llanta'],
+            'nombre_llanta' => $fila['nombre_llanta']
+        );
+    }
+
+    header("Content-Type: application/json");
+    echo json_encode($llantes_nombres);
+}
+
+public function getFrenos_nombre() {
+    $con = modeloAdmin::conexion();
+    $query = $con->query("SELECT id_freno, tipo FROM freno");
+
+    $frenos_nombres = [];
+    
+    while($fila = $query->fetch_assoc()){
+        $frenos_nombres[] = array(
+            'id_freno' => $fila['id_freno'],
+            'tipo' => $fila['tipo']
+        );
+    }
+
+    header("Content-Type: application/json");
+    echo json_encode($frenos_nombres);
+}
+public function getModelos_nombre() {
+    $con = modeloAdmin::conexion();
+    $query = $con->query("SELECT id_modelo, nombre_modelo FROM modelo");
+
+    $modelos_nombres = [];
+    
+    while($fila = $query->fetch_assoc()){
+        $modelos_nombres[] = array(
+            'id_modelo' => $fila['id_modelo'],
+            'nombre_modelo' => $fila['nombre_modelo']
+        );
+    }
+
+    header("Content-Type: application/json");
+    echo json_encode($modelos_nombres);
+}
+public function getProducto_nombre() {
+    $con = modeloAdmin::conexion();
+    $query = $con->query("SELECT id_producto_final, nombre_producto FROM producto_final");
+
+    $producto_nombres = [];
+    
+    while($fila = $query->fetch_assoc()){
+        $producto_nombres[] = array(
+            'id_producto_final' => $fila['id_producto_final'],
+            'nombre_producto' => $fila['nombre_producto']
+        );
+    }
+
+    header("Content-Type: application/json");
+    echo json_encode($producto_nombres);
+}
+
+public function getUsuario_nombre() {
+    $con = modeloAdmin::conexion();
+    $query = $con->query("SELECT id_usuario,usuario FROM usuario");
+
+    $Usuario_nombres = [];
+    
+    while($fila = $query->fetch_assoc()){
+        $Usuario_nombres[] = array(
+            'id_usuario' => $fila['id_usuario'],
+            'usuario' => $fila['usuario']
+        );
+    }
+
+    header("Content-Type: application/json");
+    echo json_encode($Usuario_nombres);
+}
+public function getKit_nombre() {
+    $con = modeloAdmin::conexion();
+    $query = $con->query("SELECT id_kit,nombre_kit FROM kit_aerodinamico");
+
+    $kit_aerodinamico_nombre = [];
+    
+    while($fila = $query->fetch_assoc()){
+        $kit_aerodinamico_nombre[] = array(
+            'id_kit' => $fila['id_kit'],
+            'nombre_kit' => $fila['nombre_kit']
+        );
+    }
+
+    header("Content-Type: application/json");
+    echo json_encode($kit_aerodinamico_nombre);
+}
+public function getID_Codigo_descuento() {
+    $con = modeloAdmin::conexion();
+    $query = $con->query("SELECT id_codigo,descuento_porcentaje FROM codigo_descuento");
+
+    $porcentaje_descuento = [];
+    
+    while($fila = $query->fetch_assoc()){
+        $porcentaje_descuento[] = array(
+            'id_codigo' => $fila['id_codigo'],
+            'descuento_porcentaje' => $fila['descuento_porcentaje']
+        );
+    }
+
+    header("Content-Type: application/json");
+    echo json_encode($porcentaje_descuento);
+}
 
 }
 ?>
