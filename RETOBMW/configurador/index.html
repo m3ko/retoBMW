@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css"> 
+    
 </head>
 <body>
     <main class="container">
  
         <!-- Left Column / Headphones Image -->
-        <div class="left-column">
-          <img data-image="black" src="https://designmodo.com/demo/product-page/images/black.png" alt="">
-          <img data-image="blue" src="https://designmodo.com/demo/product-page/images/blue.png" alt="">
-          <img data-image="red" class="active" src="https://designmodo.com/demo/product-page/images/red.png" alt="">
+        <div class="left-column" id="img">
+          
+          
         </div>
        
        
@@ -23,7 +23,12 @@
           <!-- Product Description -->
           <div class="product-description">
             <span>Configurador</span>
-            <h1>"modelo coche"</h1>
+            <h1>
+              <select name="cars" id="cars" onchange="imagenModelo()">
+                
+              </select>
+
+            </h1>
             <p>descripcion</p>
           </div>
        
@@ -56,12 +61,12 @@
        
             <!-- Cable Configuration -->
             <div class="cable-config">
-              <span>Cable configuration</span>
+              <span>Motorizaciónes Disponibles</span>
        
               <div class="cable-choose">
-                <button>Straight</button>
-                <button>Coiled</button>
-                <button>Long-coiled</button>
+                <div id="motor">
+                  
+                </div>
               </div>
        
               <a href="#">How to configurate your headphones</a>
@@ -70,9 +75,9 @@
                 <span>Cable configuration</span>
          
                 <div class="cable-choose">
-                  <button>Straight</button>
-                  <button>Coiled</button>
-                  <button>Long-coiled</button>
+                  <div id="frenos">
+                  
+                  </div>>
                 </div>
          
                 <a href="#">How to configurate your headphones</a>
@@ -109,6 +114,7 @@
 
         </div>
       </main>
-        
+      <script src="app.js"></script>
+
 </body>
 </html>

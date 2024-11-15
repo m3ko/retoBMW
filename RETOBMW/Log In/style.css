@@ -26,6 +26,7 @@ margin-left: 25px;
   background-color: #120d0dce;
   padding: 20px;
   border: solid 1px #000000;
+  border-radius: 10px;
   
 }
 
@@ -34,13 +35,16 @@ margin-left: 25px;
   height: 70px;
   border: solid 2px #0062ff;
   text-align: center;
+  border-radius: 5px;
 }
 .sign-up:hover, .log-in:hover {
   font-weight: bold;
   cursor: pointer;
+  border-radius: 5px;
 }
 .sign-up-header {
   margin-top: 23px;
+  border-radius: 5px;
 }
 .log-in {
   width: 50%;
@@ -48,14 +52,17 @@ margin-left: 25px;
   border: solid 2px #0062ff;
   margin-top: -70px;
   margin-left: 178px;
+  border-radius: 5px;
 }
 .log-in-header {
   margin-top: 23px;
   text-align: center;
+  border-radius: 5px;
 }
 .active {
   background-color: #0062ff;
   color: #0a0606;
+  border-radius: 5px;
 }
 input {
   width: 100%;
@@ -63,19 +70,23 @@ input {
   border: solid 1px #0062ff;
   margin-top: 10px;
   font-family: inherit;
+  border-radius: 5px;
 }
 .first-name, .last-name {
   width: 49.4%;
   margin-top: -5px;
+  border-radius: 5px;
 }
 .last-name {
   margin-right: 0;
+  border-radius: 5px;
 }
 ::placeholder {
   font-style: italic;
 }
 .email {
   margin-top: -5px;
+  border-radius: 5px;
 }
 button {
   width: 100%;
@@ -86,6 +97,7 @@ button {
   color: #fff;
   font-size: 1.4em;
   text-transform: uppercase;
+  border-radius: 5px;
 }
 button:hover {
   
