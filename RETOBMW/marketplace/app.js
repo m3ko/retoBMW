@@ -30,16 +30,21 @@ async function obtenerProductosFinales(modelo = '') {
             "Motor:", producto.motor,
             "Potencia", producto.potencia,
             "Suspensión:", producto.suspension,
-            "Kit Aerodinámico:", producto.kit_aerodinámico,
+            "Kit Aerodinámico:", producto.kit_aerodinamico,
             "Llanta:", producto.llanta,
             "Freno:", producto.freno,
             "Nombre del Producto:", producto.nombre_producto,
             "Precio Total:", producto.precio_total,
             "Cantidad:", producto.cantidad,
-            "Imagen:", producto.img);
-
+            "Imagen:", producto.img,
+            "id_descuento:", producto.id_descuento,
+            "precio_despues_descuento", producto.precio_despues_descuento,
+            "visibilidad", producto.visibilidad);
         // Añadir la carta correspondiente a cada producto
-        carta.innerHTML += `
+
+        if (producto.id_descuento == null && producto.visibilidad==1) {
+
+            carta.innerHTML += `
             <figure class="card card--4">
                 <img src="${producto.img}" alt="">
                 <figcaption>
@@ -48,7 +53,7 @@ async function obtenerProductosFinales(modelo = '') {
                         <span>
                             <ul>
                                 <li>${producto.motor} (${producto.potencia}CV)</li>
-                                <li>Kit Aerodinámico: ${producto.kit_aerodinámico}</li>
+                                <li>Kit Aerodinámico: ${producto.kit_aerodinamico}</li>
                                 <li>Suspension: ${producto.suspension}</li>
                                 <li>Tipo Frenos: ${producto.freno}</li>
                                 <li>LLantas: ${producto.llanta}</li>
@@ -67,6 +72,43 @@ async function obtenerProductosFinales(modelo = '') {
                         // </nav>
                 </figcaption>
             </figure>`;
+        } else if (producto.id_descuento == 1 && producto.visibilidad==1){
+
+            carta.innerHTML += `
+            <figure class="card card--4">
+            
+                <img src="${producto.img}" alt=""><img src="img/descuento.png" alt="" style=" max-height: 30px; margin-bottom:40px">
+                
+                <figcaption>
+                    <span class="info">
+                        <h6>${producto.nombre_producto}</h6>
+                        <span>
+                            <ul>
+                                <li>${producto.motor} (${producto.potencia}CV)</li>
+                                <li>Kit Aerodinámico: ${producto.kit_aerodinamico}</li>
+                                <li>Suspension: ${producto.suspension}</li>
+                                <li>Tipo Frenos: ${producto.freno}</li>
+                                <li>LLantas: ${producto.llanta}</li>
+                                <li>Total ANTES: ${producto.precio_total}€</li>
+                                <li>Total DESPUÉS: ${producto.precio_despues_descuento}€</li>
+
+                                <br>
+                                <button onclick="verificarInicioSesion_carrito(${producto.id_producto_final})">Añadir al Carrito</button>
+
+
+                            </ul>
+                        </span>
+                        </span>
+                        // <nav class="opciones" >
+                        //     <ul>
+                        //         <li><a data-filter="todos" onclick="filtro('todos')">Añadir al Carrito</a></li>
+                        //     </ul>
+                        // </nav>
+                </figcaption>
+            </figure>`;
+
+
+        }
     });
 }
 
@@ -103,7 +145,7 @@ function aniadirCarrito(producto) {
 }
 function config() {
 
-window.location.href='../configurador/index.html';
+    window.location.href = '../configurador/index.html';
 
 }
 

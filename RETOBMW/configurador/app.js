@@ -69,7 +69,7 @@ async function obtenerFrenos() {
   
   frenos.forEach(freno => {
     
-    botonesFrenos.innerHTML+=`<button>${freno.tipo}</button>`;
+    botonesFrenos.innerHTML+=`<button class="button" onclick="selectButton(this)" value="${freno.id_freno}">${freno.tipo}</button>`;
 
   });
 
@@ -84,7 +84,7 @@ async function obtenerKitAerodinamicos() {
   var botonesKits = document.querySelector("#kits");
 
   kits.forEach(kit => {
-    botonesKits.innerHTML+=`<button>${kit.nombre_kit}</button>`;
+    botonesKits.innerHTML+=`<button class="button" onclick="selectButton(this) value="${kit.id_kit}"">${kit.nombre_kit}</button>`;
   });
 }
 
@@ -97,7 +97,7 @@ async function obtenerMotores() {
 
   motores.forEach(motor => {
 
-    botonesMotores.innerHTML += `<button>${motor.cilindrada}cc ${motor.caballos}cv</button>;`
+    botonesMotores.innerHTML += ` <button class="button" onclick="selectButton(this) value="${motor.id_motor}"">${motor.cilindrada}cc ${motor.caballos}cv ${motor.combustion}</button>`
 
   });
 
@@ -110,7 +110,7 @@ async function obtenerLlantas() {
   var botonesLlantas = document.querySelector("#llantas");
 
   llantas.forEach(llanta => {
-    botonesLlantas.innerHTML += `<button>${llanta.nombre_llanta}</button>`
+    botonesLlantas.innerHTML += `<button class="button" onclick="selectButton(this)" value="${llanta.id_llanta}">${llanta.nombre_llanta}</button>`;
   });
 }
 
@@ -121,8 +121,20 @@ async function obtenerSuspensiones() {
   var botonesSuspensiones = document.querySelector("#suspensiones");
 
   suspensiones.forEach(suspension => {
-    botonesSuspensiones.innerHTML += `<button>${suspension.nombre_suspension}</button>`;
+    botonesSuspensiones.innerHTML += `<button class="button" onclick="selectButton(this)" value="${suspension.id_suspension}">${suspension.nombre_suspension}</button>`;
   });
+}
+
+function selectButton(button) {
+  // Obtener la fila del botón seleccionado
+  const row = button.parentNode;
+  // Desmarcar todos los botones en la fila
+  const buttons = row.getElementsByClassName('button');
+  for (let i = 0; i < buttons.length; i++) {
+      buttons[i].classList.remove('selected');
+  }
+  // Marcar el botón seleccionado
+  button.classList.add('selected');
 }
 
 

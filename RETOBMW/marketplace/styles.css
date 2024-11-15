@@ -48,7 +48,7 @@ nav{
   }
 
   nav ul li a:hover{
-    background-color: #000000;
+    background-color: #bf8383;
   }
 
 
@@ -87,6 +87,7 @@ figure.card--4 img {
     max-width: 378.38px;
     max-height: 212.63px;
     margin: auto;
+    
 }
 
 figure.card--4:hover {
