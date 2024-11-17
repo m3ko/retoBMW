@@ -1,0 +1,19 @@
+.alert {
+    position: fixed;
+    top: -100px; /* Empezamos fuera de la vista */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1060;
+    opacity: 0;
+    transition: all 0.5s ease-in-out; /* Animación de deslizamiento y fade-in/fade-out */
+}
+
+.BajandoAlerta {
+    top: 10%; /* Cambia la posición vertical de la alerta a visible */
+    opacity: 1; /* Hacemos visible la alerta */
+}
+
+.SubiendoAlerta {
+    top: -100px; /* Vuelve la alerta fuera de la pantalla */
+    opacity: 0; /* Hace la alerta invisible */
+}
