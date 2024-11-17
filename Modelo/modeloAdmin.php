@@ -120,10 +120,17 @@ public function getmotores(){
 }
 public function getpedidos(){
     $con = modeloAdmin::conexion();
+<<<<<<< HEAD
     $query = $con->query("SELECT id_pedido,u.usuario AS usuario, pf.nombre_producto AS nombre_producto,fecha_pedido,direccion_entrega, d.descuento_porcentaje AS descuento_porcentaje FROM pedido p 
     JOIN usuario u ON p.id_usuario = u.id_usuario 
     JOIN producto_final pf ON p.id_producto_final = pf.id_producto_final
     JOIN codigo_descuento d ON p.id_codigo = d.id_codigo ");
+=======
+    $query = $con->query("SELECT id_pedido,u.usuario AS usuario, pf.nombre_producto AS nombre_producto,fecha_pedido,direccion, d.descuento_porcentaje AS descuento_porcentaje FROM pedido p 
+    JOIN usuario u ON p.id_usuario = u.id_usuario 
+    JOIN producto_final pf ON p.id_producto_final = pf.id_producto_final
+    JOIN codigo_descuento d ON p.id_codigo = d.id_codigo");
+>>>>>>> 7e7564fc80846d9298b73688f4ad4c2a8fcb58d8
 
     $pedidos= [];
     
@@ -142,7 +149,11 @@ public function getproductos_finales(){
     JOIN suspension s ON pf.id_suspension = s.id_suspension 
     JOIN kit_aerodinamico k ON pf.id_kit = k.id_kit 
     JOIN llanta ll ON pf.id_llanta = ll.id_llanta 
+<<<<<<< HEAD
     JOIN freno fr ON pf.id_freno = fr.id_freno  ORDER BY pf.id_producto_final ASC");
+=======
+    JOIN freno fr ON pf.id_freno = fr.id_freno");
+>>>>>>> 7e7564fc80846d9298b73688f4ad4c2a8fcb58d8
 
     $producto_finales= [];
     
@@ -716,6 +727,7 @@ public function getID_Codigo_descuento() {
     echo json_encode($porcentaje_descuento);
 }
 
+<<<<<<< HEAD
 //Errores
 
 public function ErrorUsuario($usuarioError) {
@@ -1034,5 +1046,7 @@ public function errorcodigo_Pedido($Errorcodigo) {
 }
 
 
+=======
+>>>>>>> 7e7564fc80846d9298b73688f4ad4c2a8fcb58d8
 }
 ?>
