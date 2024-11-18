@@ -54,7 +54,11 @@ async function obtenerProductosFinales(modelo = '') {
                                 <li>LLantas: ${producto.llanta}</li>
                                 <li>Total: ${producto.precio_total}€</li>
                                 <br>
+<<<<<<< HEAD
                                 <button onclick="verificarInicioSesion_carrito(${producto.id_producto_final})">Añadir al Carrito</button>
+=======
+                                <button class="add-to-cart" onclick="verificarInicioSesion_carrito(${producto.id_producto_final})">Añadir al Carrito</button>
+>>>>>>> ian
 
 
                             </ul>
@@ -70,6 +74,7 @@ async function obtenerProductosFinales(modelo = '') {
     });
 }
 
+<<<<<<< HEAD
 async function verificarInicioSesion_carrito(producto){
 
     const response = await fetch('../../Modelo/verificar_sesion.php');
@@ -83,10 +88,46 @@ async function verificarInicioSesion_carrito(producto){
 
 }
 
+=======
+// Función para verificar inicio de sesión y añadir al carrito
+async function verificarInicioSesion_carrito(producto) {
+    const response = await fetch('../../Modelo/verificar_sesion.php');
+    const verificar = await response.json();
+
+    if (verificar) {
+        aniadirCarrito(producto);
+    } else {
+        // Redirige a la página de inicio de sesión si no está autenticado
+        window.location.href = '../Log In/index.html';
+    }
+}
+
+async function verificarInicioSesion_config() {
+    const response = await fetch('../../Modelo/verificar_sesion.php');
+    const verificar = await response.json();
+
+    if (verificar) {
+        config();
+    } else {
+        // Redirige a la página de inicio de sesión si no está autenticado
+        window.location.href = '../Log In/index.html';
+    }
+}
+
+
+>>>>>>> ian
 function aniadirCarrito(producto) {
 
 
 
 }
+<<<<<<< HEAD
+=======
+function config() {
+
+window.location.href='../configurador/index.html';
+
+}
+>>>>>>> ian
 
 
