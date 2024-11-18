@@ -84,8 +84,9 @@ async function obtenerKitAerodinamicos() {
   var botonesKits = document.querySelector("#kits");
 
   kits.forEach(kit => {
-    botonesKits.innerHTML+=`<button class="button" onclick="selectButton(this) value="${kit.id_kit}">${kit.nombre_kit}</button>`;
+    botonesKits.innerHTML+=`<button class="button" onclick="selectButton(this)" value="${kit.id_kit}">${kit.nombre_kit}</button>`;
   });
+  
 }
 
 async function obtenerMotores() {
@@ -97,7 +98,7 @@ async function obtenerMotores() {
 
   motores.forEach(motor => {
 
-    botonesMotores.innerHTML += ` <button class="button" onclick="selectButton(this) value="${motor.id_motor}"">${motor.cilindrada}cc ${motor.caballos}cv ${motor.combustion}</button>`
+    botonesMotores.innerHTML += ` <button class="button" onclick="selectButton(this)" value="${motor.id_motor}"">${motor.cilindrada}cc ${motor.caballos}cv ${motor.combustion}</button>`
 
   });
 
