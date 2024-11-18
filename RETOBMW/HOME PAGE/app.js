@@ -6,6 +6,7 @@ $('.navTrigger').click(function () {
 
 });
 
+<<<<<<< HEAD
 
         $(window).scroll(function() {
             if ($(document).scrollTop() > 50) {
@@ -21,3 +22,5 @@ $('.navTrigger').click(function () {
             $("#mainListDiv").toggleClass("show_list");
             $("#mainListDiv").fadeIn();
         });
+=======
+>>>>>>> fe720a21c2aa736c1debab782217bbf3fb0c36f4

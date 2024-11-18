@@ -2,9 +2,12 @@ console.log("hola");
 window.onload = obtenerModelos();
 window.onload = obtenerMotores();
 window.onload = obtenerFrenos();
+<<<<<<< HEAD
 window.onload = obtenerKitAerodinamicos();
 window.onload = obtenerLlantas();
 window.onload=obtenerSuspensiones();
+=======
+>>>>>>> fe720a21c2aa736c1debab782217bbf3fb0c36f4
 //  $(document).ready(function() {
 
 //     $('.color-choose input').on('click', function() {
@@ -69,7 +72,11 @@ async function obtenerFrenos() {
   
   frenos.forEach(freno => {
     
+<<<<<<< HEAD
     botonesFrenos.innerHTML+=`<button class="button" onclick="selectButton(this)" value="${freno.id_freno}">${freno.tipo}</button>`;
+=======
+    botonesFrenos.innerHTML+=`<button>${freno.tipo}</button>`;
+>>>>>>> fe720a21c2aa736c1debab782217bbf3fb0c36f4
 
   });
 
@@ -81,11 +88,14 @@ async function obtenerKitAerodinamicos() {
   const response = await fetch('../../Controlador/obtenerKitAerodinamicosConfig.php');
   const kits = await response.json();
 
+<<<<<<< HEAD
   var botonesKits = document.querySelector("#kits");
 
   kits.forEach(kit => {
     botonesKits.innerHTML+=`<button class="button" onclick="selectButton(this) value="${kit.id_kit}">${kit.nombre_kit}</button>`;
   });
+=======
+>>>>>>> fe720a21c2aa736c1debab782217bbf3fb0c36f4
 }
 
 async function obtenerMotores() {
@@ -97,7 +107,11 @@ async function obtenerMotores() {
 
   motores.forEach(motor => {
 
+<<<<<<< HEAD
     botonesMotores.innerHTML += ` <button class="button" onclick="selectButton(this) value="${motor.id_motor}"">${motor.cilindrada}cc ${motor.caballos}cv ${motor.combustion}</button>`
+=======
+    botonesMotores.innerHTML += `<button>${motor.cilindrada}cc ${motor.caballos}cv</button>;`
+>>>>>>> fe720a21c2aa736c1debab782217bbf3fb0c36f4
 
   });
 
@@ -105,6 +119,7 @@ async function obtenerMotores() {
 }
 async function obtenerLlantas() {
 
+<<<<<<< HEAD
   const response = await fetch('../../Controlador/obtenerLlantasConfig.php');
   const llantas = await response.json();
   var botonesLlantas = document.querySelector("#llantas");
@@ -139,3 +154,15 @@ function selectButton(button) {
 
 
 
+=======
+  const response = await fetch('../../Controlador/obtenerModelosConfig.php');
+  const llantas = await response.json();
+
+}
+async function obtenerSuspensiones() {
+
+  const response = await fetch('../../Controlador/obtenerModelosConfig.php');
+  const suspension = await response.json();
+
+}
+>>>>>>> fe720a21c2aa736c1debab782217bbf3fb0c36f4

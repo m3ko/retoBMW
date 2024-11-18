@@ -59,7 +59,11 @@ async function obtenerProductosFinales(modelo = '') {
                                 <li>LLantas: ${producto.llanta}</li>
                                 <li>Total: ${producto.precio_total}€</li>
                                 <br>
+<<<<<<< HEAD
                                 <button onclick="verificarInicioSesion_carrito(${producto.id_producto_final})">Añadir al Carrito</button>
+=======
+                                <button class="add-to-cart" onclick="verificarInicioSesion_carrito(${producto.id_producto_final})">Añadir al Carrito</button>
+>>>>>>> ian
 
 
                             </ul>
@@ -112,6 +116,28 @@ async function obtenerProductosFinales(modelo = '') {
     });
 }
 
+<<<<<<< HEAD
+// Función para verificar inicio de sesión y añadir al carrito
+async function verificarInicioSesion_carrito(producto) {
+=======
+<<<<<<< HEAD
+async function verificarInicioSesion_carrito(producto){
+
+>>>>>>> fe720a21c2aa736c1debab782217bbf3fb0c36f4
+    const response = await fetch('../../Modelo/verificar_sesion.php');
+    const verificar = await response.json();
+
+    if (verificar) {
+        aniadirCarrito(producto);
+    } else {
+        // Redirige a la página de inicio de sesión si no está autenticado
+        window.location.href = '../Log In/index.html';
+    }
+}
+
+<<<<<<< HEAD
+=======
+=======
 // Función para verificar inicio de sesión y añadir al carrito
 async function verificarInicioSesion_carrito(producto) {
     const response = await fetch('../../Modelo/verificar_sesion.php');
@@ -125,6 +151,7 @@ async function verificarInicioSesion_carrito(producto) {
     }
 }
 
+>>>>>>> fe720a21c2aa736c1debab782217bbf3fb0c36f4
 async function verificarInicioSesion_config() {
     const response = await fetch('../../Modelo/verificar_sesion.php');
     const verificar = await response.json();
@@ -138,15 +165,30 @@ async function verificarInicioSesion_config() {
 }
 
 
+<<<<<<< HEAD
+=======
+>>>>>>> ian
+>>>>>>> fe720a21c2aa736c1debab782217bbf3fb0c36f4
 function aniadirCarrito(producto) {
 
 
 
 }
+<<<<<<< HEAD
 function config() {
 
     window.location.href = '../configurador/index.html';
 
 }
+=======
+<<<<<<< HEAD
+=======
+function config() {
+
+window.location.href='../configurador/index.html';
+
+}
+>>>>>>> ian
+>>>>>>> fe720a21c2aa736c1debab782217bbf3fb0c36f4
 
 

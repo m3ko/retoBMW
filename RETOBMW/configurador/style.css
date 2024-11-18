@@ -3,7 +3,11 @@ html, body {
     height: 100%;
     width: 100%;
     margin: 0;
+<<<<<<< HEAD
     font-family: "BMWTypeNext Pro Regular";
+=======
+    font-family: 'Roboto', sans-serif;
+>>>>>>> fe720a21c2aa736c1debab782217bbf3fb0c36f4
   }
   
   .container {
@@ -15,6 +19,7 @@ html, body {
   
   /* Columns */
   .left-column {
+<<<<<<< HEAD
     margin: auto;
     width: 65%;
     background-image: url(''); /* Ruta de la imagen */
@@ -23,6 +28,15 @@ html, body {
     position: sticky;
      /* Fija la imagen en la parte superior al hacer scroll */
     height: 100vh; /* Alto completo de la ventana */
+=======
+    width: 65%;
+    background-image: url('catalogo4.jpg'); /* Ruta de la imagen */
+    background-size: cover; /* Ajusta la imagen para cubrir todo el fondo */
+    background-position: center; /* Centra la imagen */
+    position: sticky;
+    top: 0; /* Fija la imagen en la parte superior al hacer scroll */
+    height: 30vh; /* Alto completo de la ventana */
+>>>>>>> fe720a21c2aa736c1debab782217bbf3fb0c36f4
     z-index: 0; /* Asegura que la imagen esté en el fondo */
 }
   
@@ -31,7 +45,11 @@ html, body {
     margin-top: 60px;
     position: relative; /* Posiciona el contenido sobre la imagen */
     z-index: 1; /* Asegura que el contenido esté sobre la imagen */
+<<<<<<< HEAD
     color: rgb(0, 0, 0); /* Cambia el color del texto para que sea legible */
+=======
+    color: white; /* Cambia el color del texto para que sea legible */
+>>>>>>> fe720a21c2aa736c1debab782217bbf3fb0c36f4
     padding: 20px; /* Añade algo de espacio alrededor del texto */
   }
   
@@ -39,7 +57,11 @@ html, body {
   /* Left Column */
   .left-column img {
     width: 100%;
+<<<<<<< HEAD
     position: sticky;
+=======
+    position: absolute;
+>>>>>>> fe720a21c2aa736c1debab782217bbf3fb0c36f4
     left: 0;
     top: 0;
     opacity: 0;
@@ -137,6 +159,7 @@ html, body {
   }
   
   /* Cable Configuration */
+<<<<<<< HEAD
   .row {
     margin: 10px 0;
 }
@@ -158,6 +181,55 @@ html, body {
 
   /*   */
 
+=======
+  .cable-choose {
+    margin-bottom: 20px;
+  }
+  
+  .cable-choose button {
+    border: 2px solid #E1E8EE;
+    border-radius: 6px;
+    padding: 13px 20px;
+    font-size: 14px;
+    color: #5E6977;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all .5s;
+  }
+  
+  .cable-choose button:hover,
+  .cable-choose button:active,
+  .cable-choose button:focus {
+    border: 2px solid #86939E;
+    outline: none;
+  }
+  
+  .cable-config {
+    border-bottom: 1px solid #E1E8EE;
+    margin-bottom: 20px;
+  }
+  
+  .cable-config a {
+    color: #358ED7;
+    text-decoration: none;
+    font-size: 12px;
+    position: relative;
+    margin: 10px 0;
+    display: inline-block;
+  }
+  .cable-config a:before {
+    content: "?";
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    border: 2px solid rgba(53, 142, 215, 0.5);
+    display: inline-block;
+    text-align: center;
+    line-height: 16px;
+    opacity: 0.5;
+    margin-right: 5px;
+  }
+>>>>>>> fe720a21c2aa736c1debab782217bbf3fb0c36f4
   
   /* Product Price */
   .product-price {
