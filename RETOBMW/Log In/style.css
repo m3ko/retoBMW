@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  
+
+}
+body {
+  font-family: "BMWTypeNext Pro Regular";
+  font-size: 16px;
+  font-weight: 400;
+  color: #ffffff;
+  background-image: url(img/fondo.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+
+
+}
+h1 {
+  font-size: 2em;
+  text-align: center;
+  padding: 30px;
+}
+.container {
+ margin-top: 150px;
+margin-left: 25px; 
+  width: 400px;
+  max-width: 100%;
+  background-color: #120d0dce;
+  padding: 20px;
+  border: solid 1px #000000;
+  
+}
+
+.sign-up {
+  width: 50%;
+  height: 70px;
+  border: solid 2px #0062ff;
+  text-align: center;
+}
+.sign-up:hover, .log-in:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+.sign-up-header {
+  margin-top: 23px;
+}
+.log-in {
+  width: 50%;
+  height: 70px;
+  border: solid 2px #0062ff;
+  margin-top: -70px;
+  margin-left: 178px;
+}
+.log-in-header {
+  margin-top: 23px;
+  text-align: center;
+}
+.active {
+  background-color: #0062ff;
+  color: #0a0606;
+}
+input {
+  width: 100%;
+  padding: 12px;
+  border: solid 1px #0062ff;
+  margin-top: 10px;
+  font-family: inherit;
+}
+.first-name, .last-name {
+  width: 49.4%;
+  margin-top: -5px;
+}
+.last-name {
+  margin-right: 0;
+}
+::placeholder {
+  font-style: italic;
+}
+.email {
+  margin-top: -5px;
+}
+button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 20px;
+  border: solid 2px #0062ff;
+  background-color: #0062ff;
+  color: #fff;
+  font-size: 1.4em;
+  text-transform: uppercase;
+}
+button:hover {
+  
+  cursor: pointer;
+}
+#sign-up-form {
+  display: block;
+}
+#log-in-form {
+  display: none;
+}
+.password {
+  float: right;
+  font-style: italic;
+  margin-top: 9px
+}
+.password:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+:focus {
+  outline-color: #0062ff;
+}
