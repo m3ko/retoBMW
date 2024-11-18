@@ -38,10 +38,27 @@ class modeloUsuarios extends \Conectar{
         return $concuerda;
     }
     
-
-
-}
-
-
+    public function getUsuarios($id) {
+        $con = modeloUsuarios::conexion();
+        $query = $con->prepare('SELECT * FROM usuario WHERE id_usuario = ?');
+    
+       
+    
+        $query->bind_param("i", $id);
+        $executeResult = $query->execute();
+    
+    
+        $resultado = $query->get_result();
+        
+    
+    
+        $usuarioSesion = [];
+        while ($fila = $resultado->fetch_assoc()) {
+            $usuarioSesion[] = $fila;
+        }       
+    
+        return $usuarioSesion;
+    }
+}    
 
 ?>
