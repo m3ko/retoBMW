@@ -84,7 +84,7 @@ async function obtenerKitAerodinamicos() {
   var botonesKits = document.querySelector("#kits");
 
   kits.forEach(kit => {
-    botonesKits.innerHTML+=`<button class="button" onclick="selectButton(this) value="${kit.id_kit}"">${kit.nombre_kit}</button>`;
+    botonesKits.innerHTML+=`<button class="button" onclick="selectButton(this) value="${kit.id_kit}">${kit.nombre_kit}</button>`;
   });
 }
 
