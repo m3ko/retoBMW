@@ -5,12 +5,12 @@ require(__DIR__ . '/../../../Modelo/modeloAdmin.php');
 // Validar que todos los campos requeridos están presentes en la solicitud POST
 
 if (
-    isset($_POST['id_codigo'],$_POST['id_nuevo_codigo'],$_POST['descuento_porcentaje'])
+    isset($_POST['id_carrito'],$_POST['id_carrito'],$_POST['id_producto_final'])
 ) {
    
-    $id_codigo = $_POST['id_codigo'];
-    $id_nuevo_codigo = $_POST['id_nuevo_codigo'];
-    $descuento_porcentaje = $_POST['descuento_porcentaje'];
+    $id_carrito = $_POST['id_carrito'];
+    $id_usuario = $_POST['id_usuario'];
+    $id_producto_final = $_POST['id_producto_final'];
    
 
     
@@ -18,10 +18,10 @@ if (
     
 
     // Crear array de datos del motor
-    $descuentomod = [
-        "id_codigo" => $id_codigo,
-       "id_nuevo_codigo"=> $id_nuevo_codigo,
-        "descuento_porcentaje" => $descuento_porcentaje
+    $carritomdf = [
+        "id_carrito" => $id_carrito,
+       "id_usuario"=> $id_usuario,
+        "id_producto_final" => $id_producto_final
 
     ];
     //echo $suspensionModifi;
@@ -31,7 +31,7 @@ if (
 
     try {
       
-        $con->modificar_descuento($descuentomod);
+        $con->modificar_carrito($carritomdf);
         
         header("Location: http://localhost/retoBMW-main/RETOBMW/admin/");
          

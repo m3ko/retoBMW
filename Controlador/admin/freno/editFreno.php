@@ -12,6 +12,7 @@ if (
     $tipo = $_POST['tipo'];
     $precio = $_POST['precio'];
     $oferta = $_POST['oferta'];
+    
 
     
   

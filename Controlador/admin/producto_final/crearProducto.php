@@ -2,36 +2,36 @@
 require(__DIR__ . '/../../../Modelo/modeloAdmin.php');
 
 // Imprimir los parámetros GET para depuración
-echo '<pre>';
-print_r($_GET);
-echo '</pre>';
+
 
 // Validar que todos los campos requeridos están presentes en la solicitud GET
 if (
     isset(
 
-        $_GET['id_modelo'], 
-        $_GET['id_motor'], 
-        $_GET['id_suspension'], 
-        $_GET['id_llanta'], 
-        $_GET['id_freno'], 
-        $_GET['precio_total'], 
-        $_GET['nombre_producto'], 
-        $_GET['cantidad'], 
-        $_GET['img']
+        $_POST['id_modelo'], 
+        $_POST['id_motor'], 
+        $_POST['id_suspension'], 
+        $_POST['id_kit'], 
+        $_POST['id_llanta'], 
+        $_POST['id_freno'], 
+        $_POST['precio_total'], 
+        $_POST['nombre_producto'], 
+        $_POST['cantidad'], 
+        $_POST['img']
     )
 ) {
     // Recoger los valores de los parámetros GET
 
-    $id_modelo = $_GET['id_modelo'];
-    $id_motor = $_GET['id_motor'];
-    $id_suspension = $_GET['id_suspension'];
-    $id_llanta = $_GET['id_llanta'];
-    $id_freno = $_GET['id_freno'];
-    $precio_total = $_GET['precio_total'];
-    $nombre_producto = $_GET['nombre_producto'];
-    $cantidad = $_GET['cantidad'];
-    $img = $_GET['img'];
+    $id_modelo =  $_POST['id_modelo'];
+    $id_motor =  $_POST['id_motor'];
+    $id_suspension =  $_POST['id_suspension'];
+    $id_kit =  $_POST['id_kit'];
+    $id_llanta =  $_POST['id_llanta'];
+    $id_freno =  $_POST['id_freno'];
+    $precio_total =  $_POST['precio_total'];
+    $nombre_producto =  $_POST['nombre_producto'];
+    $cantidad =  $_POST['cantidad'];
+    $img =  $_POST['img'];
 
     // Crear array de datos del producto
     $producto = [
@@ -39,6 +39,7 @@ if (
         "id_modelo" => $id_modelo,
         "id_motor" => $id_motor,
         "id_suspension" => $id_suspension,
+        "id_kit" => $id_kit,
         "id_llanta" => $id_llanta,
         "id_freno" => $id_freno,
         "precio_total" => $precio_total,
@@ -46,20 +47,18 @@ if (
         "cantidad" => $cantidad,
         "img" => $img
     ];
+    echo $id_modelo;
+    echo $id_motor;
+    echo $id_suspension;
+    echo $id_kit;
+    echo $id_llanta;
+    echo $id_freno;
+    echo $precio_total;
+    echo $nombre_producto;
+    echo $cantidad;
+    echo $img;
 
-    // Imprimir los datos para depuración (opcional)
-
-    echo "Modelo: $id_modelo<br>";
-    echo "Motor: $id_motor<br>";
-    echo "Suspensión: $id_suspension<br>";
-    echo "Llanta: $id_llanta<br>";
-    echo "Freno: $id_freno<br>";
-    echo "Precio Total: $precio_total<br>";
-    echo "Nombre Producto: $nombre_producto<br>";
-    echo "Cantidad: $cantidad<br>";
-    echo "Imagen: $img<br>";
-
-    // Crear instancia del modelo y llamar al método de creación
+   
     $con = new modeloAdmin();
     
     try {

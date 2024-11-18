@@ -31,7 +31,20 @@ class modeloAdmin extends \Conectar{
         return false;
     }
 
-// SELECTS
+// SELECTS 
+public function getCarritos(){
+    $con = modeloAdmin::conexion();
+    $query = $con->query("SELECT c.id_carrito, u.usuario, pf.nombre_producto FROM carrito c JOIN usuario u ON c.id_usuario = u.id_usuario JOIN producto_final pf ON c.id_producto_final = pf.id_producto_final;");
+
+    $Carritos = [];
+    
+    while($fila = $query->fetch_assoc()){
+        $Carritos[] = $fila;
+    }
+
+    header("Content-Type: application/json");
+    echo json_encode($Carritos);
+}
 public function getUsuarios(){
     $con = modeloAdmin::conexion();
     $query = $con->query("SELECT * FROM usuario");
@@ -120,7 +133,10 @@ public function getmotores(){
 }
 public function getpedidos(){
     $con = modeloAdmin::conexion();
-    $query = $con->query("SELECT * FROM pedido ");
+    $query = $con->query("SELECT id_pedido,u.usuario AS usuario, pf.nombre_producto AS nombre_producto,fecha_pedido,direccion_entrega, d.descuento_porcentaje AS descuento_porcentaje FROM pedido p 
+    JOIN usuario u ON p.id_usuario = u.id_usuario 
+    JOIN producto_final pf ON p.id_producto_final = pf.id_producto_final
+    JOIN codigo_descuento d ON p.id_codigo = d.id_codigo ");
 
     $pedidos= [];
     
@@ -132,13 +148,14 @@ public function getpedidos(){
 }
 public function getproductos_finales(){
     $con = modeloAdmin::conexion();
-    $query = $con->query("SELECT pf.id_producto_final, m.nombre_modelo AS nombre_modelo, mo.nombre_motor AS nombre_motor, s.nombre_suspension AS nombre_suspension, ll.nombre_llanta AS nombre_llanta, fr.tipo AS nombre_freno, pf.precio_total, pf.nombre_producto, pf.cantidad, pf.img 
+    $query = $con->query("SELECT pf.id_producto_final, m.nombre_modelo AS nombre_modelo, mo.nombre_motor AS nombre_motor, s.nombre_suspension AS nombre_suspension, k.nombre_kit AS nombre_kit,  ll.nombre_llanta AS nombre_llanta, fr.tipo AS nombre_freno, pf.precio_total, pf.nombre_producto, pf.cantidad, pf.img 
     FROM producto_final pf 
     JOIN modelo m ON pf.id_modelo = m.id_modelo 
     JOIN motor mo ON pf.id_motor = mo.id_motor 
     JOIN suspension s ON pf.id_suspension = s.id_suspension 
+    JOIN kit_aerodinamico k ON pf.id_kit = k.id_kit 
     JOIN llanta ll ON pf.id_llanta = ll.id_llanta 
-    JOIN freno fr ON pf.id_freno = fr.id_freno");
+    JOIN freno fr ON pf.id_freno = fr.id_freno  ORDER BY pf.id_producto_final ASC");
 
     $producto_finales= [];
     
@@ -171,11 +188,11 @@ public function eliminarUsuario($usudel){
 
 }
 
-
+// NO SE PUEDE ELIMINAR 
 public function eliminar_descuento($descuentodel){
     $con = modeloAdmin::conexion();
-    $sentencia = $this->getCon()->prepare("DELETE FROM codigo_descuento WHERE id_codigo = ?");
-    $sentencia->bind_param("i", $descuentodel);
+    $sentencia = $con->prepare("DELETE FROM codigo_descuento WHERE id_codigo = ?");
+    $sentencia->bind_param("s", $descuentodel);
     $sentencia->execute();
     $sentencia->close();
     
@@ -209,6 +226,14 @@ public function eliminar_motor($motordel){
     $con = modeloAdmin::conexion();
     $sentencia = $con->prepare("DELETE FROM motor  WHERE id_motor = ?");
     $sentencia->bind_param("i", $motordel);
+    $sentencia->execute();
+    $sentencia->close();
+                   
+}
+public function eliminar_carrito($id_carritodel){
+    $con = modeloAdmin::conexion();
+    $sentencia = $con->prepare("DELETE FROM carrito  WHERE id_carrito = ?");
+    $sentencia->bind_param("i", $id_carritodel);
     $sentencia->execute();
     $sentencia->close();
                    
@@ -357,9 +382,9 @@ public function crearfreno($freno) {
 public function creardescuento($descuento) {
     $con = $this->conexion(); // Usamos el método conexion de la clase base
 
-    $stmt = $con->prepare("INSERT INTO codigo_descuento (descuento_porcentaje,) 
-                           VALUES (?)");
-    $stmt->bind_param("i",   $descuento["descuento_porcentaje"],);
+    $stmt = $con->prepare("INSERT INTO codigo_descuento (id_codigo,descuento_porcentaje) 
+                           VALUES (?,?)");
+    $stmt->bind_param("si",   $descuento["id_codigo"],$descuento["descuento_porcentaje"]);
 
     if ($stmt->execute()) {
         echo "descuento creado con éxito";
@@ -384,6 +409,21 @@ public function crearmodelo($modelo) {
 
     $stmt->close();
 }
+public function crearcarrito($crearcarrito) {
+    $con = $this->conexion(); // Usamos el método conexion de la clase base
+
+    $stmt = $con->prepare("INSERT INTO carrito (id_usuario,id_producto_final) 
+                           VALUES (?, ?)");
+    $stmt->bind_param("ii",  $crearcarrito["id_usuario"], $crearcarrito["id_producto_final"]);
+
+    if ($stmt->execute()) {
+        echo "modelo creado con éxito";
+    } else {
+        echo "Error al crear la carrito: " . $stmt->error;
+    }
+
+    $stmt->close();
+}
 
 public function crearproducto_final($producto)
 {
@@ -393,19 +433,20 @@ public function crearproducto_final($producto)
     // Asegúrate de que las claves en el array coincidan con las columnas en la base de datos
     $query = "
         INSERT INTO producto_final 
-        (id_modelo, id_motor, id_suspension, id_llanta, id_freno, precio_total, nombre_producto, cantidad, img)
+        (id_modelo, id_motor, id_suspension,id_kit ,id_llanta, id_freno, precio_total, nombre_producto, cantidad, img)
         VALUES 
-        (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        (?, ?, ?, ?, ?, ?, ?, ?, ?,?)
     ";
 
     // Preparar la consulta
     $stmt = $con->prepare($query);
 
     // Asignar los valores de los parámetros
-    $stmt->bind_param("iiiiiisis", 
+    $stmt->bind_param("iiiiiiisis", 
         $producto['id_modelo'], 
         $producto['id_motor'], 
         $producto['id_suspension'], 
+        $producto['id_kit'], 
         $producto['id_llanta'], 
         $producto['id_freno'], 
         $producto['precio_total'], 
@@ -455,7 +496,7 @@ public function modificar_producto_final($producto_finalesmdf) {
 
     $con = $this->conexion(); 
     $stmt= $con->prepare("UPDATE producto_final SET  id_modelo = ?, id_motor = ?, id_suspension = ?, id_kit = ?, id_llanta = ?, id_freno = ?, precio_total = ? , nombre_producto = ?, cantidad = ?, img = ? WHERE id_producto_final = ?");
-    $stmt->bind_param("iiiiiiisisi",$producto_finalesmdf["id_modelo"],$producto_finalesmdf["id_motor"],$producto_finalesmdf["id_suspension"],$producto_finalesmdf["id_kit"],$producto_finalesmdf["id_llanta"],$producto_finalesmdf["precio_total"],$producto_finalesmdf["nombre_producto"],$producto_finalesmdf["cantidad"],$producto_finalesmdf["img"],$producto_finalesmdf["id_producto_final"]);
+    $stmt->bind_param("iiiiiiisiisi",$producto_finalesmdf["id_modelo"],$producto_finalesmdf["id_motor"],$producto_finalesmdf["id_suspension"],$producto_finalesmdf["id_kit"],$producto_finalesmdf["id_llanta"],$producto_finalesmdf["id_freno"],$producto_finalesmdf["precio_total"],$producto_finalesmdf["nombre_producto"],$producto_finalesmdf["cantidad"],$producto_finalesmdf["img"],$producto_finalesmdf["id_producto_final"]);
     if ($stmt->execute()) {
         echo "motor creado con éxito";
     } else {
@@ -535,7 +576,7 @@ public function modificar_freno($frenomdf) {
     $con = $this->conexion(); // Usamos el método conexion de la clase base
 
     $stmt= $con->prepare("UPDATE freno SET    tipo = ?, precio = ?, oferta = ?  WHERE id_freno = ?");
-    $stmt->bind_param("siii", $frenomdf["tipo"], $frenomdf["precio"], $frenomdf["oferta"], $frenomdf["id_kit"]);
+    $stmt->bind_param("siii", $frenomdf["tipo"], $frenomdf["precio"], $frenomdf["oferta"], $frenomdf["id_freno"]);
 
     if ($stmt->execute()) {
         echo "freno creado con éxito";
@@ -551,8 +592,22 @@ public function modificar_freno($frenomdf) {
 public function modificar_descuento($codigo_descuentomdf) {
     $con = $this->conexion(); // Usamos el método conexion de la clase base
 
-    $stmt= $con->prepare("UPDATE modelo SET    descuento_porcentaje = ?  WHERE id_codigo = ?");
-    $stmt->bind_param("ii",  $codigo_descuentomdf["descuento_porcentaje"], $codigo_descuentomdf["id_codigo"]);
+    $stmt= $con->prepare("UPDATE codigo_descuento SET    descuento_porcentaje = ?, id_codigo = ? WHERE id_codigo = ?");
+    $stmt->bind_param("iss",   $codigo_descuentomdf["descuento_porcentaje"],$codigo_descuentomdf["id_nuevo_codigo"],$codigo_descuentomdf["id_codigo"]);
+
+    if ($stmt->execute()) {
+        echo "descuento creado con éxito";
+    } else {
+        echo "Error al crear el descuento: " . $stmt->error;
+    }
+
+    $stmt->close();
+}
+public function modificar_carrito($carritomdf) {
+    $con = $this->conexion(); // Usamos el método conexion de la clase base
+
+    $stmt= $con->prepare("UPDATE carrito SET    id_producto_final = ?, id_usuario = ? WHERE id_carrito = ?");
+    $stmt->bind_param("iii",   $carritomdf["id_producto_final"],$carritomdf["id_usuario"],$carritomdf["id_carrito"]);
 
     if ($stmt->execute()) {
         echo "descuento creado con éxito";
@@ -645,7 +700,483 @@ public function getModelos_nombre() {
     header("Content-Type: application/json");
     echo json_encode($modelos_nombres);
 }
+public function getproducto_nombre_carrito() {
+    $con = modeloAdmin::conexion();
+    $query = $con->query("SELECT id_producto_final, nombre_producto FROM producto_final");
 
+    $producto_carrito = [];
+    
+    while($fila = $query->fetch_assoc()){
+        $producto_carrito[] = array(
+            'id_producto_final' => $fila['id_producto_final'],
+            'nombre_producto' => $fila['nombre_producto']
+        );
+    }
+
+    header("Content-Type: application/json");
+    echo json_encode($producto_carrito);
+}
+public function getUsuario_carrito() {
+    $con = modeloAdmin::conexion();
+    $query = $con->query("SELECT id_usuario, usuario FROM usuario");
+
+    $usuario_carrito = [];
+    
+    while($fila = $query->fetch_assoc()){
+        $usuario_carrito[] = array(
+            'id_usuario' => $fila['id_usuario'],
+            'usuario' => $fila['usuario']
+        );
+    }
+
+    header("Content-Type: application/json");
+    echo json_encode($usuario_carrito);
+}
+public function getProducto_nombre() {
+    $con = modeloAdmin::conexion();
+    $query = $con->query("SELECT id_producto_final, nombre_producto FROM producto_final");
+
+    $producto_nombres = [];
+    
+    while($fila = $query->fetch_assoc()){
+        $producto_nombres[] = array(
+            'id_producto_final' => $fila['id_producto_final'],
+            'nombre_producto' => $fila['nombre_producto']
+        );
+    }
+
+    header("Content-Type: application/json");
+    echo json_encode($producto_nombres);
+}
+
+public function getUsuario_nombre() {
+    $con = modeloAdmin::conexion();
+    $query = $con->query("SELECT id_usuario,usuario FROM usuario");
+
+    $Usuario_nombres = [];
+    
+    while($fila = $query->fetch_assoc()){
+        $Usuario_nombres[] = array(
+            'id_usuario' => $fila['id_usuario'],
+            'usuario' => $fila['usuario']
+        );
+    }
+
+    header("Content-Type: application/json");
+    echo json_encode($Usuario_nombres);
+}
+public function getKit_nombre() {
+    $con = modeloAdmin::conexion();
+    $query = $con->query("SELECT id_kit,nombre_kit FROM kit_aerodinamico");
+
+    $kit_aerodinamico_nombre = [];
+    
+    while($fila = $query->fetch_assoc()){
+        $kit_aerodinamico_nombre[] = array(
+            'id_kit' => $fila['id_kit'],
+            'nombre_kit' => $fila['nombre_kit']
+        );
+    }
+
+    header("Content-Type: application/json");
+    echo json_encode($kit_aerodinamico_nombre);
+}
+public function getID_Codigo_descuento() {
+    $con = modeloAdmin::conexion();
+    $query = $con->query("SELECT id_codigo,descuento_porcentaje FROM codigo_descuento");
+
+    $porcentaje_descuento = [];
+    
+    while($fila = $query->fetch_assoc()){
+        $porcentaje_descuento[] = array(
+            'id_codigo' => $fila['id_codigo'],
+            'descuento_porcentaje' => $fila['descuento_porcentaje']
+        );
+    }
+
+    header("Content-Type: application/json");
+    echo json_encode($porcentaje_descuento);
+}
+
+//Errores
+
+public function ErrorUsuario($usuarioError) {
+    $con = self::conexion();
+    $sentencia = $con->prepare("SELECT * FROM usuario WHERE usuario = ?");
+    
+    if ($sentencia) {
+        $sentencia->bind_param("s", $usuarioError['usuario']);
+        $sentencia->execute();
+        $resultado = $sentencia->get_result();
+        
+        if ($resultado->num_rows > 0) {
+            $sentencia->close();
+            $con->close();
+            echo json_encode([
+                "existe" => true, 
+                "mensaje" => "Usuario ya existe"
+            ]);
+            exit();  // Asegúrate de llamar exit() para evitar que se imprima cualquier otro contenido
+        } else {
+            $sentencia->close();
+            $con->close();
+            echo json_encode([
+                "existe" => false, 
+                "mensaje" => "Usuario no existe"
+            ]);
+            exit();  // Asegúrate de llamar exit() para evitar que se imprima cualquier otro contenido
+        }
+    } else {
+        $con->close();
+        throw new Exception("Error en la preparación de la consulta SQL.");
+    }
+}
+
+
+
+public function errorEmail($emailError) {
+    $con = self::conexion();
+    $sentencia = $con->prepare("SELECT * FROM usuario WHERE email = ?");
+    if ($sentencia) {
+        $sentencia->bind_param("s", $emailError['email']);
+        $sentencia->execute();
+        $resultado = $sentencia->get_result();
+        if ($resultado->num_rows > 0) {
+            $sentencia->close();
+            $con->close();
+            header("Content-Type: application/json");
+            echo json_encode([
+                "existe" => true,
+                "mensaje" => "El email ya existe"
+            ]);
+            exit(); 
+        } else {
+            $sentencia->close();
+            $con->close();
+            header("Content-Type: application/json");
+            echo json_encode([
+                "existe" => false,
+                "mensaje" => "El email no existe"
+            ]);
+            exit(); 
+        }
+    } else {
+        $con->close();
+        throw new Exception("Error en la preparación de la consulta SQL.");
+    }
+}
+public function errorPedido_Usuario($usuario_pedido_Error) {
+    $con = self::conexion();
+    $sentencia = $con->prepare("SELECT * FROM pedido WHERE id_usuario = ?");
+    if ($sentencia) {
+        $sentencia->bind_param("i", $usuario_pedido_Error['id_usuario']);
+        $sentencia->execute();
+        $resultado = $sentencia->get_result();
+        if ($resultado->num_rows > 0) {
+            $sentencia->close();
+            $con->close();
+            header("Content-Type: application/json");
+            echo json_encode([
+                "existe" => true,
+                "mensaje" => "El usuario tiene un pedido en mente"
+            ]);
+            exit(); 
+        } else {
+            $sentencia->close();
+            $con->close();
+            header("Content-Type: application/json");
+            echo json_encode([
+                "existe" => false,
+                "mensaje" => "El usuario no  tiene un pedido en mente"
+            ]);
+            exit(); 
+        }
+    } else {
+        $con->close();
+        throw new Exception("Error en la preparación de la consulta SQL.");
+    }
+}
+
+public function errorSuspension_Producto($ErrorSuspension) {
+    $con = self::conexion();
+    $sentencia = $con->prepare("SELECT * FROM producto_final WHERE id_suspension = ?");
+    if ($sentencia) {
+        $sentencia->bind_param("i", $ErrorSuspension['id_suspension']);
+        $sentencia->execute();
+        $resultado = $sentencia->get_result();
+        if ($resultado->num_rows > 0) {
+            $sentencia->close();
+            $con->close();
+            header("Content-Type: application/json");
+            echo json_encode([
+                "existe" => true,
+                "mensaje" => "La suspension Esta asignado a un producto"
+            ]);
+            exit(); 
+        } else {
+            $sentencia->close();
+            $con->close();
+            header("Content-Type: application/json");
+            echo json_encode([
+                "existe" => false,
+                "mensaje" => "La suspension no Esta asignado a un producto"
+            ]);
+            exit(); 
+        }
+    } else {
+        $con->close();
+        throw new Exception("Error en la preparación de la consulta SQL.");
+    }
+}
+public function errorMotor_Producto($ErrorMotor) {
+    $con = self::conexion();
+    $sentencia = $con->prepare("SELECT * FROM producto_final WHERE id_motor = ?");
+    if ($sentencia) {
+        $sentencia->bind_param("i", $ErrorMotor['id_motor']);
+        $sentencia->execute();
+        $resultado = $sentencia->get_result();
+        if ($resultado->num_rows > 0) {
+            $sentencia->close();
+            $con->close();
+            header("Content-Type: application/json");
+            echo json_encode([
+                "existe" => true,
+                "mensaje" => "El motor Esta asignado a un producto"
+            ]);
+            exit(); 
+        } else {
+            $sentencia->close();
+            $con->close();
+            header("Content-Type: application/json");
+            echo json_encode([
+                "existe" => false,
+                "mensaje" => "El motor no Esta asignado a un producto"
+            ]);
+            exit(); 
+        }
+    } else {
+        $con->close();
+        throw new Exception("Error en la preparación de la consulta SQL.");
+    }
+}
+public function errorllanta_Producto($Errorllanta) {
+    $con = self::conexion();
+    $sentencia = $con->prepare("SELECT * FROM producto_final WHERE id_llanta = ?");
+    if ($sentencia) {
+        $sentencia->bind_param("i", $Errorllanta['id_llanta']);
+        $sentencia->execute();
+        $resultado = $sentencia->get_result();
+        if ($resultado->num_rows > 0) {
+            $sentencia->close();
+            $con->close();
+            header("Content-Type: application/json");
+            echo json_encode([
+                "existe" => true,
+                "mensaje" => " La llanta Esta asignado a un producto"
+            ]);
+            exit(); 
+        } else {
+            $sentencia->close();
+            $con->close();
+            header("Content-Type: application/json");
+            echo json_encode([
+                "existe" => false,
+                "mensaje" => "La llanta no Esta asignado a un producto"
+            ]);
+            exit(); 
+        }
+    } else {
+        $con->close();
+        throw new Exception("Error en la preparación de la consulta SQL.");
+    }
+}
+public function errormodelo_Producto($Errormodelo) {
+    $con = self::conexion();
+    $sentencia = $con->prepare("SELECT * FROM producto_final WHERE id_modelo = ?");
+    if ($sentencia) {
+        $sentencia->bind_param("i", $Errormodelo['id_modelo']);
+        $sentencia->execute();
+        $resultado = $sentencia->get_result();
+        if ($resultado->num_rows > 0) {
+            $sentencia->close();
+            $con->close();
+            header("Content-Type: application/json");
+            echo json_encode([
+                "existe" => true,
+                "mensaje" => " El modelo Esta asignado a un producto"
+            ]);
+            exit(); 
+        } else {
+            $sentencia->close();
+            $con->close();
+            header("Content-Type: application/json");
+            echo json_encode([
+                "existe" => false,
+                "mensaje" => "El modelo no Esta asignado a un producto"
+            ]);
+            exit(); 
+        }
+    } else {
+        $con->close();
+        throw new Exception("Error en la preparación de la consulta SQL.");
+    }
+}
+public function errorkit_Producto($Errorkit) {
+    $con = self::conexion();
+    $sentencia = $con->prepare("SELECT * FROM producto_final WHERE id_kit = ?");
+    if ($sentencia) {
+        $sentencia->bind_param("i", $Errorkit['id_kit']);
+        $sentencia->execute();
+        $resultado = $sentencia->get_result();
+        if ($resultado->num_rows > 0) {
+            $sentencia->close();
+            $con->close();
+            header("Content-Type: application/json");
+            echo json_encode([
+                "existe" => true,
+                "mensaje" => " El kit Esta asignado a un producto"
+            ]);
+            exit(); 
+        } else {
+            $sentencia->close();
+            $con->close();
+            header("Content-Type: application/json");
+            echo json_encode([
+                "existe" => false,
+                "mensaje" => "El kit no Esta asignado a un producto"
+            ]);
+            exit(); 
+        }
+    } else {
+        $con->close();
+        throw new Exception("Error en la preparación de la consulta SQL.");
+    }
+}
+public function errorfreno_Producto($Errorfreno) {
+    $con = self::conexion();
+    $sentencia = $con->prepare("SELECT * FROM producto_final WHERE id_freno = ?");
+    if ($sentencia) {
+        $sentencia->bind_param("i", $Errorfreno['id_freno']);
+        $sentencia->execute();
+        $resultado = $sentencia->get_result();
+        if ($resultado->num_rows > 0) {
+            $sentencia->close();
+            $con->close();
+            header("Content-Type: application/json");
+            echo json_encode([
+                "existe" => true,
+                "mensaje" => " El freno Esta asignado a un producto"
+            ]);
+            exit(); 
+        } else {
+            $sentencia->close();
+            $con->close();
+            header("Content-Type: application/json");
+            echo json_encode([
+                "existe" => false,
+                "mensaje" => "El freno no Esta asignado a un producto"
+            ]);
+            exit(); 
+        }
+    } else {
+        $con->close();
+        throw new Exception("Error en la preparación de la consulta SQL.");
+    }
+}
+public function errorcodigo_Pedido($Errorcodigo) {
+    $con = self::conexion();
+    $sentencia = $con->prepare("SELECT * FROM pedido WHERE id_codigo = ?");
+    if ($sentencia) {
+        $sentencia->bind_param("s", $Errorcodigo['id_codigo']);
+        $sentencia->execute();
+        $resultado = $sentencia->get_result();
+        if ($resultado->num_rows > 0) {
+            $sentencia->close();
+            $con->close();
+            header("Content-Type: application/json");
+            echo json_encode([
+                "existe" => true,
+                "mensaje" => " El codigo Esta asignado a un pedido"
+            ]);
+            exit(); 
+        } else {
+            $sentencia->close();
+            $con->close();
+            header("Content-Type: application/json");
+            echo json_encode([
+                "existe" => false,
+                "mensaje" => "El codigo no Esta asignado a un pedido"
+            ]);
+            exit(); 
+        }
+    } else {
+        $con->close();
+        throw new Exception("Error en la preparación de la consulta SQL.");
+    }
+}
+
+public function Errorproducto_pedido($Errorpedido_producto) {
+    $con = self::conexion();
+    $sentencia = $con->prepare("SELECT * FROM pedido WHERE id_producto_final = ?");
+    if ($sentencia) {
+        $sentencia->bind_param("i", $Errorpedido_producto['id_producto_final']);
+        $sentencia->execute();
+        $resultado = $sentencia->get_result();
+        if ($resultado->num_rows > 0) {
+            $sentencia->close();
+            $con->close();
+            header("Content-Type: application/json");
+            echo json_encode([
+                "existe" => true,
+                "mensaje" => "El producto Esta asignado a un pedido"
+            ]);
+            exit(); 
+        } else {
+            $sentencia->close();
+            $con->close();
+            header("Content-Type: application/json");
+            echo json_encode([
+                "existe" => false,
+                "mensaje" => "El no producto Esta asignado a un pedido"
+            ]);
+            exit(); 
+        }
+    } else {
+        $con->close();
+        throw new Exception("Error en la preparación de la consulta SQL.");
+    }
+}
+public function errorproducto_Carrito($Errorcarrito_producto) {
+    $con = self::conexion();
+    $sentencia = $con->prepare("SELECT * FROM carrito WHERE id_producto_final = ?");
+    if ($sentencia) {
+        $sentencia->bind_param("i", $Errorcarrito_producto['id_producto_final']);
+        $sentencia->execute();
+        $resultado = $sentencia->get_result();
+        if ($resultado->num_rows > 0) {
+            $sentencia->close();
+            $con->close();
+            header("Content-Type: application/json");
+            echo json_encode([
+                "existe" => true,
+                "mensaje" => "El producto Esta asignado a un carrito"
+            ]);
+            exit(); 
+        } else {
+            $sentencia->close();
+            $con->close();
+            header("Content-Type: application/json");
+            echo json_encode([
+                "existe" => false,
+                "mensaje" => "El no producto Esta asignado a un carrito"
+            ]);
+            exit(); 
+        }
+    } else {
+        $con->close();
+        throw new Exception("Error en la preparación de la consulta SQL.");
+    }
+}
 
 
 }

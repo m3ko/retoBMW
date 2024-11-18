@@ -48,5 +48,5 @@ if (
         echo "Error al crear la producto: " . $e->getMessage();
     }
 } else {
-    echo "Error: Faltan campos requeridos para crear la producto.";
+    echo "Error: Faltan campos requeridos para edita la producto.";
 }
