@@ -133,10 +133,23 @@ public function getmotores(){
 }
 public function getpedidos(){
     $con = modeloAdmin::conexion();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 6b252e882efccd7278126cf4c3518fc102b8d933
     $query = $con->query("SELECT id_pedido,u.usuario AS usuario, pf.nombre_producto AS nombre_producto,fecha_pedido,direccion_entrega, d.descuento_porcentaje AS descuento_porcentaje FROM pedido p 
     JOIN usuario u ON p.id_usuario = u.id_usuario 
     JOIN producto_final pf ON p.id_producto_final = pf.id_producto_final
     JOIN codigo_descuento d ON p.id_codigo = d.id_codigo ");
+<<<<<<< HEAD
+=======
+=======
+    $query = $con->query("SELECT id_pedido,u.usuario AS usuario, pf.nombre_producto AS nombre_producto,fecha_pedido,direccion, d.descuento_porcentaje AS descuento_porcentaje FROM pedido p 
+    JOIN usuario u ON p.id_usuario = u.id_usuario 
+    JOIN producto_final pf ON p.id_producto_final = pf.id_producto_final
+    JOIN codigo_descuento d ON p.id_codigo = d.id_codigo");
+>>>>>>> 7e7564fc80846d9298b73688f4ad4c2a8fcb58d8
+>>>>>>> 6b252e882efccd7278126cf4c3518fc102b8d933
 
     $pedidos= [];
     
@@ -155,7 +168,15 @@ public function getproductos_finales(){
     JOIN suspension s ON pf.id_suspension = s.id_suspension 
     JOIN kit_aerodinamico k ON pf.id_kit = k.id_kit 
     JOIN llanta ll ON pf.id_llanta = ll.id_llanta 
+<<<<<<< HEAD
     JOIN freno fr ON pf.id_freno = fr.id_freno  ORDER BY pf.id_producto_final ASC");
+=======
+<<<<<<< HEAD
+    JOIN freno fr ON pf.id_freno = fr.id_freno  ORDER BY pf.id_producto_final ASC");
+=======
+    JOIN freno fr ON pf.id_freno = fr.id_freno");
+>>>>>>> 7e7564fc80846d9298b73688f4ad4c2a8fcb58d8
+>>>>>>> 6b252e882efccd7278126cf4c3518fc102b8d933
 
     $producto_finales= [];
     
@@ -409,6 +430,7 @@ public function crearmodelo($modelo) {
 
     $stmt->close();
 }
+<<<<<<< HEAD
 public function crearcarrito($crearcarrito) {
     $con = $this->conexion(); // Usamos el método conexion de la clase base
 
@@ -424,6 +446,8 @@ public function crearcarrito($crearcarrito) {
 
     $stmt->close();
 }
+=======
+>>>>>>> 6b252e882efccd7278126cf4c3518fc102b8d933
 
 public function crearproducto_final($producto)
 {
@@ -603,6 +627,7 @@ public function modificar_descuento($codigo_descuentomdf) {
 
     $stmt->close();
 }
+<<<<<<< HEAD
 public function modificar_carrito($carritomdf) {
     $con = $this->conexion(); // Usamos el método conexion de la clase base
 
@@ -617,6 +642,8 @@ public function modificar_carrito($carritomdf) {
 
     $stmt->close();
 }
+=======
+>>>>>>> 6b252e882efccd7278126cf4c3518fc102b8d933
 public function getMotores_nombre() {
     $con = modeloAdmin::conexion();
     $query = $con->query("SELECT id_motor, nombre_motor FROM motor");
@@ -700,6 +727,7 @@ public function getModelos_nombre() {
     header("Content-Type: application/json");
     echo json_encode($modelos_nombres);
 }
+<<<<<<< HEAD
 public function getproducto_nombre_carrito() {
     $con = modeloAdmin::conexion();
     $query = $con->query("SELECT id_producto_final, nombre_producto FROM producto_final");
@@ -732,6 +760,8 @@ public function getUsuario_carrito() {
     header("Content-Type: application/json");
     echo json_encode($usuario_carrito);
 }
+=======
+>>>>>>> 6b252e882efccd7278126cf4c3518fc102b8d933
 public function getProducto_nombre() {
     $con = modeloAdmin::conexion();
     $query = $con->query("SELECT id_producto_final, nombre_producto FROM producto_final");
@@ -798,6 +828,10 @@ public function getID_Codigo_descuento() {
     echo json_encode($porcentaje_descuento);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 6b252e882efccd7278126cf4c3518fc102b8d933
 //Errores
 
 public function ErrorUsuario($usuarioError) {
@@ -1115,6 +1149,7 @@ public function errorcodigo_Pedido($Errorcodigo) {
     }
 }
 
+<<<<<<< HEAD
 public function Errorproducto_pedido($Errorpedido_producto) {
     $con = self::conexion();
     $sentencia = $con->prepare("SELECT * FROM pedido WHERE id_producto_final = ?");
@@ -1179,5 +1214,10 @@ public function errorproducto_Carrito($Errorcarrito_producto) {
 }
 
 
+=======
+
+=======
+>>>>>>> 7e7564fc80846d9298b73688f4ad4c2a8fcb58d8
+>>>>>>> 6b252e882efccd7278126cf4c3518fc102b8d933
 }
 ?>

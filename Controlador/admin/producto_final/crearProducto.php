@@ -2,12 +2,26 @@
 require(__DIR__ . '/../../../Modelo/modeloAdmin.php');
 
 // Imprimir los parámetros GET para depuración
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+echo '<pre>';
+print_r($_GET);
+echo '</pre>';
+>>>>>>> 7e7564fc80846d9298b73688f4ad4c2a8fcb58d8
+>>>>>>> 6b252e882efccd7278126cf4c3518fc102b8d933
 
 // Validar que todos los campos requeridos están presentes en la solicitud GET
 if (
     isset(
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 6b252e882efccd7278126cf4c3518fc102b8d933
         $_POST['id_modelo'], 
         $_POST['id_motor'], 
         $_POST['id_suspension'], 
@@ -18,10 +32,29 @@ if (
         $_POST['nombre_producto'], 
         $_POST['cantidad'], 
         $_POST['img']
+<<<<<<< HEAD
+=======
+=======
+        $_GET['id_modelo'], 
+        $_GET['id_motor'], 
+        $_GET['id_suspension'], 
+        $_GET['id_kit'], 
+        $_GET['id_llanta'], 
+        $_GET['id_freno'], 
+        $_GET['precio_total'], 
+        $_GET['nombre_producto'], 
+        $_GET['cantidad'], 
+        $_GET['img']
+>>>>>>> 7e7564fc80846d9298b73688f4ad4c2a8fcb58d8
+>>>>>>> 6b252e882efccd7278126cf4c3518fc102b8d933
     )
 ) {
     // Recoger los valores de los parámetros GET
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 6b252e882efccd7278126cf4c3518fc102b8d933
     $id_modelo =  $_POST['id_modelo'];
     $id_motor =  $_POST['id_motor'];
     $id_suspension =  $_POST['id_suspension'];
@@ -32,6 +65,21 @@ if (
     $nombre_producto =  $_POST['nombre_producto'];
     $cantidad =  $_POST['cantidad'];
     $img =  $_POST['img'];
+<<<<<<< HEAD
+=======
+=======
+    $id_modelo = $_GET['id_modelo'];
+    $id_motor = $_GET['id_motor'];
+    $id_suspension = $_GET['id_suspension'];
+    $id_kit = $_GET['id_kit'];
+    $id_llanta = $_GET['id_llanta'];
+    $id_freno = $_GET['id_freno'];
+    $precio_total = $_GET['precio_total'];
+    $nombre_producto = $_GET['nombre_producto'];
+    $cantidad = $_GET['cantidad'];
+    $img = $_GET['img'];
+>>>>>>> 7e7564fc80846d9298b73688f4ad4c2a8fcb58d8
+>>>>>>> 6b252e882efccd7278126cf4c3518fc102b8d933
 
     // Crear array de datos del producto
     $producto = [
@@ -47,6 +95,10 @@ if (
         "cantidad" => $cantidad,
         "img" => $img
     ];
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 6b252e882efccd7278126cf4c3518fc102b8d933
     echo $id_modelo;
     echo $id_motor;
     echo $id_suspension;
@@ -57,6 +109,11 @@ if (
     echo $nombre_producto;
     echo $cantidad;
     echo $img;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 7e7564fc80846d9298b73688f4ad4c2a8fcb58d8
+>>>>>>> 6b252e882efccd7278126cf4c3518fc102b8d933
 
    
     $con = new modeloAdmin();
