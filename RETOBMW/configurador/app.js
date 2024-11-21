@@ -5,7 +5,7 @@ window.onload = obtenerFrenos();
 window.onload = obtenerKitAerodinamicos();
 window.onload = obtenerLlantas();
 window.onload = obtenerSuspensiones();
-window.onload= definirPrecio();
+definirPrecio();
 
 
 //  $(document).ready(function() {
@@ -26,6 +26,8 @@ async function obtenerModelos() {
   const response = await fetch('../../Controlador/obtenerModelosConfig.php');
   console.log(response);
   const modelos = await response.json();
+
+  localStorage.setItem('modelosArray', JSON.stringify(modelos));
 
 
 
@@ -69,6 +71,7 @@ async function obtenerMotores() {
   const response = await fetch('../../Controlador/obtenerMotoresConfig.php');
   const motores = await response.json();
 
+  localStorage.setItem('motoresArray', JSON.stringify(motores));
 
 
   var botonesMotores = document.querySelector("#motor");
@@ -89,6 +92,8 @@ async function obtenerKitAerodinamicos() {
   const response = await fetch('../../Controlador/obtenerKitAerodinamicosConfig.php');
   const kits = await response.json();
 
+  localStorage.setItem('kitsArray', JSON.stringify(kits));
+
   var botonesKits = document.querySelector("#kits");
 
   kits.forEach((kit,index) => {
@@ -104,6 +109,8 @@ async function obtenerFrenos() {
   
   const response = await fetch('../../Controlador/obtenerFrenosConfig.php');
   const frenos = await response.json();
+
+  localStorage.setItem('frenosArray', JSON.stringify(frenos));
 
   var botonesFrenos = document.querySelector("#frenos");
   
@@ -122,6 +129,9 @@ async function obtenerSuspensiones() {
 
   const response = await fetch('../../Controlador/obtenerSuspensionesConfig.php');
   const suspensiones = await response.json();
+
+  localStorage.setItem('suspensionesArray', JSON.stringify(suspensiones));
+
   var botonesSuspensiones = document.querySelector("#suspensiones");
 
   suspensiones.forEach((suspension, index) => {
@@ -136,6 +146,9 @@ async function obtenerLlantas() {
 
   const response = await fetch('../../Controlador/obtenerLlantasConfig.php');
   const llantas = await response.json();
+
+  localStorage.setItem('llantasArray', JSON.stringify(llantas));
+
   var botonesLlantas = document.querySelector("#llantas");
   
   llantas.forEach((llanta,index) => {
@@ -176,14 +189,84 @@ function sumarprecio(){
 
 async function definirPrecio(){
 
-  var precioMotor = document.querySelector("#motor");
-  var boton = await precioMotor.getElementsByClassName('selected')[0].value;
-  console.log(boton);
+  // var botones = document.querySelector("#motor");
+  // var boton =  botones.getElementsByClassName('selected')[0];
+  // console.log(boton.value);
+  precio = 0;
   
-  
-  console.log("el primero es:"+boton[0]);
-  
+  var arrayModelos = localStorage.getItem('modelosArray');
+  modelos = JSON.parse(arrayModelos);
 
+  var arrayMotores = localStorage.getItem('motoresArray');
+  motores = JSON.parse(arrayMotores);
+
+  var arrayKits = localStorage.getItem('kitsArray');
+  kits = JSON.parse(arrayKits);
+
+  var arrayFrenos = localStorage.getItem('frenosArray');
+  frenos = JSON.parse(arrayFrenos);
+
+  var arraySuspensiones = localStorage.getItem('suspensionesArray');
+  suspensiones = JSON.parse(arraySuspensiones);
+
+  var arrayLlantas = localStorage.getItem('llantasArray');
+  llantas = JSON.parse(arrayLlantas);
+
+  modelos.forEach((modelos, index) => {
+    
+    if (index==0) {
+      aux = modelos.precio_base;
+      precio = precio + aux;
+    }
+
+  });
+
+  motores.forEach((modelos, index) => {
+    
+    if (index==0) {
+      aux = modelos.precio;
+      precio = precio + aux;
+    }
+
+  });
+
+  kits.forEach((modelos, index) => {
+    
+    if (index==0) {
+      aux = modelos.precio;
+      precio = precio + aux;
+    }
+
+  });
+
+  frenos.forEach((modelos, index) => {
+    
+    if (index==0) {
+      aux = modelos.precio;
+      precio = precio + aux;
+    }
+
+  });
+
+  suspensiones.forEach((modelos, index) => {
+    
+    if (index==0) {
+      aux = modelos.precio;
+      precio = precio + aux;
+    }
+
+  });
+
+  llantas.forEach((modelos, index) => {
+    
+    if (index==0) {
+      aux = modelos.precio;
+      precio = precio + aux;
+    }
+
+  });
+
+  console.log("precio total: "+precio);
 
 }
 
