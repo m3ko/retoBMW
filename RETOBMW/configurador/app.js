@@ -27,8 +27,6 @@ async function obtenerModelos() {
   console.log(response);
   const modelos = await response.json();
 
-  localStorage.setItem('modelosArray', JSON.stringify(modelos));
-
 
 
   console.log(modelos);
@@ -71,7 +69,6 @@ async function obtenerMotores() {
   const response = await fetch('../../Controlador/obtenerMotoresConfig.php');
   const motores = await response.json();
 
-  localStorage.setItem('motoresArray', JSON.stringify(motores));
 
 
   var botonesMotores = document.querySelector("#motor");
@@ -81,7 +78,7 @@ async function obtenerMotores() {
       botonesMotores.innerHTML += ` <button class="button selected" onclick="selectButton(this)" value="${motor.id_motor}"">${motor.cilindrada}cc ${motor.caballos}cv ${motor.combustion}</button>`
       
     }else{
-    botonesMotores.innerHTML += ` <button class="button" onclick="selectButton(this)" value="${motor.id_motor}"">${motor.cilindrada}cc ${motor.caballos}cv ${motor.combustion}</button>`
+    botonesMotores.innerHTML += ` <button class="button" onclick="selectButton(this)" value=" ${motor.id_motor}"">${motor.cilindrada}cc ${motor.caballos}cv ${motor.combustion}</button>`
 
   }  });
 
@@ -92,7 +89,6 @@ async function obtenerKitAerodinamicos() {
   const response = await fetch('../../Controlador/obtenerKitAerodinamicosConfig.php');
   const kits = await response.json();
 
-  localStorage.setItem('kitsArray', JSON.stringify(kits));
 
   var botonesKits = document.querySelector("#kits");
 
@@ -110,7 +106,6 @@ async function obtenerFrenos() {
   const response = await fetch('../../Controlador/obtenerFrenosConfig.php');
   const frenos = await response.json();
 
-  localStorage.setItem('frenosArray', JSON.stringify(frenos));
 
   var botonesFrenos = document.querySelector("#frenos");
   
@@ -130,7 +125,6 @@ async function obtenerSuspensiones() {
   const response = await fetch('../../Controlador/obtenerSuspensionesConfig.php');
   const suspensiones = await response.json();
 
-  localStorage.setItem('suspensionesArray', JSON.stringify(suspensiones));
 
   var botonesSuspensiones = document.querySelector("#suspensiones");
 
@@ -176,6 +170,7 @@ function selectButton(button) {
   }
   // Marcar el botón seleccionado
   button.classList.add('selected');
+ console.log( button.value);
 
   
 }
@@ -194,77 +189,6 @@ async function definirPrecio(){
   // console.log(boton.value);
   precio = 0;
   
-  var arrayModelos = localStorage.getItem('modelosArray');
-  modelos = JSON.parse(arrayModelos);
-
-  var arrayMotores = localStorage.getItem('motoresArray');
-  motores = JSON.parse(arrayMotores);
-
-  var arrayKits = localStorage.getItem('kitsArray');
-  kits = JSON.parse(arrayKits);
-
-  var arrayFrenos = localStorage.getItem('frenosArray');
-  frenos = JSON.parse(arrayFrenos);
-
-  var arraySuspensiones = localStorage.getItem('suspensionesArray');
-  suspensiones = JSON.parse(arraySuspensiones);
-
-  var arrayLlantas = localStorage.getItem('llantasArray');
-  llantas = JSON.parse(arrayLlantas);
-
-  modelos.forEach((modelos, index) => {
-    
-    if (index==0) {
-      aux = modelos.precio_base;
-      precio = precio + aux;
-    }
-
-  });
-
-  motores.forEach((modelos, index) => {
-    
-    if (index==0) {
-      aux = modelos.precio;
-      precio = precio + aux;
-    }
-
-  });
-
-  kits.forEach((modelos, index) => {
-    
-    if (index==0) {
-      aux = modelos.precio;
-      precio = precio + aux;
-    }
-
-  });
-
-  frenos.forEach((modelos, index) => {
-    
-    if (index==0) {
-      aux = modelos.precio;
-      precio = precio + aux;
-    }
-
-  });
-
-  suspensiones.forEach((modelos, index) => {
-    
-    if (index==0) {
-      aux = modelos.precio;
-      precio = precio + aux;
-    }
-
-  });
-
-  llantas.forEach((modelos, index) => {
-    
-    if (index==0) {
-      aux = modelos.precio;
-      precio = precio + aux;
-    }
-
-  });
 
   console.log("precio total: "+precio);
 
