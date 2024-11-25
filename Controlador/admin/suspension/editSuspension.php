@@ -35,7 +35,7 @@ if (
         $con->modificar_suspension($suspensionModifi);
         
         echo "Suspension modificada exitosamente";
-        header("Location: http://localhost/retoBMW-main/RETOBMW/admin/");
+
          
     } catch (Exception $e) {
         echo "Error al crear la suspension: " . $e->getMessage();

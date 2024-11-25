@@ -30,7 +30,7 @@ if (
     try {
         $con->modificar_usuario($usuarioModifi);
         echo "Usuario modificado exitosamente";
-        header("Location: http://localhost/retoBMW-main/RETOBMW/admin/");
+
     } catch (Exception $e) {
         echo "Error al modificar el usuario: " . $e->getMessage();
     }

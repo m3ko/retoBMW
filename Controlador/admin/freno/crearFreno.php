@@ -32,7 +32,7 @@ if (
         $con->crearfreno($frenomod);
         
         echo "freno modificado exitosamente";
-        header("Location: http://localhost/retoBMW-main/RETOBMW/admin/");
+     
          
     } catch (Exception $e) {
         echo "Error al crear  freno: " . $e->getMessage();

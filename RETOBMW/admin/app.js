@@ -1,4 +1,3 @@
-
 var botones = [
     "Descuento",
     "Freno",
@@ -112,7 +111,7 @@ function verificar(boton) {
 }
 //Usuarios
 function cargardatosusuarios() {
-    fetch("http://localhost/retoBMW-main/Controlador/admin/usuario/getusuarios.php") 
+    fetch("../../Controlador/admin/usuario/getusuarios.php") 
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Error en la red: ${response.status} ${response.statusText}`);
@@ -213,7 +212,7 @@ function confirmarEliminarUsuario(id_usuario) {
     }
 
     // Enviar el id_usuario para verificar si existe en la tabla correspondiente
-    fetch(`http://localhost/retoBMW-main/Controlador/admin/usuario/ErrorUsuaurio/ErrorPedido.php?id_usuario=${id_usuario}`, {
+    fetch(`../../Controlador/admin/usuario/ErrorUsuaurio/ErrorPedido.php?id_usuario=${id_usuario}`, {
         method: 'GET'
     })
     .then(response => response.json())
@@ -223,7 +222,7 @@ function confirmarEliminarUsuario(id_usuario) {
             AlertaErrorFatal(data.mensaje); // Muestra mensaje si el usuario no se puede eliminar
         } else {
             // Eliminar el usuario si no tiene pedidos asociados
-            fetch(`http://localhost/retoBMW-main/Controlador/admin/usuario/eliminarusuario.php?id_usuario=${id_usuario}`)
+            fetch(`../../Controlador/admin/usuario/eliminarusuario.php?id_usuario=${id_usuario}`)
                 .then(response => {
                     if (response.ok) {
                         AlertacorrectamenteElimina(); // Muestra mensaje de éxito
@@ -296,7 +295,7 @@ function modificarUsuario(id_usuario, nombre, apellidos, usuario, contrasena, em
         event.preventDefault();
         
         const formData = new FormData(this);
-        fetch('http://localhost/retoBMW-main/Controlador/admin/usuario/editUsuario.php', {
+        fetch('../../Controlador/admin/usuario/editUsuario.php', {
             method: 'POST',
             body: formData
         })
@@ -375,7 +374,7 @@ function formCrearUsuario() {
         const email = formData.get('email');
     
         // Validamos si el usuario existe
-        fetch(`http://localhost/retoBMW-main/Controlador/admin/usuario/ErrorUsuaurio/ErrorUsuario.php?usuario=${usuario}`, {
+        fetch(`../../Controlador/admin/usuario/ErrorUsuaurio/ErrorUsuario.php?usuario=${usuario}`, {
             method: 'GET' // Cambié el método a 'GET' si estás pasando parámetros por URL, o mantenlo 'POST' si lo prefieres con body
         })
         .then(response => response.json())
@@ -384,7 +383,7 @@ function formCrearUsuario() {
                 AlertaError_usuario_existe(); // Si el usuario existe, muestra un error
             } else {
                 // Si el usuario no existe, verifica el email
-                fetch(`http://localhost/retoBMW-main/Controlador/admin/usuario/ErrorUsuaurio/ErrorEmail.php?email=${email}`, {
+                fetch(`../../Controlador/admin/usuario/ErrorUsuaurio/ErrorEmail.php?email=${email}`, {
                     method: 'GET' 
                 })
                 .then(response => response.json())
@@ -393,7 +392,7 @@ function formCrearUsuario() {
                         AlertaError_email_existe(); // Si el email ya existe
                     } else {
                         // Si todo es válido, creamos el usuario
-                        fetch('http://localhost/retoBMW-main/Controlador/admin/usuario/crearUsuario.php', {
+                        fetch('../../Controlador/admin/usuario/crearUsuario.php', {
                             method: 'POST',
                             body: formData
                         })
@@ -430,7 +429,7 @@ function formCrearUsuario() {
 
 //Suspension
 function cargardatosuspension() {
-    fetch("http://localhost/retoBMW-main/Controlador/admin/suspension/getsuspension.php") 
+    fetch("../../Controlador/admin/suspension/getsuspension.php") 
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Error en la red: ${response.status} ${response.statusText}`);
@@ -531,7 +530,7 @@ function confirmarEliminarSuspension(id_suspension) {
     }
 
     // Enviar el id_suspension para verificar si existe en la tabla correspondiente
-    fetch(`http://localhost/retoBMW-main/Controlador/admin/suspension/ErrorSuspension/Errorsuspension.php?id_suspension=${id_suspension}`, {
+    fetch(`../../Controlador/admin/suspension/ErrorSuspension/Errorsuspension.php?id_suspension=${id_suspension}`, {
         method: 'GET'
     })
     .then(response => response.json())
@@ -541,7 +540,7 @@ function confirmarEliminarSuspension(id_suspension) {
             AlertaErrorFatal(data.mensaje); // Muestra el mensaje de error si la suspensión no puede eliminarse
         } else {
             // Eliminar la suspensión si no está asociada a ningún dato
-            fetch(`http://localhost/retoBMW-main/Controlador/admin/suspension/eliminarSuspension.php?id_suspension=${id_suspension}`)
+            fetch(`../../Controlador/admin/suspension/eliminarSuspension.php?id_suspension=${id_suspension}`)
                 .then(response => {
                     if (response.ok) {
                         AlertacorrectamenteElimina(); // Muestra mensaje de éxito si se eliminó correctamente
@@ -606,7 +605,7 @@ function modificarSuspension(id_suspension, nombre_suspension, tipo, precio, ofe
     document.getElementById('formModificarSuspension').addEventListener('submit', function (event) {
         event.preventDefault();
         const formData = new FormData(this);
-        fetch('http://localhost/retoBMW-main/Controlador/admin/suspension/editSuspension.php', {
+        fetch('../../Controlador/admin/suspension/editSuspension.php', {
             method: 'POST',
             body: formData
         })
@@ -672,7 +671,7 @@ function formCrearSuspension() {
 
         const formData = new FormData(this);
 
-        fetch('http://localhost/retoBMW-main/Controlador/admin/suspension/crearSuspension.php', {
+        fetch('../../Controlador/admin/suspension/crearSuspension.php', {
             method: 'POST',
             body: formData
         })
@@ -696,7 +695,7 @@ function formCrearSuspension() {
  
 //Motores
 function cargardatosmotor() {
-    fetch("http://localhost/retoBMW-main/Controlador/admin/motor/getmotor.php") 
+    fetch("../../Controlador/admin/motor/getmotor.php") 
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Error en la red: ${response.status} ${response.statusText}`);
@@ -794,7 +793,7 @@ function confirmarEliminarMotor(id_motor) {
         return;
     }
 
-    fetch(`http://localhost/retoBMW-main/Controlador/admin/motor/Errormotor/Errormotor.php?id_motor=${id_motor}`, {
+    fetch(`../../Controlador/admin/motor/Errormotor/Errormotor.php?id_motor=${id_motor}`, {
         method: 'GET'
     })
     .then(response => response.json())
@@ -802,7 +801,7 @@ function confirmarEliminarMotor(id_motor) {
         if (data.existe) {
             AlertaErrorFatal(data.mensaje);
         } else {
-            fetch(`http://localhost/retoBMW-main/Controlador/admin/motor/eliminarmotor.php?id_motor=${id_motor}`, {
+            fetch(`../../Controlador/admin/motor/eliminarmotor.php?id_motor=${id_motor}`, {
                 method: 'GET'
             })
             .then(response => {
@@ -867,7 +866,7 @@ function modificarmotor(id_motor, nombre_motor, caballos, cilindrada, precio, co
     document.getElementById('formModificarMotor').addEventListener('submit', function (event) {
         event.preventDefault();
         const formData = new FormData(this);
-        fetch('http://localhost/retoBMW-main/Controlador/admin/motor/editMotor.php', {
+        fetch('../../Controlador/admin/motor/editMotor.php', {
             method: 'POST',
             body: formData
         })
@@ -933,7 +932,7 @@ function formCrearMotor() {
         event.preventDefault();
 
         const formData = new FormData(this);
-        fetch('http://localhost/retoBMW-main/Controlador/admin/motor/crearMotor.php', {
+        fetch('../../Controlador/admin/motor/crearMotor.php', {
             method: 'POST',
             body: formData
         })
@@ -1050,7 +1049,7 @@ function eliminarLlanta(id_llanta, nombre_llanta) {
 function confirmarEliminarLlanta(id_llanta) {
     if (id_llanta) {
         // Verificar si la llanta está asociada a un producto o a otro recurso
-        fetch(`http://localhost/retoBMW-main/Controlador/admin/llanta/Errorllanta/Errorllanta.php?id_llanta=${id_llanta}`, {
+        fetch(`../../Controlador/admin/llanta/Errorllanta/Errorllanta.php?id_llanta=${id_llanta}`, {
             method: 'GET'
         })
         .then(response => response.json())
@@ -1059,7 +1058,7 @@ function confirmarEliminarLlanta(id_llanta) {
                 AlertaErrorFatal(data.mensaje); // Muestra el mensaje si la llanta no se puede eliminar
             } else {
                 // Proceder a eliminar la llanta si no está asociada a un producto
-                fetch(`http://localhost/retoBMW-main/Controlador/admin/llanta/eliminarllanta.php?id_llanta=${id_llanta}`, {
+                fetch(`../../Controlador/admin/llanta/eliminarllanta.php?id_llanta=${id_llanta}`, {
                     method: 'GET'
                 })
                 .then(response => {
@@ -1131,7 +1130,7 @@ function modificar_llanta(id_llanta, nombre_llanta, tipo, precio, oferta) {
     document.getElementById('formModificarLlanta').addEventListener('submit', function (event) {
         event.preventDefault();
         const formData = new FormData(this);
-        fetch('http://localhost/retoBMW-main/Controlador/admin/llanta/editllanta.php', {
+        fetch('../../Controlador/admin/llanta/editllanta.php', {
             method: 'POST',
             body: formData
         })
@@ -1197,7 +1196,7 @@ function formCrearllanta() {
 
         const formData = new FormData(this);
 
-        fetch('http://localhost/retoBMW-main/Controlador/admin/llanta/crearllanta.php', {
+        fetch('../../Controlador/admin/llanta/crearllanta.php', {
             method: 'POST',
             body: formData
         })
@@ -1220,7 +1219,7 @@ function formCrearllanta() {
 
 //Pedido
 function cargardatosPedido() {
-    fetch("http://localhost/retoBMW-main/Controlador/admin/pedido/getpedido.php") 
+    fetch("../../Controlador/admin/pedido/getpedido.php") 
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Error en la red: ${response.status} ${response.statusText}`);
@@ -1317,7 +1316,7 @@ function eliminarPedido(id_pedido, usuario,nombre_producto) {
 
 function confirmarEliminarPedido(id_pedido) {
     if (id_pedido) {
-        fetch(`http://localhost/retoBMW-main/Controlador/admin/pedido/eliminarpedido.php?id_pedido=${id_pedido}`)
+        fetch(`../../Controlador/admin/pedido/eliminarpedido.php?id_pedido=${id_pedido}`)
             .then(response => {
                 if (response.ok) {
                     AlertacorrectamenteElimina();
@@ -1337,9 +1336,9 @@ function confirmarEliminarPedido(id_pedido) {
 // Modificar pedido
 function modificarpedido(id_pedido, usuario, id_producto_final, fecha_pedido, direccion_entrega, id_codigo) {
     Promise.all([
-        fetch("http://localhost/retoBMW-main/Controlador/admin/pedido/getDescuento.php"),
-        fetch("http://localhost/retoBMW-main/Controlador/admin/pedido/getProducto.php"),
-        fetch("http://localhost/retoBMW-main/Controlador/admin/pedido/getUsuario.php")
+        fetch("../../Controlador/admin/pedido/getDescuento.php"),
+        fetch("../../Controlador/admin/pedido/getProducto.php"),
+        fetch("../../Controlador/admin/pedido/getUsuario.php")
     ])
     .then(([DescuentoResp, ProductoResp, UsuarioResp]) => {
         return Promise.all([
@@ -1431,7 +1430,7 @@ function modificarpedido(id_pedido, usuario, id_producto_final, fecha_pedido, di
 
             const formData = new FormData(this);
 
-            fetch('http://localhost/retoBMW-main/Controlador/admin/pedido/editPedido.php', {
+            fetch('../../Controlador/admin/pedido/editPedido.php', {
                 method: 'POST',
                 body: formData
             })
@@ -1458,9 +1457,9 @@ function modificarpedido(id_pedido, usuario, id_producto_final, fecha_pedido, di
 //Crear pedido
 function formCrearpedido() {
     Promise.all([
-        fetch("http://localhost/retoBMW-main/Controlador/admin/pedido/getDescuento.php"),
-        fetch("http://localhost/retoBMW-main/Controlador/admin/pedido/getProducto.php"),
-        fetch("http://localhost/retoBMW-main/Controlador/admin/pedido/getUsuario.php")
+        fetch("../../Controlador/admin/pedido/getDescuento.php"),
+        fetch("../../Controlador/admin/pedido/getProducto.php"),
+        fetch("../../Controlador/admin/pedido/getUsuario.php")
     ])
     .then(([DescuentoResp, ProductoResp, UsuarioResp]) => {
         return Promise.all([
@@ -1548,7 +1547,7 @@ function formCrearpedido() {
 
             const formData = new FormData(this);
 
-            fetch('http://localhost/retoBMW-main/Controlador/admin/pedido/crearpedido.php', {
+            fetch('../../Controlador/admin/pedido/crearpedido.php', {
                 method: 'POST',
                 body: formData
             })
@@ -1574,7 +1573,7 @@ function formCrearpedido() {
 
 //Modelo
 function cargardatosModelos() {
-    fetch("http://localhost/retoBMW-main/Controlador/admin/modelo/getmodelo.php") 
+    fetch("../../Controlador/admin/modelo/getmodelo.php") 
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Error en la red: ${response.status} ${response.statusText}`);
@@ -1666,7 +1665,7 @@ function eliminarModelo(id_modelo, nombre_modelo) {
 
 function confirmarEliminarModelo(id_modelo) {
     if (id_modelo) {
-        fetch(`http://localhost/retoBMW-main/Controlador/admin/modelo/Errormodelo/Errormodelo.php?id_modelo=${id_modelo}`, {
+        fetch(`../../Controlador/admin/modelo/Errormodelo/Errormodelo.php?id_modelo=${id_modelo}`, {
             method: 'GET'
         })
         .then(response => response.json())
@@ -1674,7 +1673,7 @@ function confirmarEliminarModelo(id_modelo) {
             if (data.existe) {
                 AlertaErrorFatal(data.mensaje);
             } else {
-                fetch(`http://localhost/retoBMW-main/Controlador/admin/modelo/eliminarmodelo.php?id_modelo=${id_modelo}`, {
+                fetch(`../../Controlador/admin/modelo/eliminarmodelo.php?id_modelo=${id_modelo}`, {
                     method: 'GET'
                 })
                 .then(response => {
@@ -1745,7 +1744,7 @@ function modificarmodelo(id_modelo, nombre_modelo, precio_base) {
 
         const formData = new FormData(this);
 
-        fetch('http://localhost/retoBMW-main/Controlador/admin/modelo/editModelo.php', {
+        fetch('../../Controlador/admin/modelo/editModelo.php', {
             method: 'POST',
             body: formData
         })
@@ -1804,7 +1803,7 @@ function formCrearmodelo() {
 
         const formData = new FormData(this);
 
-        fetch('http://localhost/retoBMW-main/Controlador/admin/modelo/crearModelo.php', {
+        fetch('../../Controlador/admin/modelo/crearModelo.php', {
             method: 'POST',
             body: formData
         })
@@ -1826,7 +1825,7 @@ function formCrearmodelo() {
 
 //KIT AERODINAMICO
 function cargardatosKit() {
-    fetch("http://localhost/retoBMW-main/Controlador/admin/kit/getkit.php") 
+    fetch("../../Controlador/admin/kit/getkit.php") 
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Error en la red: ${response.status} ${response.statusText}`);
@@ -1931,7 +1930,7 @@ function eliminarkit(id_kit, nombre_kit) {
 
 function confirmarEliminarKit(id_kit) {
     if (id_kit) {
-        fetch(`http://localhost/retoBMW-main/Controlador/admin/kit/Errorkit/Errorkit.php?id_kit=${id_kit}`, {
+        fetch(`../../Controlador/admin/kit/Errorkit/Errorkit.php?id_kit=${id_kit}`, {
             method: 'GET'
         })
         .then(response => response.json())
@@ -1939,7 +1938,7 @@ function confirmarEliminarKit(id_kit) {
             if (data.existe) {
                 AlertaErrorFatal(data.mensaje);
             } else {
-                fetch(`http://localhost/retoBMW-main/Controlador/admin/kit/eliminarKit.php?id_kit=${id_kit}`, {
+                fetch(`../../Controlador/admin/kit/eliminarKit.php?id_kit=${id_kit}`, {
                     method: 'GET'
                 })
                 .then(response => {
@@ -2011,7 +2010,7 @@ function modificarKit(id_kit, nombre_kit, tipo, precio, oferta) {
 
         const formData = new FormData(this);
 
-        fetch('http://localhost/retoBMW-main/Controlador/admin/kit/editKit.php', {
+        fetch('../../Controlador/admin/kit/editKit.php', {
             method: 'POST',
             body: formData
         })
@@ -2077,7 +2076,7 @@ function formCrearkit() {
 
         const formData = new FormData(this);
 
-        fetch('http://localhost/retoBMW-main/Controlador/admin/kit/crearKit.php', {
+        fetch('../../Controlador/admin/kit/crearKit.php', {
             method: 'POST',
             body: formData
         })
@@ -2100,7 +2099,7 @@ function formCrearkit() {
 
 //freno
 function cargardatosFreno() {
-    fetch("http://localhost/retoBMW-main/Controlador/admin/freno/getfreno.php") 
+    fetch("../../Controlador/admin/freno/getfreno.php") 
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Error en la red: ${response.status} ${response.statusText}`);
@@ -2204,7 +2203,7 @@ function confirmarEliminarFreno(id_freno) {
         return;
     }
 
-    fetch(`http://localhost/retoBMW-main/Controlador/admin/freno/Errorfreno/Errorfreno.php?id_freno=${id_freno}`, {
+    fetch(`../../Controlador/admin/freno/Errorfreno/Errorfreno.php?id_freno=${id_freno}`, {
         method: 'GET'
     })
     .then(response => response.json())
@@ -2212,7 +2211,7 @@ function confirmarEliminarFreno(id_freno) {
         if (data.existe) {
             AlertaErrorFatal(data.mensaje);
         } else {
-            fetch(`http://localhost/retoBMW-main/Controlador/admin/freno/eliminarfreno.php?id_freno=${id_freno}`)
+            fetch(`../../Controlador/admin/freno/eliminarfreno.php?id_freno=${id_freno}`)
                 .then(response => {
                     if (response.ok) {
                         AlertacorrectamenteElimina();
@@ -2279,7 +2278,7 @@ function modificarfreno(id_freno, tipo, precio, oferta) {
 
         const formData = new FormData(this);
 
-        fetch('http://localhost/retoBMW-main/Controlador/admin/freno/editFreno.php', {
+        fetch('../../Controlador/admin/freno/editFreno.php', {
             method: 'POST',
             body: formData
         })
@@ -2343,7 +2342,7 @@ function formCrearfreno() {
 
         const formData = new FormData(this);
 
-        fetch('http://localhost/retoBMW-main/Controlador/admin/freno/crearFreno.php', {
+        fetch('../../Controlador/admin/freno/crearFreno.php', {
             method: 'POST',
             body: formData
         })
@@ -2367,7 +2366,7 @@ function formCrearfreno() {
 
 //Codigo descunto
 function cargardatosDescuento() {
-    fetch("http://localhost/retoBMW-main/Controlador/admin/codigo_descuento/getdescuento.php") 
+    fetch("../../Controlador/admin/codigo_descuento/getdescuento.php") 
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Error en la red: ${response.status} ${response.statusText}`);
@@ -2466,7 +2465,7 @@ function confirmarEliminarDescuento(id_codigo) {
         return;
     }
 
-    fetch(`http://localhost/retoBMW-main/Controlador/admin/codigo_descuento/Errorcodigo/Errorcodigo.php?id_codigo=${id_codigo}`, {
+    fetch(`../../Controlador/admin/codigo_descuento/Errorcodigo/Errorcodigo.php?id_codigo=${id_codigo}`, {
         method: 'GET'
     })
     .then(response => response.json())
@@ -2474,7 +2473,7 @@ function confirmarEliminarDescuento(id_codigo) {
         if (data.existe) {
             AlertaErrorFatal(data.mensaje);
         } else {
-            fetch(`http://localhost/retoBMW-main/Controlador/admin/codigo_descuento/eliminardescuento.php?id_codigo=${id_codigo}`, {
+            fetch(`../../Controlador/admin/codigo_descuento/eliminardescuento.php?id_codigo=${id_codigo}`, {
                 method: 'GET'
             })
             .then(response => {
@@ -2535,7 +2534,7 @@ function modificardescuento(id_codigo, descuento_porcentaje) {
     document.getElementById('formModificarDescuento').addEventListener('submit', function (event) {
         event.preventDefault();
         const formData = new FormData(this);
-        fetch('http://localhost/retoBMW-main/Controlador/admin/codigo_descuento/editDescuento.php', {
+        fetch('../../Controlador/admin/codigo_descuento/editDescuento.php', {
             method: 'POST',
             body: formData
         })
@@ -2599,7 +2598,7 @@ function formCreardescuento() {
 
         const formData = new FormData(this);
 
-        fetch('http://localhost/retoBMW-main/Controlador/admin/codigo_descuento/creaDescuento.php', {
+        fetch('../../Controlador/admin/codigo_descuento/creaDescuento.php', {
             method: 'POST',
             body: formData
         })
@@ -2621,7 +2620,7 @@ function formCreardescuento() {
 
 //Producto
 function cargardatosProducto() {
-    fetch("http://localhost/retoBMW-main/Controlador/admin/producto_final/getproducto.php") 
+    fetch("../../Controlador/admin/producto_final/getproducto.php") 
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Error en la red: ${response.status} ${response.statusText}`);
@@ -2649,6 +2648,18 @@ function mostrarDatosproducto(productos) {
         if(producto.cantidad === null){
             producto.cantidad = 0
         }
+        if ( producto.id_descuento == 0||producto.id_descuento == null  ) {
+            producto.id_descuento = "no";
+        } else {
+            producto.id_descuento = "si";
+        }
+        
+        
+        if(producto.visibilidad === null){
+            producto.visibilidad = "no"
+        }else{
+            producto.visibilidad = "si"
+        }
 
         rows += `
     <tr>
@@ -2662,16 +2673,42 @@ function mostrarDatosproducto(productos) {
         <td>${producto.precio_total}€</td>
         <td>${producto.nombre_producto}</td>
         <td>${producto.cantidad}</td>
+        <td>${producto.id_descuento}</td>
+        <td>${producto.precio_despues_descuento}</td>
+         <td>${producto.visibilidad}</td>
         
         <td>
             <img src="${producto.img}" alt="Imagen Producto" style="max-width: 100px; height: auto;">
         </td>
-        <td>
         
+        <td>        
+
          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" onclick="eliminarProducto('${producto.id_producto_final}','${producto.nombre_producto}')">Eliminar</button> 
-         <button type="button" class="btn btn-primary data-toggle="modal" data-target="#exampleModalCenter" onclick="modificarproducto('${producto.id_producto_final}', '${producto.nombre_modelo}', '${producto.nombre_motor}', '${producto.nombre_suspension}', '${producto.nombre_kit}', '${producto.nombre_llanta}', '${producto.nombre_freno}', '${producto.precio_total}', '${producto.nombre_producto}', '${producto.cantidad}', '${producto.img}')">Modificar</button>
+            <button type="button" class="btn btn-primary" 
+        data-toggle="modal" 
+        data-target="#exampleModalCenter" 
+        onclick="modificarproducto(
+            '${producto.id_producto_final}', 
+            '${producto.nombre_modelo}', 
+            '${producto.nombre_motor}', 
+            '${producto.nombre_suspension}', 
+            '${producto.nombre_kit}', 
+            '${producto.nombre_llanta}', 
+            '${producto.nombre_freno}', 
+            '${producto.precio_total}', 
+            '${producto.nombre_producto}', 
+            '${producto.cantidad}',
+            '${producto.img}',
+            '${producto.id_descuento}',
+            '${producto.precio_despues_descuento}'
+
+           
+        )">
+        Modificar
+    </button>
 
         </td>
+
     </tr>`;
 }
 
@@ -2690,6 +2727,9 @@ let html = `
                 <th scope="col">Precio Total</th>
                 <th scope="col">Producto</th>
                 <th scope="col">Cantidad</th>
+                <th scope="col">Descuento</th>
+                <th scope="col">Precio_Real</th>
+                <th scope="col">visibilidad</th>
                 <th scope="col">Imagen</th>
                 <th scope="col">Acciones</th>
             </tr>
@@ -2711,6 +2751,130 @@ let html = `
         document.getElementById('admin').innerHTML = html; 
      
 }
+//Visibilidad
+function comprovisibilidad(id_producto_final, visibilidad) {
+    if(visibilidad === "no"){
+        visibilidad = null
+    }else{
+       visibilidad = 1
+    }
+    console.log(visibilidad)
+ 
+
+            if (visibilidad === 1) {
+                visibilidad1(id_producto_final, visibilidad);
+            } else if (visibilidad === 0) {
+                visibilidadnullo0(id_producto_final, visibilidad);
+            } else if (visibilidad === null) {
+                visibilidadnullo0(id_producto_final, visibilidad);
+            } else {
+                console.log('Valor inesperado en visibilidad.');
+            }
+      
+}
+
+// Función para manejar visibilidad = 1
+function visibilidad1(id_producto_final, visibilidad) {
+    // Estructura del modal
+    let html = `
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">¿Quiere dejar no visible este producto?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que deseas hacer este producto no visible? Esta acción no se puede deshacer.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" onclick="novisible(${id_producto_final}, ${visibilidad})">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+
+    // Insertar el modal en el DOM
+    document.getElementById('modal').innerHTML = html;
+
+    // Mostrar el modal
+    let modal = new bootstrap.Modal(document.getElementById('exampleModalCenter'));
+    modal.show();
+}
+
+// Función para manejar visibilidad = 0 o null
+function visibilidadnullo0(id_producto_final, visibilidad) {
+    // Estructura del modal
+    let html = `
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">¿Quiere dejar visible este producto?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que deseas hacer este producto visible? Esta acción no se puede deshacer.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" onclick="visible(${id_producto_final}, ${visibilidad})">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+
+    // Insertar el modal en el DOM
+    document.getElementById('modal').innerHTML = html;
+
+    // Mostrar el modal
+    let modal = new bootstrap.Modal(document.getElementById('exampleModalCenter'));
+    modal.show();
+}
+
+// Función para hacer el producto no visible
+function novisible(id_producto_final) {
+    fetch(`../../Controlador/admin/producto_final/ErrorProducto/visible0no.php?id_producto_final=${id_producto_final}&visibilidad=0`, {
+        method: 'GET',
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === "success") {
+            alert("Producto marcado como no visible.");
+        } else {
+            alert(`Error: ${data.message}`);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert("Ocurrió un error al intentar actualizar la visibilidad.");
+    });
+}
+
+// Función para hacer el producto visible
+function visible(id_producto_final) {
+    fetch(`../../Controlador/admin/producto_final/ErrorProducto/visible0no.php?id_producto_final=${id_producto_final}&visibilidad=1`, {
+        method: 'GET',
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === "success") {
+            alert("Producto marcado como visible.");
+        } else {
+            alert(`Error: ${data.message}`);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert("Ocurrió un error al intentar actualizar la visibilidad.");
+    });
+}
+
+
+
 //Eliminar producto
 function eliminarProducto(id_producto_final, nombre_producto) {
     let html = `
@@ -2741,7 +2905,7 @@ function eliminarProducto(id_producto_final, nombre_producto) {
 function confirmarEliminarProducto(id_producto_final) {
 
     // Verificar si el producto está asociado a un carrito
-    fetch(`http://localhost/retoBMW-main/Controlador/admin/producto_final/ErrorProducto/Errorproductocarrito.php?id_producto_final=${id_producto_final}`, {
+    fetch(`../../Controlador/admin/producto_final/ErrorProducto/Errorproductocarrito.php?id_producto_final=${id_producto_final}`, {
         method: 'GET'
     })
     .then(response => response.json())
@@ -2762,7 +2926,7 @@ function confirmarEliminarProducto(id_producto_final) {
 }
 function comprobrar_Producto_pedido(id_producto_final) {
 // Verificar si el producto está asociado a un pedido
-fetch(`http://localhost/retoBMW-main/Controlador/admin/producto_final/ErrorProducto/Errorproductopedido.php?id_producto_final=${id_producto_final}`, {
+fetch(`../../Controlador/admin/producto_final/ErrorProducto/Errorproductopedido.php?id_producto_final=${id_producto_final}`, {
     method: 'GET'
 })
 .then(response => response.json())
@@ -2772,7 +2936,7 @@ fetch(`http://localhost/retoBMW-main/Controlador/admin/producto_final/ErrorProdu
         AlertaErrorFatal(data.mensaje);
     } else {
         // Si no está asociado, proceder con la eliminación
-        fetch(`http://localhost/retoBMW-main/Controlador/admin/producto_final/eliminarProducto.php?id_producto_final=${id_producto_final}`, {
+        fetch(`../../Controlador/admin/producto_final/eliminarProducto.php?id_producto_final=${id_producto_final}`, {
             method: 'POST'
         })
         .then(response => {
@@ -2797,62 +2961,45 @@ fetch(`http://localhost/retoBMW-main/Controlador/admin/producto_final/ErrorProdu
 
 
 // Modificar producto
-function modificarproducto(id_producto_final, nombre_modelo, nombre_motor, nombre_suspension, nombre_llanta, nombre_freno, nombre_kit,precio_total, nombre_producto, cantidad, img) {
-    
-  
+function modificarproducto(id_producto_final, nombre_modelo, nombre_motor, nombre_suspension, nombre_kit, nombre_llanta, nombre_freno, precio_total, nombre_producto, cantidad, img, id_descuento, precio_despues_descuento) {
+    // Normalize id_descuento if it is "no"
+    if (id_descuento === "no") {
+        id_descuento = null&0;
+    } else {
+        id_descuento = 1;
+    }
 
+    console.log('id_producto_final:', id_producto_final);
+    console.log('nombre_modelo:', nombre_modelo);
+    console.log('nombre_motor:', nombre_motor);
+    console.log('nombre_suspension:', nombre_suspension);
+    console.log('nombre_kit:', nombre_kit);
+    console.log('nombre_llanta:', nombre_llanta);
+    console.log('nombre_freno:', nombre_freno);
+    console.log('precio_total:', precio_total);
+    console.log('nombre_producto:', nombre_producto);
+    console.log('cantidad:', cantidad);
+    console.log('img:', img);
+    console.log('id_descuento:', id_descuento);
+    console.log('precio_despues_descuento:', precio_despues_descuento);
+
+    // Fetch data for different categories
     Promise.all([
-        fetch("http://localhost/retoBMW-main/Controlador/admin/producto_final/getModelos.php"),
-        fetch("http://localhost/retoBMW-main/Controlador/admin/producto_final/getMotores.php"),
-        fetch("http://localhost/retoBMW-main/Controlador/admin/producto_final/getSuspensiones.php"),
-        fetch("http://localhost/retoBMW-main/Controlador/admin/producto_final/getLlanta.php"),
-        fetch("http://localhost/retoBMW-main/Controlador/admin/producto_final/getFrenos.php"),
-        fetch("http://localhost/retoBMW-main/Controlador/admin/producto_final/getKits.php")
+        fetch("../../Controlador/admin/producto_final/getModelos.php"),
+        fetch("../../Controlador/admin/producto_final/getMotores.php"),
+        fetch("../../Controlador/admin/producto_final/getSuspensiones.php"),
+        fetch("../../Controlador/admin/producto_final/getLlanta.php"),
+        fetch("../../Controlador/admin/producto_final/getFrenos.php"),
+        fetch("../../Controlador/admin/producto_final/getKits.php")
     ])
     .then(([modelosResp, motoresResp, suspensionesResp, llantasResp, frenosResp, kitsResp]) => {
-        return Promise.all([
-            modelosResp.json(),
-            motoresResp.json(),
-            suspensionesResp.json(),
-            llantasResp.json(),
-            frenosResp.json(),
-            kitsResp.json()
-        ]);
+        return Promise.all([modelosResp.json(), motoresResp.json(), suspensionesResp.json(), llantasResp.json(), frenosResp.json(), kitsResp.json()]);
     })
     .then(([modelos, motores, suspensiones, llantas, frenos, kits]) => {
-        const generarOpcionesModelos = (modelos) => {
-            return modelos.map(modelo => 
-                `<option value="${modelo.id_modelo}" ${modelo.nombre_modelo === nombre_modelo ? 'selected' : ''}>${modelo.nombre_modelo}</option>`
-            ).join('');
-        };
-
-        const generarOpcionesMotores = (motores) => {
-            return motores.map(motor => 
-                `<option value="${motor.id_motor}" ${motor.nombre_motor === nombre_motor ? 'selected' : ''}>${motor.nombre_motor}</option>`
-            ).join('');
-        };
-
-        const generarOpcionesSuspensiones = (suspensiones) => {
-            return suspensiones.map(suspension => 
-                `<option value="${suspension.id_suspension}" ${suspension.nombre_suspension === nombre_suspension ? 'selected' : ''}>${suspension.nombre_suspension}</option>`
-            ).join('');
-        };
-
-        const generarOpcionesLlantas = (llantas) => {
-            return llantas.map(llanta => 
-                `<option value="${llanta.id_llanta}" ${llanta.nombre_llanta === nombre_llanta ? 'selected' : ''}>${llanta.nombre_llanta}</option>`
-            ).join('');
-        };
-
-        const generarOpcionesFrenos = (frenos) => {
-            return frenos.map(freno => 
-                `<option value="${freno.id_freno}" ${freno.tipo === nombre_freno ? 'selected' : ''}>${freno.tipo}</option>`
-            ).join('');
-        };
-
-        const generarOpcionesKits = (kits) => {
-            return kits.map(kit => 
-                `<option value="${kit.id_kit}" ${kit.nombre_kit === nombre_kit ? 'selected' : ''}>${kit.nombre_kit}</option>`
+        // Function to generate options for select dropdowns
+        const generarOpciones = (arr, nombre, idKey, nameKey) => {
+            return arr.map(item => 
+                `<option value="${item[idKey]}" ${item[nameKey] === nombre ? 'selected' : ''}>${item[nameKey]}</option>`
             ).join('');
         };
 
@@ -2873,42 +3020,38 @@ function modificarproducto(id_producto_final, nombre_modelo, nombre_motor, nombr
                                 <div class="mb-3">
                                     <label for="id_modelo" class="form-label">Modelo</label>
                                     <select class="form-select" id="id_modelo" name="id_modelo" required>
-                                        ${generarOpcionesModelos(modelos)}
+                                        ${generarOpciones(modelos, nombre_modelo, 'id_modelo', 'nombre_modelo')}
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="id_motor" class="form-label">Motor</label>
                                     <select class="form-select" id="id_motor" name="id_motor" required>
-                                        ${generarOpcionesMotores(motores)}
+                                        ${generarOpciones(motores, nombre_motor, 'id_motor', 'nombre_motor')}
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="id_suspension" class="form-label">Suspensión</label>
                                     <select class="form-select" id="id_suspension" name="id_suspension" required>
-                                        ${generarOpcionesSuspensiones(suspensiones)}
+                                        ${generarOpciones(suspensiones, nombre_suspension, 'id_suspension', 'nombre_suspension')}
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="id_llanta" class="form-label">Llanta</label>
                                     <select class="form-select" id="id_llanta" name="id_llanta" required>
-                                        ${generarOpcionesLlantas(llantas)}
+                                        ${generarOpciones(llantas, nombre_llanta, 'id_llanta', 'nombre_llanta')}
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="id_freno" class="form-label">Freno</label>
                                     <select class="form-select" id="id_freno" name="id_freno" required>
-                                        ${generarOpcionesFrenos(frenos)}
+                                        ${generarOpciones(frenos, nombre_freno, 'id_freno', 'tipo')}
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="id_kit" class="form-label">Kit Aerodinámico</label>
                                     <select class="form-select" id="id_kit" name="id_kit" required>
-                                        ${generarOpcionesKits(kits)}
+                                        ${generarOpciones(kits, nombre_kit, 'id_kit', 'nombre_kit')}
                                     </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="precio_total" class="form-label">Precio Total</label>
-                                    <input type="number" class="form-control" id="precio_total" name="precio_total" value="${precio_total}" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="nombre_producto" class="form-label">Nombre Producto</label>
@@ -2922,6 +3065,20 @@ function modificarproducto(id_producto_final, nombre_modelo, nombre_motor, nombr
                                     <label for="img" class="form-label">Imagen URL</label>
                                     <input type="text" class="form-control" id="img" name="img" value="${img}" required>
                                 </div>
+                                <div class="mb-3">
+                                    <label for="precio_total" class="form-label">Precio Total</label>
+                                    <input type="number" class="form-control" id="precio_total" name="precio_total" value="${precio_total}" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" ${id_descuento === 1 ? 'checked' : ''}>
+                                        <label class="form-check-label" for="flexSwitchCheckChecked">Descuento?</label>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="precio_despues_descuento" class="form-label">Precio Después Descuento</label>
+                                    <input type="number" class="form-control" id="precio_despues_descuento" name="precio_despues_descuento" value="${precio_despues_descuento}" readonly>
+                                </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                     <button type="submit" class="btn btn-primary">Guardar Cambios</button>
@@ -2932,27 +3089,91 @@ function modificarproducto(id_producto_final, nombre_modelo, nombre_motor, nombr
                 </div>
             </div>
         `;
-       
 
-
+        // Inject the modal HTML into the page
         document.getElementById('modal').innerHTML = html;
 
         let modal = new bootstrap.Modal(document.getElementById('exampleModalModificarProducto'));
         modal.show();
 
+        // Function to update the price after discount
+        const calcularPrecios = () => {
+            const idModelo = document.getElementById('id_modelo').value;
+            const idMotor = document.getElementById('id_motor').value;
+            const idSuspension = document.getElementById('id_suspension').value;
+            const idLlanta = document.getElementById('id_llanta').value;
+            const idKit = document.getElementById('id_kit').value;
+            const idFreno = document.getElementById('id_freno').value;
+
+            // Search for corresponding data in the arrays
+            const modelo = modelos.find(m => m.id_modelo == idModelo);
+            const motor = motores.find(m => m.id_motor == idMotor);
+            const suspension = suspensiones.find(s => s.id_suspension == idSuspension);
+            const llanta = llantas.find(l => l.id_llanta == idLlanta);
+            const kit = kits.find(k => k.id_kit == idKit);
+            const freno = frenos.find(f => f.id_freno == idFreno);
+
+            // Calculate total price
+            let precioTotal = 0;
+            precioTotal += Math.round(modelo.precio_base || 0);
+            precioTotal += Math.round(motor.precio || 0);
+            precioTotal += Math.round(suspension.precio || 0);
+            precioTotal += Math.round(llanta.precio || 0);
+            precioTotal += Math.round(kit.precio || 0);
+            precioTotal += Math.round(freno.precio || 0);
+
+            document.getElementById('precio_total').value = precioTotal;
+
+            const descuento = document.getElementById('flexSwitchCheckChecked').checked;
+            let precioDescuento = descuento ? Math.round(precioTotal * 0.9) : precioTotal;
+            document.getElementById('precio_despues_descuento').value = precioDescuento;
+        };
+
+        // Add event listeners to recalculate price when selecting options
+        document.getElementById('id_modelo').addEventListener('change', calcularPrecios);
+        document.getElementById('id_motor').addEventListener('change', calcularPrecios);
+        document.getElementById('id_suspension').addEventListener('change', calcularPrecios);
+        document.getElementById('id_llanta').addEventListener('change', calcularPrecios);
+        document.getElementById('id_kit').addEventListener('change', calcularPrecios);
+        document.getElementById('id_freno').addEventListener('change', calcularPrecios);
+        document.getElementById('flexSwitchCheckChecked').addEventListener('change', calcularPrecios);
+
+        // Initial price calculation
+        calcularPrecios();
+
+        // Form submission logic
         document.getElementById('formModificarProducto').addEventListener('submit', function(event) {
             event.preventDefault();
 
             const formData = new FormData(this);
+          
+            formData.set('id_descuento', document.getElementById('flexSwitchCheckChecked').checked ? 1 : null);
+            console.log("Datos Creados:");
+            console.log("id_producto_final:", formData.get('id_producto_final'));
+            console.log("Modelo:", formData.get('id_modelo'));
+            console.log("Motor:", formData.get('id_motor'));
+            console.log("Suspensión:", formData.get('id_suspension'));
+            console.log("Llanta:", formData.get('id_llanta'));
+            console.log("Freno:", formData.get('id_freno'));
+            console.log("Kit Aerodinámico:", formData.get('id_kit'));
+            console.log("Nombre Producto:", formData.get('nombre_producto'));
+            console.log("Cantidad:", formData.get('cantidad'));
+            console.log("precio_total:", formData.get('precio_total'));
+            console.log("precio_despues_descuento", formData.get('precio_despues_descuento'));
+            console.log("id_descuento:", formData.get('id_descuento'));
+            console.log("Imagen URL:", formData.get('img'));
 
-            fetch("http://localhost/retoBMW-main/Controlador/admin/producto_final/editProducto.php", {
+            fetch('../../Controlador/admin/producto_final/editProducto.php', {
                 method: 'POST',
                 body: formData
+                
             })
             .then(response => {
+                console.log(response);
                 if (response.ok) {
+                    
                     modal.hide();
-                    AlertacorrectamenteModificado();
+                    AlertacorrectamenteCreado();
                     cargardatosProducto();
                 } else {
                     AlertaError();
@@ -2962,23 +3183,25 @@ function modificarproducto(id_producto_final, nombre_modelo, nombre_motor, nombr
                 AlertaErrorFatal(error);
             });
         });
-    })
-    .catch(error => {
-        console.error("Error al cargar los datos:", error);
-        AlertaErrorFatal(error);
     });
 }
+
+
+
+
+
+
 
 
 //Crear producto
 function formCrearProducto() {
     Promise.all([
-        fetch("http://localhost/retoBMW-main/Controlador/admin/producto_final/getModelos.php"),
-        fetch("http://localhost/retoBMW-main/Controlador/admin/producto_final/getMotores.php"),
-        fetch("http://localhost/retoBMW-main/Controlador/admin/producto_final/getSuspensiones.php"),
-        fetch("http://localhost/retoBMW-main/Controlador/admin/producto_final/getLlanta.php"),
-        fetch("http://localhost/retoBMW-main/Controlador/admin/producto_final/getKits.php"),
-        fetch("http://localhost/retoBMW-main/Controlador/admin/producto_final/getFrenos.php")
+        fetch("../../Controlador/admin/producto_final/getModelos.php"),
+        fetch("../../Controlador/admin/producto_final/getMotores.php"),
+        fetch("../../Controlador/admin/producto_final/getSuspensiones.php"),
+        fetch("../../Controlador/admin/producto_final/getLlanta.php"),
+        fetch("../../Controlador/admin/producto_final/getKits.php"),
+        fetch("../../Controlador/admin/producto_final/getFrenos.php")
     ])
     .then(([modelosResp, motoresResp, suspensionesResp, llantasResp, kitsResp, frenosResp]) => {
         return Promise.all([
@@ -2991,40 +3214,42 @@ function formCrearProducto() {
         ]);
     })
     .then(([modelos, motores, suspensiones, llantas, kits, frenos]) => {
-            const generarOpcionesmodelos = (modelos) => {
-                return modelos.map(modelo => 
-                    `<option value="${modelo.id_modelo}">${modelo.nombre_modelo}</option>`
-                ).join('');
-            };
-      
-            const generarOpcionesMotores = (motores) => {
-                return motores.map(motor => 
-                    `<option value="${motor.id_motor}">${motor.nombre_motor}</option>`
-                ).join('');
-            };
-      
-            const generarOpcionesSuspensiones = (suspensiones) => {
-                return suspensiones.map(suspension => 
-                    `<option value="${suspension.id_suspension}">${suspension.nombre_suspension}</option>`
-                ).join('');
-            };
-            const generarOpcionesLlantas = (llantas) => {
-                return llantas.map(llanta => 
-                    `<option value="${llanta.id_llanta}">${llanta.nombre_llanta}</option>`
-                ).join('');
-            };
-            const generarOpcionesKit = (kits) => {
-                return kits.map(kit => 
-                    `<option value="${kit.id_kit}">${kit.nombre_kit}</option>`
-                ).join('');
-            };
-            const generarOpcionesFrenos = (frenos) => {
-                return frenos.map(freno => 
-                    `<option value="${freno.id_freno}">${freno.tipo}</option>`
-                ).join('');
-            };
-           
-      
+        // Funciones para generar opciones de select con resaltado de la opción seleccionada
+        const generarOpcionesModelos = (modelos, nombre_modelo) => {
+            return modelos.map(modelo => 
+                `<option value="${modelo.id_modelo}" ${modelo.nombre_modelo === nombre_modelo ? 'selected' : ''}>${modelo.nombre_modelo}</option>`
+            ).join('');
+        };
+
+        const generarOpcionesMotores = (motores, nombre_motor) => {
+            return motores.map(motor => 
+                `<option value="${motor.id_motor}" ${motor.nombre_motor === nombre_motor ? 'selected' : ''}>${motor.nombre_motor}</option>`
+            ).join('');
+        };
+
+        const generarOpcionesSuspensiones = (suspensiones, nombre_suspension) => {
+            return suspensiones.map(suspension => 
+                `<option value="${suspension.id_suspension}" ${suspension.nombre_suspension === nombre_suspension ? 'selected' : ''}>${suspension.nombre_suspension}</option>`
+            ).join('');
+        };
+
+        const generarOpcionesLlantas = (llantas, nombre_llanta) => {
+            return llantas.map(llanta => 
+                `<option value="${llanta.id_llanta}" ${llanta.nombre_llanta === nombre_llanta ? 'selected' : ''}>${llanta.nombre_llanta}</option>`
+            ).join('');
+        };
+
+        const generarOpcionesFrenos = (frenos, nombre_freno) => {
+            return frenos.map(freno => 
+                `<option value="${freno.id_freno}" ${freno.tipo === nombre_freno ? 'selected' : ''}>${freno.tipo}</option>`
+            ).join('');
+        };
+
+        const generarOpcionesKits = (kits, nombre_kit) => {
+            return kits.map(kit => 
+                `<option value="${kit.id_kit}" ${kit.nombre_kit === nombre_kit ? 'selected' : ''}>${kit.nombre_kit}</option>`
+            ).join('');
+        };
 
         let html = `
             <div class="modal fade" id="modalCrearProducto" tabindex="-1" aria-labelledby="modalCrearProductoLabel" aria-hidden="true">
@@ -3037,44 +3262,44 @@ function formCrearProducto() {
                         <div class="modal-body">
                             <form id="formCrearProducto">
                                 <div class="mb-3">
-                                     <label for="id_modelo" class="form-label">Modelos</label>
-                                  <select class="form-select" id="id_modelo" name="id_modelo" required>
-                                      ${generarOpcionesmodelos(modelos)}
+                                    <label for="id_modelo" class="form-label">Modelos</label>
+                                    <select class="form-select" id="id_modelo" name="id_modelo" required>
+                                        ${generarOpcionesModelos(modelos)}
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                       <label for="id_motor" class="form-label">Motores</label>
-                                  <select class="form-select" id="id_motor" name="id_motor" required>
-                                      ${generarOpcionesMotores(motores)}
+                                    <label for="id_motor" class="form-label">Motores</label>
+                                    <select class="form-select" id="id_motor" name="id_motor" required>
+                                        ${generarOpcionesMotores(motores)}
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                      <label for="id_suspension" class="form-label">Suspensiones</label>
-                                  <select class="form-select" id="id_suspension" name="id_suspension" required>
-                                      ${generarOpcionesSuspensiones(suspensiones)}
+                                    <label for="id_suspension" class="form-label">Suspensiones</label>
+                                    <select class="form-select" id="id_suspension" name="id_suspension" required>
+                                        ${generarOpcionesSuspensiones(suspensiones)}
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                       <label for="id_llanta" class="form-label">Llantas</label>
-                                  <select class="form-select" id="id_llanta" name="id_llanta" required>
-                                      ${generarOpcionesLlantas(llantas)}
+                                    <label for="id_llanta" class="form-label">Llantas</label>
+                                    <select class="form-select" id="id_llanta" name="id_llanta" required>
+                                        ${generarOpcionesLlantas(llantas)}
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                      <label for="id_kit" class="form-label">Kits</label>
-                                  <select class="form-select" id="id_kit" name="id_kit" required>
-                                      ${generarOpcionesKit(kits)}
+                                    <label for="id_kit" class="form-label">Kits</label>
+                                    <select class="form-select" id="id_kit" name="id_kit" required>
+                                        ${generarOpcionesKits(kits)}
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                       <label for="id_freno" class="form-label">frenos</label>
-                                  <select class="form-select" id="id_freno" name="id_freno" required>
-                                      ${generarOpcionesFrenos(frenos)}
+                                    <label for="id_freno" class="form-label">Frenos</label>
+                                    <select class="form-select" id="id_freno" name="id_freno" required>
+                                        ${generarOpcionesFrenos(frenos)}
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="precio_total" class="form-label">Precio Total</label>
-                                    <input type="number" id="precio_total" name="precio_total" class="form-control" required>
+                                    <input type="number" id="precio_total" name="precio_total" class="form-control" readonly>
                                 </div>
                                 <div class="mb-3">
                                     <label for="nombre_producto" class="form-label">Nombre Producto</label>
@@ -3087,6 +3312,14 @@ function formCrearProducto() {
                                 <div class="mb-3">
                                     <label for="img" class="form-label">Imagen URL</label>
                                     <input type="text" id="img" name="img" class="form-control" required>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">Descuento?</label>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="precio_despues_descuento" class="form-label">Precio Real</label>
+                                    <input type="number" id="precio_despues_descuento" name="precio_despues_descuento" class="form-control" readonly>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -3104,17 +3337,83 @@ function formCrearProducto() {
         let modal = new bootstrap.Modal(document.getElementById('modalCrearProducto'));
         modal.show();
 
+        const calcularPrecios = () => {
+            const idModelo = document.getElementById('id_modelo').value;
+            const idMotor = document.getElementById('id_motor').value;
+            const idSuspension = document.getElementById('id_suspension').value;
+            const idLlanta = document.getElementById('id_llanta').value;
+            const idKit = document.getElementById('id_kit').value;
+            const idFreno = document.getElementById('id_freno').value;
+
+            const modelo = modelos.find(m => m.id_modelo == idModelo);
+            const motor = motores.find(m => m.id_motor == idMotor);
+            const suspension = suspensiones.find(s => s.id_suspension == idSuspension);
+            const llanta = llantas.find(l => l.id_llanta == idLlanta);
+            const kit = kits.find(k => k.id_kit == idKit);
+            const freno = frenos.find(f => f.id_freno == idFreno);
+
+            let precioTotal = 0;
+            precioTotal += Math.round(modelo.precio_base || 0);
+            precioTotal += Math.round(motor.precio || 0);
+            precioTotal += Math.round(suspension.precio || 0);
+            precioTotal += Math.round(llanta.precio || 0);
+            precioTotal += Math.round(kit.precio || 0);
+            precioTotal += Math.round(freno.precio || 0);
+
+            const descuentoActivo = document.getElementById('flexSwitchCheckChecked').checked;
+            let precioReal = precioTotal;
+
+            if (descuentoActivo) {
+                if (modelo.oferta) precioReal -= Math.round(precioReal * (modelo.oferta / 100));
+                if (motor.oferta) precioReal -= Math.round(precioReal * (motor.oferta / 100));
+                if (suspension.oferta) precioReal -= Math.round(precioReal * (suspension.oferta / 100));
+                if (llanta.oferta) precioReal -= Math.round(precioReal * (llanta.oferta / 100));
+                if (kit.oferta) precioReal -= Math.round(precioReal * (kit.oferta / 100));
+                if (freno.oferta) precioReal -= Math.round(precioReal * (freno.oferta / 100));
+            }
+
+            document.getElementById('precio_total').value = precioTotal;
+            document.getElementById('precio_despues_descuento').value = precioReal;
+        };
+
+        document.querySelectorAll('select').forEach(select => {
+            select.addEventListener('change', calcularPrecios);
+        });
+
+        calcularPrecios();
+
+        document.getElementById('flexSwitchCheckChecked').addEventListener('change', calcularPrecios);
+
         document.getElementById('formCrearProducto').addEventListener('submit', function(event) {
             event.preventDefault();
 
             const formData = new FormData(this);
 
-            fetch("http://localhost/retoBMW-main/Controlador/admin/producto_final/crearProducto.php", {
+            // Asignar 'id_descuento' como null si el switch está desactivado, o 1 si está activado
+            formData.set('id_descuento', document.getElementById('flexSwitchCheckChecked').checked ? 1 : null);
+
+            console.log("Datos Creados:");
+            console.log("Modelo:", formData.get('id_modelo'));
+            console.log("Motor:", formData.get('id_motor'));
+            console.log("Suspensión:", formData.get('id_suspension'));
+            console.log("Llanta:", formData.get('id_llanta'));
+            console.log("Freno:", formData.get('id_freno'));
+            console.log("Kit Aerodinámico:", formData.get('id_kit'));
+            console.log("Nombre Producto:", formData.get('nombre_producto'));
+            console.log("Cantidad:", formData.get('cantidad'));
+            console.log("precio_total:", formData.get('precio_total'));
+            console.log("precio_despues_descuento", formData.get('precio_despues_descuento'));
+            console.log("id_descuento:", formData.get('id_descuento'));
+            console.log("Imagen URL:", formData.get('img'));
+
+            fetch("../../Controlador/admin/producto_final/crearProducto.php", {
                 method: 'POST',
                 body: formData
             })
             .then(response => {
+                console.log(response);
                 if (response.ok) {
+                    
                     modal.hide();
                     AlertacorrectamenteCreado();
                     cargardatosProducto();
@@ -3126,15 +3425,13 @@ function formCrearProducto() {
                 AlertaErrorFatal(error);
             });
         });
-    })
-    .catch(error => {
-        console.error("Error al cargar los datos:", error);
-        AlertaErrorFatal(error);
     });
 }
+
+
 //Carrito
 function cargardatosCarritos() {
-    fetch("http://localhost/retoBMW-main/Controlador/admin/carrito/getcarrito.php") 
+    fetch("../../Controlador/admin/carrito/getcarrito.php") 
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Error en la red: ${response.status} ${response.statusText}`);
@@ -3233,7 +3530,7 @@ function cargardatosCarritos() {
     if (id_carrito) {
      
 
-        fetch(`http://localhost/retoBMW-main/Controlador/admin/carrito/eliminarcarrito.php?id_carrito=${id_carrito}`)
+        fetch(`../../Controlador/admin/carrito/eliminarcarrito.php?id_carrito=${id_carrito}`)
             .then(response => {
                 if (response.ok) {
                     AlertacorrectamenteElimina();
@@ -3251,8 +3548,8 @@ function cargardatosCarritos() {
   }
   function modificarcarrito(id_carrito, usuarioSeleccionado, nombre_producto) {
     Promise.all([
-        fetch("http://localhost/retoBMW-main/Controlador/admin/carrito/getproducto_carrito.php"),
-        fetch("http://localhost/retoBMW-main/Controlador/admin/carrito/getusuario_carrito.php")
+        fetch("../../Controlador/admin/carrito/getproducto_carrito.php"),
+        fetch("../../Controlador/admin/carrito/getusuario_carrito.php")
     ])
     .then(([ProductoResp, usuariosResp]) => {
         return Promise.all([
@@ -3327,7 +3624,7 @@ function cargardatosCarritos() {
 
             const formData = new FormData(this);
 
-            fetch("http://localhost/retoBMW-main/Controlador/admin/carrito/editcarrito.php", {
+            fetch("../../Controlador/admin/carrito/editcarrito.php", {
                 method: 'POST',
                 body: formData
             })
@@ -3353,8 +3650,8 @@ function cargardatosCarritos() {
 
 function crearCarrito() {
     Promise.all([
-        fetch("http://localhost/retoBMW-main/Controlador/admin/carrito/getproducto_carrito.php"),
-        fetch("http://localhost/retoBMW-main/Controlador/admin/carrito/getusuario_carrito.php")
+        fetch("../../Controlador/admin/carrito/getproducto_carrito.php"),
+        fetch("../../Controlador/admin/carrito/getusuario_carrito.php")
     ])
     .then(([ProductoResp, usuariosResp]) => {
         return Promise.all([ 
@@ -3425,7 +3722,7 @@ function crearCarrito() {
 
             const formData = new FormData(this);
 
-            fetch("http://localhost/retoBMW-main/Controlador/admin/carrito/crearcarrito.php", {
+            fetch("../../Controlador/admin/carrito/crearcarrito.php", {
                 method: 'POST',
                 body: formData
             })

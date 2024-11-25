@@ -35,7 +35,7 @@ if (
         $con->crearkit($kit);
         
         echo "modelo modificado exitosamente";
-        header("Location: http://localhost/retoBMW-main/RETOBMW/admin/");
+     
          
     } catch (Exception $e) {
         echo "Error al crear  modelo: " . $e->getMessage();

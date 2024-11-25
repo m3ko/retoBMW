@@ -27,7 +27,7 @@ if (
         $con->crearSuspension($Suspension);
         echo "Suspension creada exitosamente";
       
-         header("Location: http://localhost/retoBMW-main/RETOBMW/admin/");
+
     } catch (Exception $e) {
         echo "Error al crear el usuario: " . $e->getMessage();
     }

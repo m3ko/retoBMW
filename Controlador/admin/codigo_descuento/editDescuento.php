@@ -33,7 +33,7 @@ if (
       
         $con->modificar_descuento($descuentomod);
         
-        header("Location: http://localhost/retoBMW-main/RETOBMW/admin/");
+     
          
     } catch (Exception $e) {
         echo "Error al crear  descuento: " . $e->getMessage();

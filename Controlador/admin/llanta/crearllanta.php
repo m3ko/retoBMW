@@ -28,7 +28,6 @@ if (
         $con->crearllanta($llanta);
         echo "llanta creada exitosamente";
       
-         header("Location: http://localhost/retoBMW-main/RETOBMW/admin/");
     } catch (Exception $e) {
         echo "Error al crear la llanta: " . $e->getMessage();
     }

@@ -1,3 +1,8 @@
+body{
+
+    font-family: "BMWTypeNext Pro Regular";
+}
+
 .cart-table {
     text-align: left;
 }
@@ -15,7 +20,8 @@
     padding-top: 15px;
     padding-bottom: 15px;
 }.cart-table-prd-image {
-    width: 145px;
+    max-width: 145px;
+    min-width: 145px;
 }
 .cart-table-prd>* {
     display: table-cell;

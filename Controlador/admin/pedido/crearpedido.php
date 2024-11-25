@@ -32,7 +32,7 @@ if (
         $con->crearpedido($pedido);
         echo "pedido creada exitosamente";
       
-         header("Location: http://localhost/retoBMW-main/RETOBMW/admin/");
+   
     } catch (Exception $e) {
         echo "Error al crear la pedido: " . $e->getMessage();
     }

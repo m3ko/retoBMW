@@ -119,6 +119,7 @@ async function verificarInicioSesion_carrito(producto) {
 
     if (verificar) {
         aniadirCarrito(producto);
+
     } else {
         // Redirige a la página de inicio de sesión si no está autenticado
         window.location.href = '../Log In/index.html';
@@ -139,10 +140,39 @@ async function verificarInicioSesion_config() {
 
 
 function aniadirCarrito(producto) {
+    console.log(producto);
 
+    const datosProducto = {
+        id_producto_final: producto // Pasar directamente la variable 'producto'
+    };
 
-
+    fetch('../../Controlador/anadirCarritoMarket.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datosProducto)  // Enviar los datos en formato JSON
+    })
+    .then(response => response.text())  // Leer la respuesta como texto
+    .then(data => {
+        console.log('Respuesta del servidor:', data);  // Ver la respuesta completa
+        try {
+            const jsonData = JSON.parse(data);  // Intentar analizar el JSON
+            if (jsonData.success) {
+                alert('Producto añadido al carrito');
+            } else {
+                alert('Hubo un error al añadir el producto');
+            }
+        } catch (e) {
+            console.error('Error al analizar el JSON:', e);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
+
+
 function config() {
 
     window.location.href = '../configurador/index.html';

@@ -5,11 +5,11 @@ if (isset($_GET['id_producto_final'])) {
 
     $id_producto_final = $_GET['id_producto_final'];
 
-    $Errorcarrito_producto = [
+    $visibilidadcom = [
         "id_producto_final" => $id_producto_final
     ];
     $con = new modeloAdmin();
-    $resultado = $con->Errorcarrito_producto($Errorcarrito_producto);
+    $resultado = $con->comprobarvisibilidad_Producto($visibilidadcom);
     header("Content-Type: application/json");
     echo $resultado;
 } else {

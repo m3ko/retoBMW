@@ -28,7 +28,7 @@ if (
         $con->modificar_llantas($llanta);
         echo "Motor creada exitosamente";
       
-         header("Location: http://localhost/retoBMW-main/RETOBMW/admin/");
+     
     } catch (Exception $e) {
         echo "Error al crear el Motor: " . $e->getMessage();
     }

@@ -12,17 +12,19 @@ html, body {
     padding: 15px;
     display: flex;
   }
+
+  
   
   /* Columns */
-  .left-column {
-    margin: auto;
-    width: 65%;
+  .left-column img {
+    max-width: 700px;
+    min-width: 700px;
+    padding-top: 20%;
+    width: 55%;
     background-image: url(''); /* Ruta de la imagen */
-    background-size: cover; /* Ajusta la imagen para cubrir todo el fondo */
-    background-position: center; /* Centra la imagen */
     position: sticky;
      /* Fija la imagen en la parte superior al hacer scroll */
-    height: 100vh; /* Alto completo de la ventana */
+     /* Alto completo de la ventana */
     z-index: 0; /* Asegura que la imagen esté en el fondo */
 }
   
@@ -57,6 +59,12 @@ html, body {
   .product-description {
     border-bottom: 1px solid #E1E8EE;
     margin-bottom: 20px;
+  }
+  .product-description select{
+    color: #43474D;
+    font-size: large;
+    font-family: "BMWTypeNext Pro Regular";
+
   }
   .product-description span {
     font-size: 12px;
@@ -165,11 +173,16 @@ html, body {
     align-items: center;
   }
   
-  .product-price span {
+  .product-price span{
     font-size: 26px;
     font-weight: 300;
     color: #43474D;
     margin-right: 20px;
+  }
+  .product-price a{
+    font-size: 26px;
+    font-weight: 300;
+    color: #43474D;
   }
   
   .cart-btn {
@@ -201,7 +214,7 @@ html, body {
     .left-column img {
       width: 300px;
       right: 0;
-      top: -65px;
+      
       left: initial;
     }
   }
