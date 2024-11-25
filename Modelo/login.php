@@ -29,8 +29,15 @@ class Login extends Conectar
                     $_SESSION['usuario_id'] = $usuario_db['id_usuario'];
                     $_SESSION['usuario_nombre'] = $usuario_db['nombre'];
                     $_SESSION['usuario_rol'] = $usuario_db['rol'];
-                    header("Location: ../RETOBMW/marketplace/index.html");
+
+                    if($usuario_db==1){
+                        header("Location: ../RETOBMW/marketplace/index.html");
                     exit();
+                    } else{
+                        header("Location: ../RETOBMW/admin/index.html");
+                        exit();
+                    }
+                    
                 } else {
                     echo "Contraseña incorrecta.";echo $contrasena, `  ,   `, $usuario_db['contrasena'];
                 }

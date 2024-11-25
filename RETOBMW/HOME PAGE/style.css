@@ -621,6 +621,10 @@ body{
     font-size: 1.8rem;
     border-radius: 5px;
 }
+.gallery h2{
+
+    text-align: center;
+}
 .gallery-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
